@@ -1,0 +1,14 @@
+.landingContainer {
+
+  display: grid;
+  grid-template-columns: 100%;
+  margin: 1em;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.landingButton {
+margin: 10px;
+
+}
