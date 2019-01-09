@@ -17,7 +17,7 @@ class goPremium extends Component {
         onOk={this.props.handleOk}
         onCancel={this.props.handleCancel}
       >
-        <h2> xxx </h2>
+        <h2> xxxa </h2>
       </Modal>
     )
   }
