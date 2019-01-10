@@ -24,7 +24,12 @@ class questType5 extends Component {
             rightAnsIndex: null,
           }
       }
-
+      getAnswerChoice = (formula,finalValue) => {
+        let choices = Formulas(formula,finalValue);
+        console.log("formula:", formula); 
+        console.log("choices:", choices);
+        return choices;
+      }
       goToNext = (selectedAnsIndex) => {
         let rightAnsIndex = this.state.rightAnsIndex;
         let ansInd = false;
@@ -62,9 +67,14 @@ class questType5 extends Component {
           varArray.push(varValue)
           finalValue.push(genNum)
         }
+        console.log("varArray:", varArray);
+        console.log("finalValue:",finalValue);
+        console.log("varSet:",varSet);
+
         let newQuestion = question;
         for (let k = 0; k < varSet.length; k++) {
-          let replaceValue = Number(finalValue[k]).toLocalString()
+          console.log("finalValue[k]:",finalValue[k], " k: ", k);
+          let replaceValue = Number(finalValue[k]).toLocaleString();
 
           newQuestion = _.replace(newQuestion,varSet[k],replaceValue);
           newQuestion = _.replace(newQuestion,varSet[k],replaceValue);
@@ -87,10 +97,10 @@ class questType5 extends Component {
           quiz : {
             Q_image : null,
             Question: newQuestion,
-            answer_1: Number(choices[0]).toLocalString(),
-            answer_2: Number(choices[1]).toLocalString(),
-            answer_3: Number(choices[2]).toLocalString(),
-            answer_4: Number(choices[3]).toLocalString(),
+            answer_1: Number(choices[0]).toLocaleString(),
+            answer_2: Number(choices[1]).toLocaleString(),
+            answer_3: Number(choices[2]).toLocaleString(),
+            answer_4: Number(choices[3]).toLocaleString(),
           },
           frameQuestion: false,
         })

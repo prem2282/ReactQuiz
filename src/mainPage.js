@@ -259,15 +259,15 @@ class mainPage extends Component {
         answer : null,
         yourAns : null,
       },
-      userProfile : null,
-      userId : null,
-      userName : null,
-      emailId : null,
-      profilePic : null,
-      userQuizHistory : null,
+      // userProfile : null,
+      // userId : null,
+      // userName : null,
+      // emailId : null,
+      // profilePic : null,
+      // userQuizHistory : null,
       quizIdRunning : null,
-      userQuizData : null,
-      userSavedQuizData : null,
+      // userQuizData : null,
+      // userSavedQuizData : null,
       questionArray : [],
       selectedGroupSet : null,
       // muteVoice : false,
@@ -415,6 +415,8 @@ class mainPage extends Component {
 
   questTypeCheck = () => {
     let questionNum = this.state.currentQuestionNum;
+    console.log("questionNum:",questionNum);
+    console.log("this.state.quizSet:",this.state.quizSet);
     let questionType = Number(this.state.quizSet[questionNum].QuestionType);
     switch (questionType) {
       case 1:
@@ -766,17 +768,17 @@ class mainPage extends Component {
 
   Q5answered = (Q5return) => {
 
+    console.log("Q5return:",Q5return);
     const questionNum = this.state.currentQuestionNum;
-    const correctAns = [...this.state.correctAns];
     const correctAnsIndex = [...this.state.correctAnsIndex];
     const selectedAnsIndex = [...this.state.selectedAnsIndex];
 
     correctAnsIndex[questionNum] = Q5return.rightAns;
     selectedAnsIndex[questionNum] = Q5return.selectedAns;
     let variableValues = [...this.state.variableValues];
-    variableValues[questionNum] = Q5return.varValue;
+    variableValues[questionNum] = Q5return.varValues;
 
-    this.setState({ correctAns: correctAns,
+    this.setState({
                     selectedAnsIndex: selectedAnsIndex,
                     variableValues: variableValues,
                     correctAnsIndex: correctAnsIndex,
@@ -897,6 +899,8 @@ class mainPage extends Component {
           questionArray={this.state.quizSet}
           score={this.state.score}
           retakeQuiz={this.retakeQuizFromResult}
+          quizDetails = {this.state.quizDetails}
+          PMPBaseQuizSet = {this.state.baseQuizSet.data}
         />
     </div>
     )

@@ -16,7 +16,7 @@ const phaseList = ['I','P','E','M','C']
 const typeList = ['I','S','T','C','Q','H','CM','R','P'];
 const typeIconList = ['dashboard','filter_tilt_shift','schedule','attach_money','verified_user','people','chat','priority_high','shopping_cart']
 const typeColorList = ['Wheat','RosyBrown','GreenYellow','Gold','LightSteelBlue','Orange','PaleVioletRed','Red','Khaki']
-const quizCount = 10;
+const quizCount = 5;
 
 const phaseFontList = [
   <FontAwesomeIcon icon={faFileSignature}/>,
@@ -40,12 +40,16 @@ class pmpMenuPage extends Component {
       menuName: 'front',
       phaseCounts: [],
       typeCounts: [],
+      mathTypeCounts: [],
+      mathTotalCount: null,
+      mathSelected: false,
       selectedPhase: null,
       selectedType: null,
       setList: [],
       setNameList: [],
       statusList:[],
       scoreList:[],
+      showPremiumBox: false,
 
     }
   }
@@ -54,7 +58,7 @@ class pmpMenuPage extends Component {
     let baseQuizSet = this.props.baseQuizSet;
     let phaseCounts = [];
     let typeCounts = [];
-
+    let mathTypeCounts = [];
     for (let i = 0; i < phaseList.length; i++) {
 
       let totalCount = _.filter(baseQuizSet, function(question) { return question.standard === phaseList[i]}).length
@@ -66,11 +70,20 @@ class pmpMenuPage extends Component {
       let totalCount = _.filter(baseQuizSet, function(question) { return question.subject === typeList[i]}).length
       typeCounts.push(totalCount)
 
+      let mathCount = _.filter(baseQuizSet, function(question) { return question.subject === typeList[i] && question.QuestionType === '5'}).length
+
+      mathTypeCounts.push(mathCount)
+
     }
+
+    let mathProblems = _.filter(baseQuizSet, function(question) { return question.QuestionType === '5'})
+    let mathTotalCount = mathProblems.length
 
     this.setState({
       phaseCounts: phaseCounts,
       typeCounts: typeCounts,
+      mathTypeCounts: mathTypeCounts,
+      mathTotalCount: mathTotalCount,
     })
   }
 
@@ -280,11 +293,12 @@ class pmpMenuPage extends Component {
 
   }
 
-  setClicked = (item) => {
+  setClickedAllowAccess = (item) => {
     let phaseCounts = this.state.phaseCounts;
     let typeCounts = this.state.typeCounts;
     let selectedPhase = this.state.selectedPhase;
     let selectedType = this.state.selectedType;
+    let mathSelected = this.state.mathSelected;
     let setListClicked = item;
 
     let total = 0;
@@ -296,10 +310,16 @@ class pmpMenuPage extends Component {
       total = this.state.phaseCounts[item];
       quizSet = _.filter(this.props.baseQuizSet, function(question) { return (question.standard === selectedPhase)})
       groupId = groupId + 'P-' + selectedPhase + '-';
-    } else {
+    }
+    if (selectedType) {
       total = this.state.typeCounts[item];
       quizSet = _.filter(this.props.baseQuizSet, function(question) { return (question.subject === selectedType)})
       groupId = groupId + 'T-' + selectedType + '-';
+    }
+    if (mathSelected) {
+      groupId = groupId + 'M-M-';
+      quizSet = _.filter(this.props.baseQuizSet, function(question) { return (question.QuestionType === '5')})
+
     }
 
     groupId = groupId + String(setListClicked+1);
@@ -313,6 +333,84 @@ class pmpMenuPage extends Component {
 
   }
 
+  setClickedGoPremium = () => {
+    this.setState({
+      showPremiumBox: true,
+    })
+  }
+
+  setClickedSavedQuiz = (groupId) => {
+    this.props.reloadQuiz(groupId)
+  }
+
+  setClicked = (item,setProps) => {
+    if (setProps.setAccess[item]) {
+      if (setProps.setHeaderText[item] === 'Saved') {
+          this.setClickedSavedQuiz(this.state.setNameList[item])
+      } else {
+        this.setClickedAllowAccess(item)
+      }
+
+    } else {
+      this.setClickedGoPremium()
+    }
+  }
+
+  mathClicked = () => {
+    let total = this.state.mathTotalCount;
+    let rem = total%quizCount;
+    let quo = (total -rem)/quizCount;
+    let typeSelected = 'M';
+    let setList = [1];
+    let setName1 = "PMP-M-" + typeSelected + '-' + 1;
+    let setNameList = [];
+    setNameList.push(setName1);
+    for (let i = 1; i <= quo; i++) {
+      setList.push(i+1);
+      let setNameNext = "PMP-M-" + typeSelected + '-' + String(i+1);
+      setNameList.push(setNameNext);
+
+    }
+    let setCountList = [];
+    for (let i = 0; i <= quo; i++) {
+      let startCount = i*quizCount;
+      let endCount = i*quizCount+quizCount;
+      if (endCount > total) {
+        endCount = total;
+      }
+      let setCount = startCount + ' - ' + endCount;
+      setCountList.push(setCount);
+
+    }
+    let statusList = [];
+    let scoreList = [];
+
+    for (var i = 0; i < setNameList.length; i++) {
+      let historySet = _.find(this.props.userQuizHistory, function(o) {return o.groupId === String(setNameList[i]);});
+      let status = null;
+      let score = 0;
+      if (historySet) {
+        status = historySet.quizSet;
+        score = historySet.score;
+      }
+      statusList.push(status);
+      scoreList.push(score);
+    }
+
+    this.setState({
+      fromMenu: false,
+      selectedPhase: null,
+      selectedType: null,
+      mathSelected: true,
+      setList:setList,
+      setNameList:setNameList,
+      setCountList:setCountList,
+      statusList:statusList,
+      scoreList:scoreList,
+      menuName:'set',
+    })
+
+  }
   backButton = () => {
 
     let menuName = this.state.menuName;
@@ -462,7 +560,7 @@ class pmpMenuPage extends Component {
                 <Delayed key={item} id={item} waitBeforeShow={i*100}>
                   <Animated key={i} id={i} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                     <div className="processOuterBox" style={{backgroundColor:setBoxColor[i]}}
-                      onClick={() => this.setClicked(i)}>
+                      onClick={() => this.setClicked(i,setProps)}>
                       <Tag color={setHeaderColor[i]}>{setHeaderText[i]}</Tag>
                       <p style={{fontSize:48, marginBottom:0, color:setNumberColor[i]}}>{item}</p>
                       <Tag color={"transparent"}>{this.state.setCountList[i]}</Tag>

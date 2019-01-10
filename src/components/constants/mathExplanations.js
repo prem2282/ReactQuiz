@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-let mathFormulas = (formula,data) => {
+let mathExplanations = (formula,data) => {
 
   for (let i = 0; i < data.length; i++) {
     data[i] = Number(data[i])
@@ -593,4 +593,4 @@ let mathFormulas = (formula,data) => {
   }
 
 }
-export default mathFormulas
+export default mathExplanations

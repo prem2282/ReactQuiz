@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Animated} from 'react-animated-css';
 import {Button, Modal, Icon, Tag, Avatar} from 'antd';
+import QuizDetails from './quizDetails';
+
 import './menuPage.css'
 
 class resultPage extends Component {
@@ -12,9 +14,15 @@ class resultPage extends Component {
       visible : false,
       showOnlyWrong: false,
       modalName : null,
+      showNewModal: false,
     }
   }
 
+  handleModalClose = (e) => {
+    this.setState({
+      showNewModal:false,
+    })
+  }
   yourAnswerText = (selectedAnsIndex) => {
     let textArray = selectedAnsIndex?String(selectedAnsIndex).split('-'):[];
     let textArrayNew = textArray.map((txt,i) => {
@@ -78,7 +86,7 @@ class resultPage extends Component {
     let screenWidth = window.innerWidth;
     let correctText = "Correct";
     let wrongText = "Wrong";
-
+    console.log("this.props.variableValues",this.props.variableValues);
     if (questionSet.QuestionType === '5') {
       let newQuestion = questionSet.Question;
       let varSet = questionSet.answer_1;
@@ -165,6 +173,11 @@ class resultPage extends Component {
   }
   }
 
+  renderNewModel = () => {
+    this.setState({
+      showNewModal: true,
+    })
+  }
   renderModal = () => {
     return (
       <Modal
@@ -228,9 +241,17 @@ class resultPage extends Component {
             <Button className="menuItem" ghost onClick={this.showModalWrong}>Show only Wrong</Button>
             <Button className="menuItem" ghost onClick={this.props.retakeQuiz}>Retake Quiz</Button>
             <Button className="menuItem" ghost onClick={this.props.selected}>Return</Button>
+            <Button className="menuItem" ghost onClick={this.renderNewModel}>Review Quiz</Button>
           </div>
         </Animated>
         {this.renderModal()}
+        {this.state.showNewModal?
+          <QuizDetails
+            quizDetails = {this.props.quizDetails}
+            PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
+            handleCancel = {this.handleModalClose}
+          />
+        :null}
       </div>
     )
   }
