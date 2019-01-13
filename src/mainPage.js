@@ -157,7 +157,7 @@ class mainPage extends Component {
     let userEmail = localStorage.emailId;
     let imageUrl = localStorage.imageUrl;
 
-    let targetUrl = "http://prem2282.pythonanywhere.com/api/UserDetails/create"
+    let targetUrl = "https://prem2282.pythonanywhere.com/api/UserDetails/create"
 
     // let targetUrl = 'http://127.0.0.1:8000/api/UserDetails/create';
     axios.post(targetUrl, {
@@ -189,7 +189,7 @@ class mainPage extends Component {
   getUserProfile = (profileObj) => {
 
 
-    let targetUrl = 'http://prem2282.pythonanywhere.com//api/UserDetails/'
+    let targetUrl = 'https://prem2282.pythonanywhere.com//api/UserDetails/'
 
     axios.get(targetUrl, {params:
       {userId: localStorage.userId}
@@ -218,7 +218,7 @@ class mainPage extends Component {
 
   getUserSavedLocally = (userId) => {
 
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserDetails/'
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserDetails/'
 
     axios.get(targetUrl, {params:
       {userId: userId}
@@ -241,7 +241,7 @@ class mainPage extends Component {
     })
   }
   getUserPackage = (userId) => {
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserPackage/'
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserPackage/'
     axios.get(targetUrl, {params: {userId:userId} })
     .then(res => {
       this.saveUserPackage(res.data[0].packageId)
@@ -353,7 +353,7 @@ class mainPage extends Component {
 
       let userId = this.state.userProfile.userId;
 
-      let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserQuiz/';
+      let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/';
       axios.get(targetUrl, {params: {
         userId: userId,
         groupId: groupId,
@@ -420,7 +420,7 @@ class mainPage extends Component {
 
   getPMPQuestionsApi = () => {
       console.log("get PMP // QUESTION: ");
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
       .then(res => {
@@ -457,7 +457,7 @@ class mainPage extends Component {
 
   getUserQuizHistory = (userId) => {
 
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserQuiz';
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz';
 
 
       axios.get(targetUrl,{
@@ -614,7 +614,7 @@ class mainPage extends Component {
   addUserQuiz = (userQuizDetails) => {
     let moment = require('moment')
     let updatedTime = moment().format();
-    let targetUrl =  'http://prem2282.pythonanywhere.com/api/UserQuiz/create';
+    let targetUrl =  'https://prem2282.pythonanywhere.com/api/UserQuiz/create';
 
     let updated = false;
 
@@ -647,7 +647,7 @@ class mainPage extends Component {
   updateUserQuiz = (userQuizDetails) => {
       let moment = require('moment')
       let updatedTime = moment().format();
-      let targetUrl =  'http://prem2282.pythonanywhere.com/api/UserQuiz/edit/' + userQuizDetails.userQuizId;
+      let targetUrl =  'https://prem2282.pythonanywhere.com/api/UserQuiz/edit/' + userQuizDetails.userQuizId;
 
       let updated = false;
 
@@ -676,7 +676,7 @@ class mainPage extends Component {
 
   removeQuizHistory = (quizId) => {
 
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserQuiz/delete' + quizId;
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/delete' + quizId;
 
     axios.delete(targetUrl)
     .then(res => {

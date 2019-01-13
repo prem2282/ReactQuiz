@@ -80,11 +80,11 @@ class historyDetailsModel extends React.Component {
 
         let targetUrl = null;
         if (groupIdArray[0]=='PMP') {
-          targetUrl = 'http://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+          targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
           // targetUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/';
 
         } else {
-           targetUrl = 'http://prem2282.pythonanywhere.com/api/QuestionList/';
+           targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
           //  targetUrl = 'http://127.0.0.1:8000/api/QuestionList/';
 
         }
@@ -133,11 +133,11 @@ class historyDetailsModel extends React.Component {
 
         let targetUrl = null;
         if (groupIdArray[0]=='PMP') {
-          targetUrl = 'http://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+          targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
           // targetUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/';
 
         } else {
-           targetUrl = 'http://prem2282.pythonanywhere.com/api/QuestionList/';
+           targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
           //  targetUrl = 'http://127.0.0.1:8000/api/QuestionList/';
         }
 
@@ -223,7 +223,7 @@ class historyDetailsModel extends React.Component {
       let quizNumber = this.props.quizNumber;
 
       // let targetUrl = 'http://127.0.0.1:8000/api/UserQuiz/delete/' + quizId + '/' ;
-      let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserQuiz/delete/' + quizId;
+      let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/delete/' + quizId;
 
       let updated = false;
 

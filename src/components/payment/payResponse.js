@@ -17,7 +17,7 @@ class payResponse extends Component {
 
   checkExistingData = (responseData) => {
 
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserPackage/' ;
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserPackage/' ;
 
     axios.get(targetUrl)
     .then(res => {
@@ -48,7 +48,7 @@ class payResponse extends Component {
     let moment = require('moment');
     let paymentDate = moment().format();
 
-    let targetUrl = 'http://prem2282.pythonanywhere.com/api/UserPackage/create' ;
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserPackage/create' ;
 
     let updated = false;
 

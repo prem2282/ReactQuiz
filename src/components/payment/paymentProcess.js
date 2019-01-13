@@ -13,7 +13,7 @@ let onBuyNowClick = (paymentData) => {
     buyer_name: paymentData.buyer_name,
     email: paymentData.email,
     user_id: paymentData.userId,
-    redirect_url: `http://localhost:3000/PayResponse/?user_id=${paymentData.userId}`,
+    redirect_url: `https://pmp-quiz-master.herokuapp.com/PayResponse/?user_id=${paymentData.userId}`,
     webhook_url: '/webhook/',
   };
 
@@ -34,7 +34,7 @@ let onBuyNowClick = (paymentData) => {
   data.allow_repeated_payments =  false;
 
   let request= require('request');
-  let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  // let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   let targetUrl = 'https://test.instamojo.com/api/1.1/payment-requests/'
   let dummyUrl = proxyUrl + targetUrl
 
@@ -43,7 +43,7 @@ let onBuyNowClick = (paymentData) => {
 
 
 
-  request.post(dummyUrl, {headers: headers, form : data}, function(error, response, body){
+  request.post(targetUrl, {headers: headers, form : data}, function(error, response, body){
     if(!error && response.statusCode == 200){
       console.log("No error");
       console.log(response);
