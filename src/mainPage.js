@@ -420,7 +420,8 @@ class mainPage extends Component {
 
   getPMPQuestionsApi = () => {
       console.log("get PMP // QUESTION: ");
-    let targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+
+    let targetUrl = 'https://cors.io/?https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
       .then(res => {
