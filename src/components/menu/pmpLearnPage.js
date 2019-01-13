@@ -33,8 +33,8 @@ const processColour = PMPConstants('processColour');
 const ProcessInput = PMPConstants('ProcessInput');
 const ProcessOutput = PMPConstants('ProcessOutput');
 const ProcessTools = PMPConstants('ProcessTools');
-const InputByProcess = PMPConstants('InputByProcess');
-const OutputByProcess = PMPConstants('InputByProcess');
+// const InputByProcess = PMPConstants('InputByProcess');
+// const OutputByProcess = PMPConstants('OutputByProcess');
 const ToolsNameList = PMPConstants('ToolsNameList');
 ToolsNameList
 
@@ -271,17 +271,20 @@ class pmpLearnPage extends Component {
     }
 
     return(
-      <div className="pmpCenter">
+      <div>
+
         <Affix offsetTop={0}>
-          <Header
-            homeButton={this.props.homeButton}
-            logOutButton={this.props.logOutButton}
-            backButton={this.backButton}
-            pageLoaded="pmpLearnPage"
-            profile={this.props.userProfile}
-            headerText = {headerText}
-            />
-        </Affix>
+        <Header
+          homeButton={this.props.homeButton}
+          logOutButton={this.props.logOutButton}
+          backButton={this.backButton}
+          pageLoaded="pmpLearnPage"
+          profile={this.props.userProfile}
+          headerText = {headerText}
+          />
+      </Affix>
+        <div className="pmpCenter">
+
         <div>
 
         </div>
@@ -372,8 +375,8 @@ class pmpLearnPage extends Component {
                       <Collapse accordion className="custom" style={{backgroundColor:'transparent'}} onChange={this.callback}>
                         {this.state.inputList.map((item,i) => {
                           let inputName = <i style={{color:'Khaki'}}>{IONameList[item]}</i>
-                          let InputByProcessName = InputByProcess[item]
-                          let OutputByProcessName = OutputByProcess[item]
+                          let InputByProcess = PMPConstants('InputByProcess')[item]
+                          let OutputByProcess = PMPConstants('OutputByProcess')[item]
                           return(
                             <Panel className="custom" header={inputName} key={i}>
                               <div className="descBox">
@@ -392,8 +395,8 @@ class pmpLearnPage extends Component {
                                         InputByProcess.map((input,j) => {
                                           return(
                                             <div className="subProcessContainerIO">
-                                              <p style={{color:processColour[input]}}>{fontIcon[input]}</p>
-                                              <p>{ProcessArray[input]}</p>
+                                              <p className="subProcessIOText">{fontIcon[input]}</p>
+                                              <p className="subProcessIOText">{ProcessArray[input]}</p>
                                             </div>
                                           )
                                         })
@@ -414,8 +417,8 @@ class pmpLearnPage extends Component {
                                         OutputByProcess.map((input,k) => {
                                           return(
                                             <div className="subProcessContainerIO">
-                                              <p style={{color:processColour[input]}}>{fontIcon[input]}</p>
-                                              <p>{ProcessArray[input]}</p>
+                                              <p className="subProcessIOText">{fontIcon[input]}</p>
+                                              <p className="subProcessIOText">{ProcessArray[input]}</p>
                                             </div>
                                           )
                                         })
@@ -441,8 +444,8 @@ class pmpLearnPage extends Component {
                         <Collapse accordion className="custom" style={{backgroundColor:'transparent'}} onChange={this.callback}>
                           {this.state.outputList.map((item,i) => {
                             let inputName = <i style={{color:'Khaki'}}>{IONameList[item]}</i>
-                            let InputByProcessName = InputByProcess[item]
-                            let OutputByProcessName = OutputByProcess[item]
+                            let InputByProcess = PMPConstants('InputByProcess')[item]
+                            let OutputByProcess = PMPConstants('OutputByProcess')[item]
                             return(
                               <Panel className="custom" header={inputName} key={i}>
                                 <div className="descBox">
@@ -461,8 +464,8 @@ class pmpLearnPage extends Component {
                                           InputByProcess.map((input,j) => {
                                             return(
                                               <div className="subProcessContainerIO">
-                                                <p style={{color:processColour[input]}}>{fontIcon[input]}</p>
-                                                <p>{ProcessArray[input]}</p>
+                                                <p className="subProcessIOText">{fontIcon[input]}</p>
+                                                <p className="subProcessIOText">{ProcessArray[input]}</p>
                                               </div>
                                             )
                                           })
@@ -483,8 +486,8 @@ class pmpLearnPage extends Component {
                                           OutputByProcess.map((input,k) => {
                                             return(
                                               <div className="subProcessContainerIO">
-                                                <p style={{color:processColour[input]}}>{fontIcon[input]}</p>
-                                                <p>{ProcessArray[input]}</p>
+                                                <p className="subProcessIOText">{fontIcon[input]}</p>
+                                                <p className="subProcessIOText">{ProcessArray[input]}</p>
                                               </div>
                                             )
                                           })
@@ -517,7 +520,7 @@ class pmpLearnPage extends Component {
                         return(
                           <Panel className="custom" header={toolName} key={i}>
                             <div className="descBox">
-                              "IODescriptions[item]"
+                              {PMPConstants('ToolDescription')[item]}
                             </div>
                           </Panel>
                         )
@@ -536,6 +539,7 @@ class pmpLearnPage extends Component {
             null
         }
 
+      </div>
       </div>
     )
 

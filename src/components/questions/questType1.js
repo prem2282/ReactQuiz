@@ -82,8 +82,6 @@ class questType1 extends Component {
       } else {
         picSize = screenWidth/8;
       }
-      let fontSize = '18px';
-      // let fontSize = String(Math.round((screenWidth - 400)*100 + 14)) + 'px';
 
       return (
         <div className = "questionContainer">
@@ -97,11 +95,11 @@ class questType1 extends Component {
                 <div className="questionPic">
                   <Avatar shape="square" size={picSize} src={pic} />
                 </div>
-                <p className={this.props.questionBoxClass}>{this.props.quiz.Question}</p>
+                <p className="questionBox">{this.props.quiz.Question}</p>
               </div>
             :
               <div>
-                <p className={this.props.questionBoxClass}>{this.props.quiz.Question}</p>
+                <p className="questionBox">{this.props.quiz.Question}</p>
               </div>
             }
           </Animated>

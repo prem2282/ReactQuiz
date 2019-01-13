@@ -39,6 +39,11 @@
   justify-content: flex-start;
   align-items: flex-start;
   color: Aqua;
+  -webkit-user-select:none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-user-select:none;
+  -moz-user-select:none;
 }
 
 .answerContainer {
@@ -99,4 +104,84 @@
   -webkit-transition-property: transform;
   transition-property: transform;
 
+}
+
+
+
+@media screen and (max-width: 550px) {
+
+  .questionBox {
+    height: auto;
+    font-size: 18px;
+    font-weight: lighter;
+    width: auto;
+    font-style: normal;
+    margin: 2px;
+    padding: 2px;
+    border-color: Aqua;
+  }
+
+  .answerBoxType1 {
+    font-size: 17px;
+  }
+
+  .answerContainer{
+    grid-template-columns: 90%;
+    padding: 2px;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2px;
+  }
+}
+
+
+@media screen and (min-width: 550px) and (max-width:850px) {
+
+  .questionBox {
+    height: auto;
+    font-size: 22px;
+    font-weight: lighter;
+    width: auto;
+    font-style: normal;
+    margin: 2px;
+    padding: 2px;
+    border-color: Aqua;
+  }
+  .answerBoxType1 {
+    font-size: 20px;
+  }
+  .answerContainer{
+    grid-template-columns: 90%;
+    padding: 3px;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: space-around;
+    margin: 3px;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1200) {
+
+  .questionBox {
+    height: auto;
+    font-size: 24px;
+    font-weight: lighter;
+    width: auto;
+    font-style: normal;
+    margin: 2px;
+    padding: 2px;
+    border-color: Aqua;
+  }
+
+  .answerBoxType1 {
+    font-size: 20px;
+  }
+  .answerContainer{
+    grid-template-columns: 40% 40%;
+    padding: 4px;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: space-around;
+    margin: 4px;
+  }
 }

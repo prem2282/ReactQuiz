@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'antd';
 import {Animated} from 'react-animated-css';
 import {GoogleLogin} from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import './landing.css';
 const clientId = "374998186039-sogtupo8o5aksqq2te2eie0anmm13tst.apps.googleusercontent.com";
 
@@ -23,16 +24,28 @@ const landingPage = (props) => {
 
       {(!props.userName)?
         <div className="landingContainer">
-          <div>
-            <GoogleLogin onSuccess={props.success} onFailure={props.error} clientId={clientId}/>
+          <div >
+            <GoogleLogin
+              render={renderProps => (
+                  <Button className="landingButton" type="primary" ghost onClick={renderProps.onClick}>Sign with Google</Button>
+              )}
+               onSuccess={props.success} onFailure={props.error} clientId={clientId}/>
           </div>
 
           <div>
-            <Button  className="landingButton" type="primary" ghost>Sign with Facebook</Button>
+            <FacebookLogin
+              appId="348732972376990"
+              autoLoad={false}
+              fields="name,email,picture"
+              callback={props.facebookResp}
+              render={renderProps => (
+                <Button  className="landingButton" type="primary" ghost onClick={renderProps.onClick}>Sign with Facebook</Button>
+              )}
+            />
           </div>
 
           <div>
-            <Button className="landingButton" type="primary" ghost>Continue as Guest</Button>
+            <Button className="landingButton" type="primary" ghost onClick={props.guestLogin}>Continue as Guest</Button>
           </div>
         </div>
         :

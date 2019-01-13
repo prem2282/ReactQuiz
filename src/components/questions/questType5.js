@@ -26,7 +26,7 @@ class questType5 extends Component {
       }
       getAnswerChoice = (formula,finalValue) => {
         let choices = Formulas(formula,finalValue);
-        console.log("formula:", formula); 
+        console.log("formula:", formula);
         console.log("choices:", choices);
         return choices;
       }
@@ -130,7 +130,6 @@ class questType5 extends Component {
                 quiz = {this.state.quiz}
                 questionNum = {this.props.questionNum}
                 selected = {this.goToNext}
-                questionBoxClass = "questionBox"
                 />
               :null
               }

@@ -1,0 +1,80 @@
+  .modalClass {
+  box-shadow: 5px 5px 2px black;
+}
+
+.choiceDefault {
+  color : Gray;
+  font-style: normal;
+  font-family: monospace;
+}
+
+.choiceCorrect {
+  color : Gold;
+  font-family: monospace;
+}
+
+.choiceWrong {
+  color : Red;
+  text-decoration: line-through;
+  font-family: monospace;
+}
+
+.custom .ant-collapse-content > .ant-collapse-content-box {
+  padding: 0px;
+}
+
+.custom .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  color : Aqua;
+}
+
+.custom .ant-modal-header {
+  background-color: #20211F;
+  border-bottom: 1px solid black;
+}
+
+.custom .ant-modal-body {
+  background-color: #20211F;
+  padding: 2px;
+}
+
+.custom .ant-modal-footer {
+  background-color: #20211F;
+  /* border-bottom: 1px solid black; */
+}
+
+.custom .ant-modal-close {
+  color : Aqua
+}
+
+.custom .ant-modal-title {
+  color : Aqua
+}
+
+
+.historyQuestBox {
+  display: grid;
+  grid-template-columns:100%;
+  background: transparent;
+  color: DarkKhaki;
+  padding: 2px;
+}
+
+.historyMathAnsBox {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-bottom: 0px;
+  justify-content: space-around;
+}
+
+.historyMathRightAns {
+  color: Gold
+}
+.historyMathYourAns {
+  color: Aqua
+}
+
+.historyAnsBox {
+  padding-left: 10px;
+}

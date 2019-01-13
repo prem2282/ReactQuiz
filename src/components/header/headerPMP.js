@@ -45,7 +45,6 @@ class headerPMP extends Component {
     const userContent = (
       <div>
         <p>Email : {userEmail}</p>
-        <Tag color="DimGray">Login with Google</Tag>
         <Tag color="#f50" onClick={this.props.logOutButton}>Sign Off</Tag>
       </div>
     )

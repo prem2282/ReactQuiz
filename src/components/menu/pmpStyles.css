@@ -17,6 +17,19 @@
 
 }
 
+.coursePageContainer{
+  display: grid;
+  gird-template-columns: 30%;
+  margin-top: .1em;
+  height: auto;
+  width: auto;
+  padding: 10px;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+
+}
+
 .pmpHeader {
   display: grid;
   grid-template-columns: 10% 80% 10%;
@@ -89,7 +102,11 @@
   font-weight: lighter;
 }
 
-
+.subProcessIOText {
+  margin-bottom: 0px;
+    padding: 2px;
+    color: LightSalmon;
+}
 .subProcessContainerIO {
   display: grid;
   grid-template-columns: 20% 80%;
@@ -98,7 +115,7 @@
   border-width: .5px;
   border-color: Gray;
   border-radius: 5px;
-  background-color: #2B3124;
+  background-color: transparent;
   height: auto;
   width: auto;
   align-items: center;
@@ -220,6 +237,8 @@
   color: Aqua;
   align-self: center;
   padding: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
   justify-content: flex-start;
 }
 
@@ -246,6 +265,9 @@
   .pmpContainer {
     grid-template-columns: 50%;
   }
+  .coursePageContainer {
+        grid-template-columns: 40%;
+  }
   .processContainter {
     grid-template-columns: 33% 33% 33%;
   }
@@ -268,6 +290,9 @@
   }
   .pmpContainer {
     grid-template-columns: 100%;
+  }
+  .coursePageContainer {
+        grid-template-columns: 90%;
   }
   .processContainter {
     grid-template-columns: 33% 33% 33%;
@@ -292,6 +317,9 @@
   .pmpContainer {
     grid-template-columns: 100%;
   }
+  .coursePageContainer {
+        grid-template-columns: 90%;
+  }
   .processContainter {
     grid-template-columns: 50% 50%;
   }
@@ -308,6 +336,9 @@
 
   .pmpContainer {
     grid-template-columns: 50%;
+  }
+  .coursePageContainer {
+        grid-template-columns: 40%;
   }
   .processContainter {
     grid-template-columns: 33% 33% 33%;

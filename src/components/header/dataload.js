@@ -122,10 +122,10 @@ class dataload extends Component {
           //
           // let fontAwesome = this.parseConstants(res,'fontAwesome')
           // console.log("case 'fontAwesome': return([" + fontAwesome + "]);");
-          let typeIconList = this.parseConstants(res,'typeIconList')
-          console.log("case 'typeIconList': return([" + typeIconList + "]);");
-          let typeColorList = this.parseConstants(res,'typeColorList')
-          console.log("case 'typeColorList': return([" + typeColorList + "]);");
+          // let typeIconList = this.parseConstants(res,'typeIconList')
+          // console.log("case 'typeIconList': return([" + typeIconList + "]);");
+          // let typeColorList = this.parseConstants(res,'typeColorList')
+          // console.log("case 'typeColorList': return([" + typeColorList + "]);");
 
           // let processCounts = this.parseConstantsAsNum(res,'processCounts')
           // console.log("case 'processCounts': return([" + processCounts + "]);");
@@ -156,8 +156,8 @@ class dataload extends Component {
           //
           // let IODescriptions = this.doubleQuotes(res,'IODescriptions')
           // console.log("case 'IODescriptions': return([" + IODescriptions + "]);");
-
-
+          let ToolDescription = this.doubleQuotes(res,'ToolDescription')
+          console.log("case 'ToolsDecsription': return([" + ToolDescription + "]);");
         })
         .catch(err => {
           console.log("error in getting Constants");

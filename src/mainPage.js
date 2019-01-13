@@ -11,10 +11,12 @@ import QuestType5 from '..//src/components/questions/questType5';
 import Header from '..//src/components/header/header';
 import ResultPage from '..//src/components/menu/resultPage';
 import HeaderQuiz from '..//src/components/header/headerQuiz';
+import HistoryPage from '..//src/components/menu/historyPage';
+import LoadingPage from '..//src/components/menu/loadingPage';
 import './App.css';
 import _ from 'lodash';
 import axios from 'axios';
-import {Progress} from 'antd';
+import {Progress, Affix} from 'antd';
 import Request from 'superagent';
 
 
@@ -78,6 +80,37 @@ class mainPage extends Component {
     }
   }
 
+  facebookResp = (response) => {
+
+        let loginTime = moment().format()
+        console.log("facebook response", response);
+        localStorage.setItem('emailId',response.email);
+        localStorage.setItem('userId',response.id);
+        localStorage.setItem('userName',response.name);
+        localStorage.setItem('imageUrl',response.picture.data.url);
+
+        let profileObj = {
+          email : localStorage.emailId,
+          userId : localStorage.userId,
+          userName: localStorage.userName,
+          imageUrl: localStorage.imageUrl,
+          loginFrom: 'facebook',
+
+        }
+
+        if (localStorage.userId) {
+          this.getUserProfile(profileObj);
+        }
+        window.location.href = "http://localhost:3000"
+  }
+
+  guestLogin = () => {
+    this.setState({
+
+      userLoggedIn : false,
+      pageId : 'coursePage',
+    })
+  }
 
   googleSuccess = (response) => {
 
@@ -88,15 +121,18 @@ class mainPage extends Component {
     localStorage.setItem('userName',response.profileObj.name);
     localStorage.setItem('imageUrl',response.profileObj.imageUrl);
 
-    console.log("localStorage.profile", localStorage.profile);
-    if (response.profileObj.email) {
-      this.getUserProfile(response.profileObj)
+    let profileObj = {
+      email : localStorage.emailId,
+      userId : localStorage.userId,
+      userName: localStorage.userName,
+      imageUrl: localStorage.imageUrl,
+      loginFrom: 'google',
+
     }
 
-    this.setState({
-      pageId : "coursePage",
-      userLoggedIn : true,
-    })
+    if (response.profileObj.googleId) {
+      this.getUserProfile(profileObj)
+    }
 
   }
 
@@ -152,20 +188,26 @@ class mainPage extends Component {
   }
   getUserProfile = (profileObj) => {
 
-    console.log("getting user profile:" , profileObj);
-    console.log("profile userId", profileObj.userId);
+
     let targetUrl = 'http://prem2282.pythonanywhere.com//api/UserDetails/'
 
     axios.get(targetUrl, {params:
-      {userId: profileObj.userId}
+      {userId: localStorage.userId}
     })
     .then(res => {
       this.saveUserProfile(res.data[0]);
-      this.getUserQuizHistory(profileObj.userId);
+      this.getUserQuizHistory(localStorage.userId);
+      this.getUserPackage(localStorage.userId);
+
       console.log("res:", res);
       if (res.data.length===0) {
         console.log("going to registerUser");
         this.registerUser(profileObj)
+      } else {
+        this.setState({
+          pageId : "coursePage",
+          userLoggedIn : true,
+        })
       }
     })
     .catch(err => {
@@ -221,6 +263,9 @@ class mainPage extends Component {
 
     if (localStorage.userId) {
       this.getUserSavedLocally(localStorage.userId)
+    }
+    if (!this.state.gotPMPQuestions) {
+      this.getPMPQuestionsApi();
     }
 
   }
@@ -286,6 +331,22 @@ class mainPage extends Component {
     })
   }
 
+  goBackToLanding = () => {
+    this.setState({
+      pageId: "landingPage"
+    })
+  }
+
+  goToHistoryPage = () => {
+
+    console.log("Quiz History Clicked");
+    this.setState(
+      {
+        pageId : "historyPage"
+      }
+    )
+  }
+
   checkUserForQuiz = (groupId,quizStatus) => {
 
       console.log("groupId:",groupId);
@@ -349,7 +410,11 @@ class mainPage extends Component {
     this.resetQuizDetails();
     this.setState({
       userProfile: null,
+      userQuizHistory: null,
+      userPackage: null,
+      userQuizData: null,
       pageId: "landingPage",
+      userLoggedIn: false,
     })
   }
 
@@ -400,7 +465,7 @@ class mainPage extends Component {
       })
       .then(res => {
         this.setState({
-          userQuizHistory: res,
+          userQuizHistory: res.data,
         })
       })
 
@@ -450,7 +515,7 @@ class mainPage extends Component {
     const questionNum = this.state.currentQuestionNum;
     // const correctAns = [...this.state.correctAns];
     const correctAnsIndex = [...this.state.correctAnsIndex];
-
+    console.log("inside correctAnsChoice");
     let correctAnswer = null;
     let correctAnswerIndex = null;
 
@@ -473,7 +538,7 @@ class mainPage extends Component {
 
     // correctAns[questionNum] = correctAnswer;
     correctAnsIndex[questionNum] = correctAnswerIndex;
-
+    console.log("3correctAnsIndex:",correctAnsIndex);
     this.setState({
       // correctAns: correctAns,
       correctAnsIndex: correctAnsIndex,
@@ -499,6 +564,9 @@ class mainPage extends Component {
       let correctAns = _.trim(_.lowerCase(this.state.correctAnsIndex[i]));
       let selectedAns = _.trim(_.lowerCase(this.state.selectedAnsIndex[i]));
 
+      console.log("Question:", i);
+      console.log("correctAns:" , correctAns);
+      console.log("selectedAns: ", selectedAns);
       if (correctAns === selectedAns) {
         ansInd.push(true);
         ansI = true;
@@ -506,7 +574,7 @@ class mainPage extends Component {
         ansInd.push(false);
         ansI = false;
       }
-
+      console.log("ansI: ", ansI);
       dataObject.q_no = i+1;
       dataObject.ansInd = (ansI?"Y":"X")
       dataObject.question = this.state.quizSet[i].Question;
@@ -684,7 +752,10 @@ class mainPage extends Component {
     let questionNum = this.state.currentQuestionNum;
     let questionType = Number(this.state.quizSet[questionNum].QuestionType);
 
-    this.correctAnsChoice();
+    if (questionType === 1) {
+          this.correctAnsChoice();
+    }
+
 
     if (questionNum === this.state.totalQuestions - 1) {
       const selectedChoices = [false,false,false,false,false,false];
@@ -741,7 +812,6 @@ class mainPage extends Component {
           questionNum = {questionNum}
           selected = {this.choiceSelectedType1}
           clicked = {this.choiceSelected}
-          questionBoxClass = "questionBox"
           saveQuiz = {this.saveIncompleteQuiz}
           selectedAns = {this.state.selectedAns[currentQuestionNum]}
           muteVoice = {this.state.muteVoice}
@@ -769,15 +839,18 @@ class mainPage extends Component {
   Q5answered = (Q5return) => {
 
     console.log("Q5return:",Q5return);
-    const questionNum = this.state.currentQuestionNum;
-    const correctAnsIndex = [...this.state.correctAnsIndex];
-    const selectedAnsIndex = [...this.state.selectedAnsIndex];
+    console.log("correctAnsIndex:", this.state.correctAnsIndex);
+    console.log("selectedAnsIndex:", this.state.selectedAnsIndex);
+    let questionNum = this.state.currentQuestionNum;
+    let correctAnsIndex = [...this.state.correctAnsIndex];
+    let selectedAnsIndex = [...this.state.selectedAnsIndex];
 
     correctAnsIndex[questionNum] = Q5return.rightAns;
     selectedAnsIndex[questionNum] = Q5return.selectedAns;
     let variableValues = [...this.state.variableValues];
     variableValues[questionNum] = Q5return.varValues;
-
+    console.log("2correctAnsIndex:", correctAnsIndex);
+    console.log("2selectedAnsIndex:", selectedAnsIndex);
     this.setState({
                     selectedAnsIndex: selectedAnsIndex,
                     variableValues: variableValues,
@@ -801,31 +874,67 @@ class mainPage extends Component {
   }
 
   landingPageRender = () => {
-    return(
-      <LandingPage
-        success = {this.googleSuccess}
-        error = {this.googleError}
-      />
-    )
+
+    if (this.state.gotPMPQuestions) {
+      return(
+        <div>
+          <Affix offsetTop={0}>
+            <Header
+              homeButton = {this.goToHome}
+              logOutButton = {this.logOut}
+              pageLoaded = "LandingPage"
+              profile = {this.state.userProfile}
+            />
+          </Affix>
+          <LandingPage
+            success = {this.googleSuccess}
+            error = {this.googleError}
+            facebookResp = {this.facebookResp}
+            guestLogin = {this.guestLogin}
+          />
+        </div>
+      )
+    } else {
+      return(
+        <LoadingPage/>
+      )
+
+    }
+
 
   }
 
 
   coursePageRender = () => {
-    return(
-      <div>
-        <Header
-          homeButton = {this.goToHome}
-          logOutButton = {this.logOut}
-          pageLoaded = "CoursePage"
-          profile = {this.state.userProfile}
-        />
-        <CoursePage
-          pmpQuiz = {this.pmpQuiz}
-          pmpLearn = {this.pmpLearn}
-        />
-    </div>
-    )
+
+    if (this.state.gotPMPQuestions) {
+      return(
+        <div>
+          <Affix offsetTop={0}>
+            <Header
+              homeButton = {this.goToHome}
+              logOutButton = {this.logOut}
+              pageLoaded = "CoursePage"
+              profile = {this.state.userProfile}
+              backButton = {this.goToHome}
+              userPackage = {this.state.userPackage}
+            />
+          </Affix>
+          <CoursePage
+            pmpQuiz = {this.pmpQuiz}
+            pmpLearn = {this.pmpLearn}
+            historyPage = {this.goToHistoryPage}
+            goBackToLanding = {this.goBackToLanding}
+            userProfile = {this.state.userProfile}
+          />
+      </div>
+      )
+
+    } else {
+      return(
+        <LoadingPage/>
+      )
+    }
 
   }
 
@@ -866,12 +975,14 @@ class mainPage extends Component {
   countPageRender = () => {
     return (
       <div>
-        <Header
-          homeButton = {this.goBackToCourse}
-          logOutButton = {this.logOut}
-          pageLoaded = "CoursePage"
-          profile={this.state.userProfile}
-        />
+        <Affix offsetTop={0}>
+          <Header
+            homeButton = {this.goBackToCourse}
+            logOutButton = {this.logOut}
+            pageLoaded = "CoursePage"
+            profile={this.state.userProfile}
+          />
+        </Affix>
         <CountPage
           countEnded={this.countEnded}
         />
@@ -883,13 +994,14 @@ class mainPage extends Component {
 
     return(
       <div>
-        <Header
-            homeButton= {this.goToHome}
-            logOutButton={this.logOut}
-            quizOn={false}
-            profile={this.state.userProfile}
-            pageLoaded="ResultPage"
+        <Affix offsetTop={0}>
+          <Header
+            homeButton = {this.goToHome}
+            logOutButton = {this.logOut}
+            pageLoaded = "ResultPage"
+            profile = {this.state.userProfile}
           />
+        </Affix>
         <ResultPage
           selected= {this.selectionResult}
           correctAns={this.state.correctAnsIndex}
@@ -901,6 +1013,11 @@ class mainPage extends Component {
           retakeQuiz={this.retakeQuizFromResult}
           quizDetails = {this.state.quizDetails}
           PMPBaseQuizSet = {this.state.baseQuizSet.data}
+          homeButton= {this.goToHome}
+          logOutButton={this.logOut}
+          userProfile={this.state.userProfile}
+          pageLoaded="ResultPage"
+          backButton= {this.goBackToCourse}
         />
     </div>
     )
@@ -912,72 +1029,95 @@ class mainPage extends Component {
     )
   }
 
+  historyPageRender = () => {
 
+    return(
+      <div>
+        <HistoryPage
+          quizList = {this.state.userQuizHistory}
+          quizTopicData={this.state.groupSet}
+          questionArray={this.state.questionArray}
+          PMPBaseQuizSet={this.state.baseQuizSet.data}
+          backButton={this.goBackToCourse}
+          userProfile={this.state.userProfile}
+          removeQuizHistory={this.removeQuizFromHistory}
+          retakeQuiz={this.retakeQuizFromHistory}
+          homeButton = {this.goToHome}
+          logOutButton = {this.logOut}
+          />
+      </div>
+    )
+  }
 
   render() {
 
         switch (this.state.pageId) {
 
           case 'landingPage':
-          this.getPMPQuestionsApi();
-          return(
-            this.landingPageRender()
-          )
+            // this.getPMPQuestionsApi();
+            return(
+              this.landingPageRender()
+            )
 
             break;
 
           case "coursePage":
-          return (
-            this.coursePageRender()
-          )
+            return (
+              this.coursePageRender()
+            )
 
             break;
 
           case "pmpMenuPage":
-          return (
-            this.pmpMenuPageRender()
-          )
+            return (
+              this.pmpMenuPageRender()
+            )
 
             break;
 
           case "pmpLearnPage":
-          return (
-            this.pmpLearnPageRender()
-          )
+            return (
+              this.pmpLearnPageRender()
+            )
 
           case "countPage":
-          return (
-            this.countPageRender()
-          )
+            return (
+              this.countPageRender()
+            )
 
             break;
           case "beforeResult":
           this.beforeResultProcess();
-          return (
-            <div>
-            </div>
-          )
-
+            return (
+              <div>
+              </div>
+            )
             break;
 
           case "result":
-          return (
-            this.resultRender()
-          )
+            return (
+              this.resultRender()
+            )
 
             break;
 
           case "refresh":
-          return (
-            this.refreshRender(this.state.refreshTo)
-          )
+            return (
+              this.refreshRender(this.state.refreshTo)
+            )
             break;
           case "loadQuestion":
-          this.loadQuestion()
-          return (
-            <div></div>
-          )
-          break;
+            this.loadQuestion()
+            return (
+              <div></div>
+            )
+            break;
+          case "historyPage":
+            console.log("going to historyPage");
+            return(
+                this.historyPageRender()
+            )
+            break;
           case 'questTypeCheck':
             const questionNum = this.state.currentQuestionNum + 1;
             const currentQuestionNum = this.state.currentQuestionNum;
@@ -988,23 +1128,25 @@ class mainPage extends Component {
             return(
               <div>
                 <div>
-                  <HeaderQuiz
-                    quizOn={true}
-                    saveQuiz={this.saveAndQuit}
-                    homeButton={this.goToHome}
-                    logOutButton={this.logout}
-                    timeUp = {this.nextQuestion}
-                    profile={this.state.userProfile}
-                    muteVoiceToggle={this.muteVoiceToggle}
-                    muteVoice={this.state.muteVoice}
-                    progLabel={progLabel}
-                  />
+                  <Affix offsetTop={0}>
+                    <HeaderQuiz
+                      quizOn={true}
+                      saveQuiz={this.saveAndQuit}
+                      homeButton={this.goToHome}
+                      logOutButton={this.logout}
+                      timeUp = {this.nextQuestion}
+                      profile={this.state.userProfile}
+                      muteVoiceToggle={this.muteVoiceToggle}
+                      muteVoice={this.state.muteVoice}
+                      progLabel={progLabel}
+                    />
+                  </Affix>
                 </div>
                 <Progress showInfo={false} percent={now} style={{backgroundColor:'#444'}} status='active' />
                 {this.questTypeCheck()}
               </div>
             )
-
+            break;
           default:
 
         }

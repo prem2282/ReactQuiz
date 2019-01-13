@@ -17,3 +17,198 @@
   width: -webkit-fill-available;
   /* box-shadow: 5px 5px 2px black;  */
 }
+
+.historyBoxContainter {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  padding: 10px;
+  align-content: space-around;
+  margin: 10px;
+}
+
+
+.historyBoxWrapper {
+
+  display: grid;
+  margin: .5em;
+  height: 100%;
+  box-shadow: 5px 5px 2px black	;
+  border-color: #320648;
+  border-radius: 2px;
+
+}
+.historyBox1 {
+  display: grid;
+  grid-template-columns: 65% 30% 5%;
+  width: auto;
+  padding-left: 5px;
+  height: 100%;
+  background-color: #42314A;
+
+}
+
+.historyBox1Main {
+  display: grid;
+  grid-template-columns: 100%;
+  background-color: #42314A;
+  height: 100%;
+  padding: 2%;
+
+}
+
+
+.historyBox1Close {
+  background-color: #42314A;
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+
+
+}
+.historyHeadText1 {
+  color: LemonChiffon;
+  font-size: 16px;
+  text-align: left;
+  padding: 1%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.historyHeadText2 {
+  color: DarkGray;
+  font-size: 12px;
+  text-align: left;
+  padding: 0px;
+  margin-top: 0px;
+}
+
+
+.historyBox2 {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: auto;
+  height: auto;
+  background-color: Bisque;
+
+}
+
+.historyBox2:hover {
+  opacity: .6;
+
+}
+
+.historyBox2Block1 {
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+
+}
+
+
+.historyBox2Block2 {
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100%;
+  justify-content: space-around;;
+  align-items: center;
+  align-self: center;
+  padding: 0px;
+}
+
+.historyBox2Text1 {
+  text-align: justify;
+  padding: 10px;
+  color: Maroon;
+  font-size: 18px;
+}
+
+.historyBox2Text2 {
+  color: black;
+  font-size: 30px;
+}
+
+.historyBoxWrong {
+
+  background: IndianRed;
+  margin: 5px;
+  color: Gainsboro;
+  border-radius: 5px;
+  opacity: 0.9;
+
+
+}
+
+.and-card-body {
+  padding: 10px;
+  background-color: Aquamarine;
+}
+
+
+
+@media screen and (max-width: 550px) {
+
+  .menu-inner {
+    grid-template-columns: 100%;
+  }
+
+  .historyBoxContainter {
+    grid-template-columns: 100%;
+  }
+
+  .menuItem {
+    margin: 10px 10px 10px 10px;
+    padding: 2px 2px 2px 2px;
+    font-size: 12px;
+    width: -webkit-fill-available;
+  }
+
+}
+
+@media screen and (min-width: 550px) and (max-width:850px) {
+
+
+  .historyBoxContainter {
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .resultGrid {
+          grid-template-columns: 80%;
+    }
+
+    .menu1Grid {
+        grid-template-columns:  repeat( auto-fit, minmax(60px, 20fr) );
+        padding: 1px 1px;
+        margin: 1px 1px 1px 1px;
+    }
+
+    .alertGrid {
+      margin: 10px 10px 10px 10px;
+    }
+
+    .menuContainer {
+                grid-template-columns: 80%;
+    }
+
+
+}
+
+@media screen and (min-width: 700px) and (max-width: 1200) {
+    .resultGrid {
+          grid-template-columns: 40% 40%;
+    }
+}

@@ -1,0 +1,605 @@
+.fixedTopBox {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.menuContainerOld {
+
+  display: grid;
+  height: auto;
+  width: 60%;
+  margin: 1em;
+  padding: 10px;
+  border-color: white;
+  background-color: #333;
+  border-radius: 10px;
+  align-self: center;
+}
+
+.menuCenter {
+  position: relative;
+  top: 10%;
+  align-self: center;
+
+}
+
+.menuContainer {
+  display: grid;
+  grid-template-columns: 30%;
+  margin-top: 4em;
+  height: auto;
+  width: auto;
+  padding: 10px;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+
+.historyBoxContainter {
+  display: grid;
+  /*grid-template-columns:  repeat( auto-fit, minmax(20px, 3fr) );*/
+  grid-template-columns: 30% 30% 30%;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;;
+  padding: 10px;
+  align-content: space-around;;
+  margin: 10px;
+}
+
+
+.ant-card-body {
+  padding: 10px;
+  background-color: Aquamarine;
+}
+
+.menu-inner {
+  display: grid;
+  /*grid-template-columns:  repeat( auto-fit, minmax(20px, 2fr) );*/
+  grid-template-columns: 50% 50%;
+  grid-auto-rows: minmax(10px, auto);
+  background-color: #333;
+  grid-auto-flow: row;
+  grid.column-gap: 5px;
+  padding: 10px 0px;
+  margin: 10px 10px 10px 10px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+.submitButton {
+  height: auto;
+  width: 100px;
+  margin-right:  10em;
+  margin-left: 10em;
+  margin-top: 1em;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+
+.menuItem {
+  margin: 10px 20px 10px 20px;
+  padding: 10px 10px 10px 10px;
+  width: -webkit-fill-available;
+  box-shadow: 5px 5px 2px black	;
+
+}
+
+.lessonButtonContainer {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.buttonGrid {
+  display: grid;
+  padding-right:  0%;
+  padding-left: 0%;
+  grid-template-columns: 90%;
+
+}
+
+.buttonContainer {
+    display:grid;
+    grid-template-columns: 100%;
+    margin-top:  10px;
+    margin-bottom: 10px;
+    padding-right:  0%;
+    padding-left: 0%;
+    align-content: space-around;
+    justify-content: space-around;
+
+}
+
+
+.my-table.ant-table-column-has-filters {
+  color: white;
+}
+
+.historyBoxWrapper {
+
+  display: grid;
+  margin: .5em;
+  height: 100%;
+  box-shadow: 5px 5px 2px black	;
+  border-color: #320648;
+  border-radius: 2px;
+
+}
+.historyBox1 {
+  display: grid;
+  grid-template-columns: 65% 30% 5%;
+  width: auto;
+  padding-left: 5px;
+  height: 100%;
+  background-color: #42314A;
+
+}
+
+.historyBox1Main {
+  display: grid;
+  grid-template-columns: 100%;
+  background-color: #42314A;
+  height: 100%;
+  padding: 2%;
+
+}
+
+
+.historyBox1Close {
+  background-color: #42314A;
+      display: grid;
+      grid-template-columns: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+
+
+}
+.historyHeadText1 {
+  color: LemonChiffon;
+  font-size: 16px;
+  text-align: left;
+  padding: 1%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.historyHeadText2 {
+  color: DarkGray;
+  font-size: 12px;
+  text-align: left;
+  padding: 0px;
+  margin-top: 0px;
+}
+
+
+.historyBox2 {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: auto;
+  height: auto;
+  background-color: Bisque;
+
+}
+
+.historyBox2:hover {
+  opacity: .6;
+
+}
+
+.historyBox2Block1 {
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+
+}
+
+
+.historyBox2Block2 {
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100%;
+  justify-content: space-around;;
+  align-items: center;
+  align-self: center;
+  padding: 0px;
+}
+
+.historyBox2Text1 {
+  text-align: justify;
+  padding: 10px;
+  color: Maroon;
+  font-size: 18px;
+}
+
+.historyBox2Text2 {
+  color: black;
+  font-size: 30px;
+}
+
+.historyBoxWrong {
+
+  background: IndianRed;
+  margin: 5px;
+  color: Gainsboro;
+  border-radius: 5px;
+  opacity: 0.9;
+
+
+}
+
+.choiceDefault {
+  color: Gray;
+  font-style: normal;
+  font-family: monospace;
+}
+
+.choiceCorrect {
+  color: Gold;
+  /*font-style: italic;*/
+  font-family: monospace;
+}
+
+.choiceWrong {
+  color: Red;
+  text-decoration: line-through;
+  font-family: monospace;
+}
+
+
+.modalClass {
+  box-shadow: 5px 5px 2px black	;
+}
+.custom .ant-collapse-content > .ant-collapse-content-box {
+  padding: 0px;
+}
+.custom .ant-collapse > .ant-collapse-item > .ant-collapse-header  {
+  color: Aqua;
+}
+.custom .ant-modal-header {
+  background-color: #20211F;
+  border-bottom: 1px solid black;
+}
+
+.custom .ant-modal-body {
+  background-color: #20211F;
+  padding: 2px;
+}
+
+
+.custom .ant-modal-footer {
+  background-color: #20211F;
+  border-top: 1px solid black;
+}
+
+.custom .ant-modal-close {
+  color: Aqua;
+}
+
+.custom .ant-modal-title {
+  color: Aqua;
+}
+
+.historyBoxRight {
+
+  background: DimGray;
+  margin: 5px;
+  color: Ivory;
+  border-radius: 5px;
+  opacity: 0.9;
+
+}
+
+
+.historyQuestBox {
+
+  display: grid;
+  grid-template-columns: 100%;
+  background: transparent;
+  padding: 2px;
+  color: DarkKhaki;
+  border-radius: 5px;
+
+}
+
+.historyMathAnsBox {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  margin-bottom:  5px;
+  padding: 5px;
+  padding-bottom: 0px;
+  justify-content: space-around;
+}
+
+
+.historyMathRightAns {
+  color: Gold
+}
+
+.historyMathYourAns {
+  color: Aqua
+}
+
+
+.historyAnsBox {
+  padding-left: 10px;
+}
+
+.historyAnsTextRight {
+  color: Gold;
+}
+.historyQuestion {
+  color: Aqua;
+}
+
+.scoreBox {
+  color: Gold;
+  font-size: 60px;
+  border-color: white;
+
+}
+
+.explainBox {
+  font-style: italic;
+  font-family: monospace;
+  color: Peru;
+  background-color: transparent;;
+  border-radius: 5px;
+  border-color: Aqua;
+  border-width: thin;
+  margin: 2px;
+
+}
+
+.quizTypeButtonBox{
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-content: center;
+  justify-content: center;
+}
+
+.resultTableRow {
+  color: white;
+}
+.menuButton {
+  height: auto;;
+  width: auto;
+  margin: 5px 5px 5px 5px;
+  padding: 10px 10px 10px 10px;
+  border-color: white;
+  color: white;
+  background-color: #400;
+  border-radius: 5px;
+  align-content:  center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  text-overflow: inherit;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+
+}
+
+.menuButton:hover {
+  background-color: #aaa;
+  color: #111;
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+
+}
+
+
+.menuSelected {
+  height: auto;
+  width: auto;
+  margin: 5px 5px 5px 5px;
+  padding: 10px 10px 10px 10px;
+  border-color: white;
+  color: Black;
+  background-color: Goldenrod;
+  border-radius: 5px;
+  align-content: space-around;
+  align-content: space-around;
+  justify-content: space-around;
+  justify-items: space-around;
+  align-items: space-around;
+  text-align: space-around;
+  text-overflow: inherit;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+
+}
+
+.resultBoxCorrectHead{
+  background-color: Aqua;
+  color: white;
+  font-style: italic;
+  font-family:sans-serif;
+  font-weight: normal;
+  margin: .0em;
+  border-color: transparent;
+  border-width: thin;
+}
+
+.resultBoxCorrectBody{
+  background-color: Crimson;
+  color: white;
+  margin: .0em;
+  border-color: transparent;
+  border-width: thin;
+
+}
+
+.resultBoxWrongHead{
+  background-color: Crimson;
+  color: white;
+}
+
+.resultBoxWrongBody{
+  background-color: Salmon;
+  color: black;
+}
+
+.resultGrid{
+  display: grid;
+  /*grid-template-columns:  repeat( auto-fit, minmax(20px, 2fr) );*/
+  grid-template-columns: 80%;
+  grid-auto-rows: minmax(10px, auto);
+  background-color: #444;
+  padding: 10px 10px;
+  margin: 10px 10px 10px 10px;
+  justify-content: space-around;
+  justify-items: space-around;
+  align-items: space-around;
+  text-align: space-around;
+
+}
+
+.alertGrid {
+  display: block;;
+  width: 200px;
+  height: auto;
+  background-color: IndianRed;
+  color: white;
+  margin: 10px 10px 10px 10px;
+  opacity: 50%;
+  justify-content: space-around;;
+  justify-items: center;
+  align-items: space-around;
+  text-align: space-around;
+  align-self: center;
+}
+
+.menu1Grid {
+
+  display: grid;
+  /*grid-template-columns:  repeat( auto-fit, minmax(60px, 20fr) );*/
+  /*grid-template-columns: 15% 15% 15% 15% 15% 15% ;*/
+  grid-template-columns: 100%;
+  grid-auto-rows: minmax(10px, auto);
+  width: 50%;
+  height: auto;
+  background-color: #443;
+  padding: 10px 10px;
+  margin: 10px 10px 10px 10px;
+  justify-content: space-between;;
+  justify-items: space-between;
+  align-items: space-between;
+  text-align: space-between;
+
+}
+
+
+.mathResultBox {
+  display: grid;
+  grid-template-columns: 10% 60% 10% 10% 10%;
+  height: auto;
+  margin: 5px 5px 5px 5px;
+  justify-content: space-between;;
+  align-items: space-between;
+  text-align: center;;
+
+}
+
+
+.mathResult1 {
+  color: Aqua;
+  background-color: #443;
+  border: 1px;
+  width: auto;
+  height: auto;
+  margin: 1px;
+}
+
+.mathWrongAnswer {
+  border-color: yellow;
+  color: Gold;
+  background-color: #443;
+  border: 1px;
+  width: auto;
+  height: auto;
+  margin: 1px;
+  text-decoration: line-through;
+}
+
+@media screen and (max-width: 550px) {
+
+  .menu-inner {
+    grid-template-columns: 100%;
+  }
+
+  .historyBoxContainter {
+    grid-template-columns: 100%;
+  }
+
+  .menuItem {
+    margin: 10px 10px 10px 10px;
+    padding: 2px 2px 2px 2px;
+    font-size: 12px;
+    width: -webkit-fill-available;
+  }
+
+}
+
+@media screen and (min-width: 550px) and (max-width:850px) {
+
+
+  .historyBoxContainter {
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .resultGrid {
+          grid-template-columns: 80%;
+    }
+
+    .menu1Grid {
+        grid-template-columns:  repeat( auto-fit, minmax(60px, 20fr) );
+        padding: 1px 1px;
+        margin: 1px 1px 1px 1px;
+    }
+
+    .alertGrid {
+      margin: 10px 10px 10px 10px;
+    }
+
+    .menuContainer {
+                grid-template-columns: 80%;
+    }
+
+
+}
+
+@media screen and (min-width: 700px) and (max-width: 1200) {
+    .resultGrid {
+          grid-template-columns: 40% 40%;
+    }
+}

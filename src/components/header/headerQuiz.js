@@ -120,7 +120,7 @@ class headerQuiz extends Component {
 
       return (
 
-        <div className="grid-container">
+        <div className="quiz-grid-container">
           <div>
             {this.props.quizOn?
               <Avatar  style = {{color: 'DarkSlateGray'}} icon="home" />

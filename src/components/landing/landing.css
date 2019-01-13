@@ -10,5 +10,8 @@
 
 .landingButton {
 margin: 10px;
+}
 
+.googleLogin {
+  background-color: Red;
 }
