@@ -81,8 +81,8 @@
 .answerBoxType1:hover {
   background-color: #443;
   color: white;
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
+  /* -webkit-transform: scale(1.02);
+  transform: scale(1.02); */
 }
 
 .answerBoxSel {
@@ -184,4 +184,17 @@
     justify-content: space-around;
     margin: 4px;
   }
+}
+
+@media screen and (min-height: 1500px) and (max-width: 1000px) {
+
+  .answerContainer{
+    grid-template-columns: 95%;
+    padding: 2px;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2px;
+  }
+
 }

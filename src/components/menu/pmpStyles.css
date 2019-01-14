@@ -352,3 +352,25 @@
   }
 
 }
+
+/* godaddy frame */
+@media screen and (min-height: 1500px) and (max-width: 1000px) {
+
+  .pmpContainer {
+    grid-template-columns: 80%;
+  }
+  .coursePageContainer {
+        grid-template-columns: 80%;
+  }
+  .processContainter {
+    grid-template-columns: 33% 33% 33%;
+  }
+  .inputOutputContainer {
+    grid-template-columns: 75%;
+  }
+
+  .inputOutputSubContainer {
+    grid-template-columns: 50% 50%;
+  }
+
+}

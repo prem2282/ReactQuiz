@@ -34,9 +34,9 @@ let onBuyNowClick = (paymentData) => {
   data.allow_repeated_payments =  false;
 
   let request= require('request');
-  // let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   let targetUrl = 'https://test.instamojo.com/api/1.1/payment-requests/'
-  // let dummyUrl = proxyUrl + targetUrl
+      targetUrl = proxyUrl + targetUrl
   //
   // console.log(dummyUrl);
   let headers = { 'X-Api-Key': 'test_eb938d68b256680e231d865acce', 'X-Auth-Token': 'test_decaceab671101219bc45291bc1'}
