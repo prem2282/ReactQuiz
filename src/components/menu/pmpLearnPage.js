@@ -36,7 +36,7 @@ const ProcessTools = PMPConstants('ProcessTools');
 // const InputByProcess = PMPConstants('InputByProcess');
 // const OutputByProcess = PMPConstants('OutputByProcess');
 const ToolsNameList = PMPConstants('ToolsNameList');
-ToolsNameList
+
 
 
 const fontIcon = [
@@ -92,7 +92,7 @@ class pmpLearnPage extends Component {
     super(props);
 
     this.state = {
-      menuName: 'front',
+      menuName: 'type1',
       subProcessFontList: null,
       subProcessColourList: null,
       processSelected: null,
@@ -105,7 +105,7 @@ class pmpLearnPage extends Component {
       showOtherOutputSideOutput: false,
       showOtherInputSideOutput: false,
       showOtherOutputSideInput: false,
-      learnType: null,
+      learnType: "IO",
 
     }
   }
@@ -213,13 +213,20 @@ class pmpLearnPage extends Component {
         this.typeClicked(this.state.processSelected)
         break;
       case 'process':
-        backMenuName = 'type1';
-        processSelected = null;
+      this.setState({
+        backMenuName : 'type1',
+        processSelected : null,
+      })
+
         break;
       case 'type1':
-        backMenuName: 'front';
-        processSelected: null;
-        subProcessSelected: null;
+      this.props.backButton();
+      // this.setState({
+      //   backMenuName: 'front',
+      //   processSelected: null,
+      //   subProcessSelected: null,
+      // })
+
         break;
       case 'front':
         this.props.backButton();
