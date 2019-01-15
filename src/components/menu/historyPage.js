@@ -1,7 +1,7 @@
 import  React,{ Component } from 'react';
 import { Affix, Button, Icon, Card, List } from 'antd';
 import _ from 'lodash';
-import './menuPage.css';
+import './historyStyles.css';
 import {Animated} from 'react-animated-css';
 import Header from '../..//components/header/headerPMP';
 // import GetQuestionsByQnum from '../..//components/apiCalls/getQuestionsByQnum';

@@ -40,6 +40,10 @@ class header extends Component {
 
     render() {
 
+      let screenHeight = window.innerHeight;
+      let screenWidth = window.innerWidth;
+      let alertText = screenWidth + ":" + screenHeight;
+
       let logOut = this.logOut;
       let userName = "Guest";
       let userPic = null;
@@ -115,6 +119,7 @@ class header extends Component {
           </div>
 
           <div>
+            <p>{alertText}</p>
           </div>
 
           <div>

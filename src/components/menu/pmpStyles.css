@@ -159,6 +159,22 @@
   grid-template-columns: 33% 33% 33%;
 }
 
+.setTopContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 1em;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  align-self: center;
+}
+
+
+.setContainer {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
 .inputOutputHeader {
   display: grid;
   margin: 10px;
@@ -271,6 +287,11 @@
   .processContainter {
     grid-template-columns: 33% 33% 33%;
   }
+
+  .setContainer {
+    grid-template-columns: 33% 33% 33%;
+  }
+
   .inputOutputContainer {
     grid-template-columns: 75%;
   }
@@ -297,6 +318,11 @@
   .processContainter {
     grid-template-columns: 33% 33% 33%;
   }
+
+  .setContainer {
+    grid-template-columns: 33% 33% 33%;
+  }
+
   .inputOutputContainer {
     grid-template-columns: 100%;
   }
@@ -323,38 +349,23 @@
   .processContainter {
     grid-template-columns: 50% 50%;
   }
-  .inputOutputContainer {
-    grid-template-columns: 100%;
-  }
 
-  .inputOutputSubContainer {
-    grid-template-columns: 100%;
-  }
-}
-
-@media screen and (min-width: 1050px) and (max-width: 1500px) {
-
-  .pmpContainer {
-    grid-template-columns: 50%;
-  }
-  .coursePageContainer {
-        grid-template-columns: 40%;
-  }
-  .processContainter {
-    grid-template-columns: 33% 33% 33%;
-  }
-  .inputOutputContainer {
-    grid-template-columns: 75%;
-  }
-
-  .inputOutputSubContainer {
+  .setContainer {
     grid-template-columns: 50% 50%;
   }
 
+  .inputOutputContainer {
+    grid-template-columns: 100%;
+  }
+
+  .inputOutputSubContainer {
+    grid-template-columns: 100%;
+  }
 }
 
+
 /* godaddy frame */
-@media screen and (min-height: 1500px) and (max-width: 1000px) {
+@media screen and (min-height: 1400px) and (max-width: 1000px) {
 
   .pmpContainer {
     grid-template-columns: 80%;
@@ -365,12 +376,36 @@
   .processContainter {
     grid-template-columns: 33% 33% 33%;
   }
+  .setContainer {
+    grid-template-columns: 33% 33% 33%;
+  }
+
   .inputOutputContainer {
-    grid-template-columns: 75%;
+    grid-template-columns: 100%;
   }
 
   .inputOutputSubContainer {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 100%;
   }
+
+}
+
+@media screen and (orientation: landscape) {
+
+  .pmpContainer {
+    grid-template-columns: 50%;
+  }
+  .coursePageContainer {
+        grid-template-columns: 50%;
+  }
+  .processContainter {
+    grid-template-columns: 33% 33% 33%;
+  }
+
+
+  .setContainer {
+    grid-template-columns: 20%  20%  20%  20%  20% ;
+  }
+
 
 }

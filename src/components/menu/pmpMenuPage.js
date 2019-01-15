@@ -48,6 +48,7 @@ class pmpMenuPage extends Component {
       selectedType: null,
       setList: [],
       setNameList: [],
+      setCountList: [],
       statusList:[],
       scoreList:[],
       showPremiumBox: false,
@@ -512,7 +513,7 @@ class pmpMenuPage extends Component {
 
         if (this.state.selectedPhase) {
             newMenuName = 'type1'
-        } else if (this.state.typeSelected) {
+        } else if (this.state.selectedType) {
             newMenuName = 'type2'
         } else if (this.state.mathSelected) {
             newMenuName = 'front'
@@ -676,24 +677,25 @@ class pmpMenuPage extends Component {
             }
 
         {(this.state.menuName==='set')?
-          <div className="pmpContainer">
-            <div className="processContainter">
-            {this.state.setList.map((item,i) => {
-              return(
-                <Delayed key={item} id={item} waitBeforeShow={i*100}>
-                  <Animated key={i} id={i} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <div className="processOuterBox" style={{backgroundColor:setBoxColor[i]}}
-                      onClick={() => this.setClicked(i,setProps)}>
-                      <Tag color={setHeaderColor[i]}>{setHeaderText[i]}</Tag>
-                      <p style={{fontSize:48, marginBottom:0, color:setNumberColor[i]}}>{item}</p>
-                      <Tag color={"transparent"}>{this.state.setCountList[i]}</Tag>
-                    </div>
-                  </Animated>
-                </Delayed>
-                )
-              })}
+            <div className="setTopContainer">
+
+              <div className="setContainer">
+              {this.state.setList.map((item,i) => {
+                return(
+                  <Delayed key={item} id={item} waitBeforeShow={i*100}>
+                    <Animated key={i} id={i} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+                      <div className="processOuterBox" style={{backgroundColor:setBoxColor[i]}}
+                        onClick={() => this.setClicked(i,setProps)}>
+                        <Tag color={setHeaderColor[i]}>{setHeaderText[i]}</Tag>
+                        <p style={{fontSize:48, marginBottom:0, color:setNumberColor[i]}}>{item}</p>
+                        <Tag color={"transparent"}>{this.state.setCountList[i]}</Tag>
+                      </div>
+                    </Animated>
+                  </Delayed>
+                  )
+                })}
+                </div>
               </div>
-            </div>
           :null
         }
         {this.state.showPremiumBox?

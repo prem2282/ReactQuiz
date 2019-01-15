@@ -48,16 +48,16 @@
 
 .answerContainer {
   display: grid;
-  grid-template-columns: 40% 40%;
+  grid-template-columns: 50% 50%;
   padding: 10px;
   grid-template-rows: auto;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-around;
   margin: 5px;
 }
 
 .answerBoxType1 {
-  height: 90%;
+  height: 100%;
   width: auto;
   font-size: 20px;
   margin: .4em .4em .4em .4em ;
@@ -67,6 +67,7 @@
   border-radius: 5px;
   align-content: space-around;
   justify-content: space-around;
+  /* align-self: stretch; */
   text-overflow: inherit;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
@@ -125,6 +126,9 @@
     font-size: 17px;
   }
 
+  .answerBoxSel {
+    font-size: 17px;
+  }
   .answerContainer{
     grid-template-columns: 90%;
     padding: 2px;
@@ -149,6 +153,10 @@
     border-color: Aqua;
   }
   .answerBoxType1 {
+    font-size: 20px;
+
+  }
+  .answerBoxSel {
     font-size: 20px;
   }
   .answerContainer{
@@ -176,6 +184,9 @@
   .answerBoxType1 {
     font-size: 20px;
   }
+  .answerBoxSel {
+    font-size: 20px;
+  }
   .answerContainer{
     grid-template-columns: 40% 40%;
     padding: 4px;
@@ -186,7 +197,7 @@
   }
 }
 
-@media screen and (min-height: 1500px) and (max-width: 1000px) {
+@media screen and (min-height: 1400px) and (max-width: 1000px) {
 
   .answerContainer{
     grid-template-columns: 95%;
@@ -196,5 +207,7 @@
     justify-content: space-around;
     margin: 2px;
   }
+
+
 
 }

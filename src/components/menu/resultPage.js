@@ -237,11 +237,10 @@ class resultPage extends Component {
         </Animated>
         <Animated  animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
           <div className="menuContainer">
-            <Button className="menuItem" ghost onClick={this.showModal}>Show All</Button>
-            <Button className="menuItem" ghost onClick={this.showModalWrong}>Show only Wrong</Button>
-            <Button className="menuItem" ghost onClick={this.props.retakeQuiz}>Retake Quiz</Button>
-            <Button className="menuItem" ghost onClick={this.props.selected}>Return</Button>
-            <Button className="menuItem" ghost onClick={this.renderNewModel}>Review Quiz</Button>
+            <Button className="menuItem" ghost onClick={this.renderNewModel}>Review</Button>
+            <Button className="menuItem" ghost onClick={this.props.retakeQuiz}>Retake</Button>
+            <Button className="menuItem" ghost onClick={this.props.goBackToCourse}>Return</Button>
+
           </div>
         </Animated>
         {this.renderModal()}
@@ -259,3 +258,6 @@ class resultPage extends Component {
 }
 
 export default resultPage
+
+// <Button className="menuItem" ghost onClick={this.showModal}>Show All</Button>
+// <Button className="menuItem" ghost onClick={this.showModalWrong}>Show only Wrong</Button>

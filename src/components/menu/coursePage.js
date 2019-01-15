@@ -14,13 +14,11 @@ class coursePage extends Component {
 
   render() {
 
-    let screenHeight = window.innerHeight;
-    let screenWidth = window.innerWidth;
-    let alertText = screenWidth + ":" + screenHeight;
+
 
     return(
       <div className="coursePageContainer">
-        <Alert message={alertText} type="success" />
+
         <Delayed waitBeforeShow={1*200}>
           <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
             <div className="subProcessContainer"  onClick={this.props.pmpQuiz} >

@@ -212,3 +212,9 @@
           grid-template-columns: 40% 40%;
     }
 }
+
+/* godaddy frame */
+@media screen and (min-height: 1400px) and (max-width: 1000px) {
+
+
+}

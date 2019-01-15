@@ -2,6 +2,7 @@
 import { Modal, Button, Icon, Card , message, Tag , Progress, Collapse } from 'antd';
 import  React from 'react';
 import './menuPage.css';
+import './historyStyles.css';
 import _ from 'lodash';
 import {Animated} from 'react-animated-css';
 import axios from 'axios';
@@ -694,11 +695,13 @@ class historyDetailsModel extends React.Component {
 
                       </div>
                       {this.state.showNewModal?
-                        <QuizDetails
-                              quizDetails = {quizDetails}
-                              PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
-                              handleCancel = {this.handleModalClose}
-                          />
+                        <div className='historyModal'>
+                          <QuizDetails
+                                quizDetails = {quizDetails}
+                                PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
+                                handleCancel = {this.handleModalClose}
+                            />
+                          </div>
                           :null
                           }
                   </div>

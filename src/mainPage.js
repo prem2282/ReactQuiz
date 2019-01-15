@@ -257,6 +257,12 @@ class mainPage extends Component {
     })
   }
 
+  componentDidMount = () => {
+    window.history.pushState(null,document.title,window.location.href);
+    window.addEventListener('popstate',function(event){
+      window.history.pushState(null,document.title,window.location.href);
+    })
+  }
   componentWillMount = () => {
 
     // this.getGroupSet();
@@ -973,6 +979,43 @@ class mainPage extends Component {
 
   }
 
+  retakeQuizFromHistory = (id, questionArray) => {
+    id = id -1;
+    console.log('id',id);
+    console.log('questionArray',questionArray);
+    let groupId = this.state.userQuizHistory[id].groupId;
+    let questionSet = this.state.userQuizHistory[id].questionSet;
+    questionSet = questionSet.split(',').map(Number);
+    let quizSet = this.state.baseQuizSet.data.filter(quiz => questionSet.includes(Number(quiz.id)))
+
+    this.setState({
+      selectedAnsIndex: [],
+      currentQuestionNum: 0,
+      variableValues: [],
+      quizIdRunning: groupId,
+      quizSet : quizSet,
+      userQuizData: this.state.userQuizHistory[id],
+      pageId: "refresh",
+      refreshTo: "countPage",
+    })
+
+  }
+  retakeQuizFromResult = () => {
+    this.checkUserForQuiz(this.state.quizIdRunning,'Completed');
+
+    let quizSet = this.state.quizSet;
+
+    this.setState({
+      quizSet : quizSet,
+      selectedAnsIndex: [],
+      variableValues: [],
+      currentQuestionNum: 0,
+      pageId : "refresh",
+      refreshTo: "countPage",
+    })
+  }
+
+
   countPageRender = () => {
     return (
       <div>
@@ -1004,7 +1047,7 @@ class mainPage extends Component {
           />
         </Affix>
         <ResultPage
-          selected= {this.selectionResult}
+          goBackToCourse= {this.resetQuizDetails}
           correctAns={this.state.correctAnsIndex}
           variableValues={this.state.variableValues}
           selectedAnsIndex={this.state.selectedAnsIndex}

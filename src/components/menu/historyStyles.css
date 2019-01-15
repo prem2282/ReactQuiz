@@ -1,0 +1,51 @@
+.historyBoxContainter {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  padding: 10px;
+  align-content: space-around;
+  margin: 10px;
+}
+
+
+
+@media screen and (max-width: 550px) {
+
+
+  .historyBoxContainter {
+    grid-template-columns: 100%;
+  }
+
+
+}
+
+@media screen and (min-width: 550px) and (max-width:850px) {
+
+
+  .historyBoxContainter {
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+@media screen and (min-width: 980px) and (max-width:850px) {
+
+
+  .historyBoxContainter {
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+
+/* godaddy frame */
+@media screen and (min-height: 1400px) and (max-width: 1000px) {
+
+    .historyBoxContainter {
+      grid-template-columns: 100%;
+    }
+
+
+}

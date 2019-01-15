@@ -78,3 +78,15 @@
 .historyAnsBox {
   padding-left: 10px;
 }
+
+.historyModal {
+    zoom: 1;
+}
+@media screen and (min-height: 1400px) and (max-width: 1000px) {
+
+  .historyModal {
+    zoom: 2;
+  }
+
+
+}
