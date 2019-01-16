@@ -5,6 +5,7 @@ import './pmpStyles.css';
 import {Animated} from 'react-animated-css';
 import Delayed from '../..//components/header/delayed';
 
+
 class coursePage extends Component {
 
   constructor(props) {
