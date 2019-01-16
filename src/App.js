@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import BaseRouter from './routes';
 import AdSense from 'react-adsense';
-require('disable-react-devtools');
+
 
 import './App.css';
+require('disable-react-devtools');
+
 
 class App extends Component {
 
