@@ -101,7 +101,17 @@ class mainPage extends Component {
         if (localStorage.userId) {
           this.getUserProfile(profileObj);
         }
-        window.location.href = "http://localhost:3000"
+        // window.location.href = "http://localhost:3000"
+        const url = require('url');
+        
+        let urlDetails = window.location.href;
+        console.log("urlDetails:",urlDetails);
+
+        let url_parts = url.parse( urlDetails, true),
+          responseData = url_parts.query;
+        console.log("responseData:",responseData);
+
+
   }
 
   guestLogin = () => {
