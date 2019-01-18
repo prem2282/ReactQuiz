@@ -258,14 +258,14 @@ class pmpLearnPage extends Component {
     let subProcessText = ProcessArray[this.state.subProcessSelected];
 
     if (this.state.menuName === 'process') {
-      headerText = processText + " : " + "Selecte a subprocess"
+      headerText = processText
     }
 
     if (this.state.menuName === 'IOT') {
-      headerText = processText + " : " + subProcessText
+      headerText = processText
     }
     if (this.state.menuName === 'tools') {
-      headerText = processText + " : " + subProcessText
+      headerText = processText
     }
     if (this.state.menuName === 'type1') {
       headerText = "Select a Process"
@@ -373,11 +373,17 @@ class pmpLearnPage extends Component {
         }
         {(this.state.menuName === 'IOT')?
           <div>
+            <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+              <p className="subProcessTextHead">{subProcessText}</p>
+            </Animated>
             <div className="inputOutputContainer">
+
               <div className="inputOutputSubContainer">
                 <div>
+
                   <Delayed waitBeforeShow={200}>
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+
                       <p className="inputOutputHeader">Inputs</p>
                       <Collapse accordion className="custom" style={{backgroundColor:'transparent'}} onChange={this.callback}>
                         {this.state.inputList.map((item,i) => {

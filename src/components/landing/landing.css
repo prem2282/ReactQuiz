@@ -9,9 +9,53 @@
 }
 
 .landingButton {
-margin: 10px;
+  margin: 10px;
+  width: 300px;
+  height: 50px;
 }
 
 .googleLogin {
   background-color: Red;
+}
+
+.outerGrid {
+  display: grid;
+  grid-template-columns: 23% 23% 23% 23%;
+  justify-content:  space-around;
+
+}
+
+.outerBox {
+  display: grid;
+  grid-template-columns: 100%;
+  margin-top: .2em;
+  margin-bottom:  .5em;
+  border-radius: 10px;
+  border-color: PaleVioletRed;
+  border-width: thin;
+  padding: 2px;
+}
+
+.innerBox1 {
+    background: #453A3A;
+    padding: 2px;
+
+}
+
+.innerText1 {
+    margin-bottom: 0em;
+    padding: 2px;
+    font-size: 22px;
+    color: PeachPuff;
+}
+
+.innerBox2 {
+      background: #453A3A	;
+      padding: 10px;
+
+}
+.innerText2 {
+    margin-bottom: 0em;
+    padding: 2px;
+    color: DimGray;
 }

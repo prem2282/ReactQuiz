@@ -18,6 +18,7 @@ class coursePage extends Component {
 
 
     return(
+      <div>
       <div className="coursePageContainer">
 
         <Delayed waitBeforeShow={1*200}>
@@ -52,17 +53,21 @@ class coursePage extends Component {
             </Animated>
           </Delayed>
         :
-        <Delayed waitBeforeShow={3*200}>
-          <Button type="danger" ghost style={{width:'100px'}} onClick={this.props.goBackToLanding}>
-            <Icon type="double-left" theme="outlined" />
-            Back
-          </Button>
-        </Delayed>
+        null
         }
 
 
 
 
+      </div>
+      <Delayed waitBeforeShow={3*200}>
+          <div className="courseSubmitDiv">
+            <Button className = 'courseSubmit' type="primary" ghost  onClick={this.props.goBackToLanding}>
+              <Icon type="double-left" theme="outlined" />
+              Back
+            </Button>
+          </div>
+      </Delayed>
       </div>
     )
 

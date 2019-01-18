@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 import {Animated} from 'react-animated-css';
 import {GoogleLogin} from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import PmpFeatures from './pmpFeatures';
 import './landing.css';
 const clientId = "374998186039-sogtupo8o5aksqq2te2eie0anmm13tst.apps.googleusercontent.com";
 
@@ -22,12 +23,11 @@ const landingPage = (props) => {
     <div>
       <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
 
-      {(!props.userName)?
         <div className="landingContainer">
           <div >
             <GoogleLogin
               render={renderProps => (
-                  <Button className="landingButton" type="primary" ghost onClick={renderProps.onClick}>Sign with Google</Button>
+                  <Button className="landingButton" type="primary" ghost onClick={renderProps.onClick}><Icon type="google" />Sign with Google</Button>
               )}
                onSuccess={props.success} onFailure={props.error} clientId={clientId}/>
           </div>
@@ -39,30 +39,19 @@ const landingPage = (props) => {
               fields="name,email,picture"
               callback={props.facebookResp}
               render={renderProps => (
-                <Button  className="landingButton" type="primary" ghost onClick={renderProps.onClick}>Sign with Facebook</Button>
+                <Button  className="landingButton" type="primary" ghost onClick={renderProps.onClick}><Icon type="facebook" />Sign with Facebook</Button>
               )}
             />
           </div>
 
           <div>
-            <Button className="landingButton" type="primary" ghost onClick={props.guestLogin}>Continue as Guest</Button>
+            <Button className="landingButton" type="primary" ghost onClick={props.guestLogin}><Icon type="user" />Continue as Guest</Button>
           </div>
         </div>
-        :
-        <div>
-          <div>
-            <p>Learn Input, Output and Tools</p>
-          </div>
 
-          <div>
-            <p>Take Quiz</p>
-          </div>
-
-          <div>
-            <p>Simulate Exam</p>
-          </div>
-        </div>
-      }
+      </Animated>
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={false}>
+        <PmpFeatures/>
       </Animated>
     </div>
 

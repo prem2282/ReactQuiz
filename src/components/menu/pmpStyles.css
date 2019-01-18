@@ -4,6 +4,18 @@
   align-self: center;
 }
 
+.courseSubmitDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.courseSubmit{
+  width: 100px;
+  margin: 0px;
+  justify-content: space-around;
+}
+
 .pmpContainer{
   display: grid;
   gird-template-columns: 40%;
@@ -66,7 +78,7 @@
 .inputOutputContainer {
   display: grid;
   grid-template-columns: 50%;
-  margin-top: 1em;
+  margin-top: .1em;
   height: auto;
   width: auto;
   padding: 10px;
@@ -175,6 +187,17 @@
   grid-template-columns: 33% 33% 33%;
 }
 
+.subProcessTextHead {
+  font-size: 18px;
+  font-variant: small-caps;
+  font-family: monospace;
+  border-radius: 2px;
+  background: DimGray;
+  align-self: center;
+  padding-top: 2px;
+  margin-bottom: 0px;
+  color: PeachPuff;
+}
 .inputOutputHeader {
   display: grid;
   margin: 10px;
@@ -188,7 +211,7 @@
   font-size: 20px;
   background-color: #20211F;
   font-weight: lighter;
-  color: Aqua;
+  color: PeachPuff;
 
 }
 
