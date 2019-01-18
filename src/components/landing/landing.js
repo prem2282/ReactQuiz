@@ -43,10 +43,14 @@ const landingPage = (props) => {
               )}
             />
           </div>
+          {!props.userName?
+            <div>
+              <Button className="landingButton" type="primary" ghost onClick={props.guestLogin}><Icon type="user" />Continue as Guest</Button>
+            </div>
+            :
+            null
+          }
 
-          <div>
-            <Button className="landingButton" type="primary" ghost onClick={props.guestLogin}><Icon type="user" />Continue as Guest</Button>
-          </div>
         </div>
 
       </Animated>
