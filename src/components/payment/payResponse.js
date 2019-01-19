@@ -19,17 +19,24 @@ class payResponse extends Component {
 
     let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserPackage/' ;
 
-    axios.get(targetUrl)
-    .then(res => {
-      console.log('res:', res.data);
-      this.addUserPaymentDetails(responseData);
+    if (localStorage.payment_request_id === responseData.payment_request_id) {
+        this.addUserPaymentDetails(responseData);
+    } else {
+      axios.get(targetUrl)
+      .then(res => {
+        console.log('res:', res.data);
+        this.addUserPaymentDetails(responseData);
+      })
+      .catch(err => {
+        console.log('err:', err);
+      })
+    }
 
 
 
-    })
-    .catch(err => {
-      console.log('err:', err);
-    })
+
+
+
 
   }
 
@@ -70,7 +77,7 @@ class payResponse extends Component {
                   localStorage.setItem('payment_id', responseData.payment_id);
                   localStorage.setItem('payment_user', responseData.user_id);
                   // window.location.href = "http://localhost:3000"
-                  window.location.href = "https://pmp-quiz-master.herokuapp.com"
+                  window.location.href = "https://www.quizmebuddy.com"
                   // // this.getUserQuizHistory(localStorage.userId);
                   // // this.addUserQuizToLocal(userQuizDetails)
                   // if (userQuizDetails.quizStatus == 'Running') {

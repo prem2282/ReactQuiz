@@ -17,6 +17,7 @@ class paySuccess extends Component {
   goToMainPage = () => {
     localStorage.removeItem('payment_id');
     localStorage.removeItem('payment_user');
+    localStorage.removeItem('payment_request_id');
     this.props.goToMainPage()
   }
   render () {

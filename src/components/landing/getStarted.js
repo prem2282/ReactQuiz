@@ -23,7 +23,8 @@ class getStarted extends Component {
               <Button className="guestButton"  onClick={this.props.getStarted}><Icon type="user" />Get Started</Button>
           </div>
         </Animated>
-        {!this.props.userPackage === 'PMP'?
+        {this.props.userPackage === 'PMP'?
+          null:
           <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
             <div className="getStartedContainer">
                 <Button className="premiumButton"  onClick={this.props.clickedGoPremium}>
@@ -31,7 +32,7 @@ class getStarted extends Component {
                    Go Premium</Button>
             </div>
           </Animated>
-          :null
+
 
         }
 

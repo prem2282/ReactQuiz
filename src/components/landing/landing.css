@@ -33,12 +33,14 @@
   text-align: left;
 }
 
+
 .googleButton {
   margin: 10px;
   width: 300px;
   height: 50px;
   background-color:  #D34836;
   color: Gainsboro;
+  font-size: 20px;
 }
 
 .faceBookButton {
@@ -47,6 +49,7 @@
   height: 50px;
   background-color:  SteelBlue;
   color: Aqua;
+  font-size: 20px;
 }
 
 .guestButton {
@@ -164,6 +167,29 @@
 
 }
 
+@media screen and (max-width: 800px) and (orientation: landscape) {
+  .googleButton {
+    width: 200px;
+    font-size: 14px;
+    margin: 2px;
+  }
+  .faceBookButton {
+    width: 200px;
+    font-size: 14px;
+    margin: 2px;
+  }
+  .guestButton {
+    width: 200px;
+    font-size: 14px;
+    margin: 2px;
+  }
+  .premiumButton {
+    width: 200px;
+    font-size: 14px;
+    margin: 2px;
+  }
+
+}
 @media screen and (orientation: portrait) {
 
   .landingContainer {

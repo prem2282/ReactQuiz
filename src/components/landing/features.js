@@ -64,7 +64,7 @@ class features extends Component {
 
               {outerText.map((item,i) => {
                 return(
-                    <Slide bottom>
+                    <Slide key={i} id={i} bottom>
                       <div className='outerBox'>
                         <div className='innerBox1'>
                           <p className='innerText1'>{item}</p>

@@ -18,7 +18,7 @@ import _ from 'lodash';
 import axios from 'axios';
 import {Progress, Affix} from 'antd';
 import Request from 'superagent';
-
+const url = require('url');
 
 
 let moment = require('moment')
@@ -75,7 +75,7 @@ class mainPage extends Component {
       questionArray : [],
       selectedGroupSet : null,
       muteVoice : false,
-      gotPMPQuestions : false,
+      gotPMPQuestions : true,
       boardSelected : null,
     }
   }
@@ -1096,6 +1096,15 @@ class mainPage extends Component {
   }
 
   render() {
+
+    let urlDetails = window.location.href;
+    console.log(urlDetails);
+
+    let url_parts = url.parse( urlDetails, true),
+      responseData = url_parts.query;
+      console.log("url_parts:", url_parts);
+      console.log("responseData:", responseData);
+    console.log(responseData);
 
         switch (this.state.pageId) {
 

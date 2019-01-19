@@ -147,6 +147,7 @@ class landingPage  extends Component {
           <GoPremium
             visible={this.state.showPremiumBox}
             title="Go Premium"
+            userProfile = {this.props.userProfile}
             handleOk={this.proHandleOk}
             handleCancel={this.proHandleCancel}
           />
