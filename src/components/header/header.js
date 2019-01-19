@@ -132,11 +132,11 @@ class header extends Component {
 
           <div>
             {this.props.profile?
-              <Popover placement="rightBottom" title={userName} content={userContent} trigger="click">
+              <Popover placement="rightBottom" title={userName} content={userContent} trigger="hover">
                 <Avatar className="avatarBox" src={this.props.profile.imageUrl}/>
               </Popover>
               :
-              <Popover placement="rightBottom" title={userName} content={guestContent} trigger="click">
+              <Popover placement="rightBottom" title={userName} content={guestContent} trigger="hover">
                 <Avatar className="avatarBox" style = {{color: 'LightSlateGray'}} icon="user"/>
               </Popover>
             }

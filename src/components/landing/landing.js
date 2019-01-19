@@ -21,7 +21,7 @@ class landingPage  extends Component {
     super(props);
     this.state = {
       displayFeatures : false,
-      catForFeatures : 'PMP',
+      category : 'PMP',
       getStartedClicked : false,
       showPremiumDetails: false,
       showPremiumBox: false,
@@ -64,7 +64,7 @@ class landingPage  extends Component {
     console.log(e.target.id);
     this.setState({
       displayFeatures: true,
-      catForFeatures: e.target.id
+      category: e.target.id
     })
   }
 
@@ -100,6 +100,7 @@ class landingPage  extends Component {
             logOutButton = {this.logOut}
             pageLoaded = "LandingPage"
             profile = {this.props.userProfile}
+            userPackage = {this.props.userPackage}
           />
         </Affix>
         <Welcome
@@ -128,6 +129,7 @@ class landingPage  extends Component {
             getStarted = {this.getStarted}
             clickedGoPremium = {this.clickedGoPremium}
             userPackage = {this.props.userPackage}
+            category = {this.state.category}
             />
           :null
         }
@@ -141,7 +143,7 @@ class landingPage  extends Component {
         }
 
         <Features
-            toDisplay = {this.state.catForFeatures}
+            toDisplay = {this.state.category}
           />
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.showPremiumBox}>
           <GoPremium

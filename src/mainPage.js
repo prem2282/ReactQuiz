@@ -75,7 +75,7 @@ class mainPage extends Component {
       questionArray : [],
       selectedGroupSet : null,
       muteVoice : false,
-      gotPMPQuestions : true,
+      gotPMPQuestions : false,
       boardSelected : null,
     }
   }
