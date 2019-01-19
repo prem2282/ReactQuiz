@@ -4,6 +4,7 @@ import './menuPage.css';
 import './pmpStyles.css';
 import {Animated} from 'react-animated-css';
 import _ from 'lodash';
+import ReactDOM from 'react-dom';
 import Delayed from '../..//components/header/delayed';
 import Header from '../..//components/header/headerPMP';
 import GoPremium from '../..//components/payment/goPremium';
@@ -532,6 +533,10 @@ class pmpMenuPage extends Component {
 
   }
 
+  componentDidMount() {
+    let n = ReactDOM.findDOMNode(this);
+    console.log(n.offsetTop);
+  }
   componentWillMount () {
     if (this.props.baseQuizSet) {
       this.calculateCounts();

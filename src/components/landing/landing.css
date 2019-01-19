@@ -1,45 +1,147 @@
 .landingContainer {
 
   display: grid;
-  grid-template-columns: 100%;
-  margin: 1em;
+  grid-template-columns: 30% 30% 30%;
+  /*margin: 1em;*/
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
+  background-color: #E1DDD8;
 }
 
-.landingButton {
+.getStartedContainer {
+  display: flex;
+  grid-template-columns: 100%;
+  /*margin: 1em;*/
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+  background-color: #E1DDD8;
+}
+
+.featuresHeader {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content:  space-around;
+  background-color: #D7D1CB;
+  /*background-color: #858968;*/
+  padding-left: 50px;
+  padding-top: 10px;
+}
+
+.featuresHeaderText {
+  text-align: left;
+}
+
+.googleButton {
   margin: 10px;
   width: 300px;
   height: 50px;
+  background-color:  #D34836;
+  color: Gainsboro;
 }
 
+.faceBookButton {
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  background-color:  SteelBlue;
+  color: Aqua;
+}
+
+.guestButton {
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  background-color:  DarkSlateGray;
+  color: Gainsboro;
+  font-size: 20px;
+}
+
+.premiumButton {
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  background-color:  DarkSlateBlue;
+  color: #ffff66;
+  font-size: 20px;
+}
 .googleLogin {
   background-color: Red;
 }
 
+.wecomeNote {
+    display: grid;
+    grid-template-columns: 90%;
+    justify-content:  space-around;
+    background-color: #D7D1CB;
+    padding-top: 20px;
+}
+
+.welcomeText {
+  color: DarkSlateGray
+}
+.welcomeText2 {
+  color: #7B726C
+}
 .outerGrid {
   display: grid;
-  grid-template-columns: 23% 23% 23% 23%;
+  grid-template-columns: 30% 30% 30%;
   justify-content:  space-around;
+  background-color: #C3BBB2;
+  padding-top: 20px;
 
+}
+
+.outerCatGrid {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content:  space-around;
+  /*background-color: #D7D1CB;*/
+  background-color: #C3BBB2;
+  padding: 10px;
 }
 
 .outerBox {
   display: grid;
   grid-template-columns: 100%;
-  margin-top: .2em;
-  margin-bottom:  .5em;
   border-radius: 10px;
-  border-color: PaleVioletRed;
+  border-color: #E1DDD8;
   border-width: thin;
-  padding: 2px;
+  justify-content: space-around;;
+  align-self: stretch;
+  background: #D7D1CB;
+  margin: 10px;
+}
+
+.outerCatBox {
+  /*background: #307B93;*/
+  background: transparent;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+
 }
 
 .innerBox1 {
-    background: #453A3A;
+    background: #5D5C5D;
     padding: 2px;
 
+}
+
+.innerCatText1 {
+  margin-bottom: 0em;
+  padding: 2px;
+  font-size: 22px;
+  color: DarkSlateGray;
+}
+
+.innerCatText2 {
+  margin-bottom: 0em;
+  padding: 2px;
+  font-size: 14px;
+  color: DimGray;
+  text-align: center;
 }
 
 .innerText1 {
@@ -50,12 +152,29 @@
 }
 
 .innerBox2 {
-      background: #453A3A	;
+      background: #D7D1CB;
       padding: 10px;
+      align-self: stretch;
 
 }
 .innerText2 {
     margin-bottom: 0em;
     padding: 2px;
-    color: DimGray;
+    color: DarkSlateGray;
+
+}
+
+@media screen and (orientation: portrait) {
+
+  .landingContainer {
+    grid-template-columns: 100%;
+  }
+  .outerGrid {
+    grid-template-columns: 100%;
+  }
+
+  .outerCatGrid {
+    grid-template-columns: 100%;
+  }
+
 }

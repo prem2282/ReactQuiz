@@ -20,11 +20,9 @@ class loadingPage extends Component {
     return (
       <div className = "menuContainer">
         <Animated animationIn="zoomIn" animationOut="zoomOut" isVisible={true}>
-          <h3 style={{color:"Aqua"}}>Welcome To Quiz Me Buddy</h3>
+          <h2 style={{color:"Aqua"}}>Welcome To QuizMeBuddy</h2>
           <h3 style={{color:"Aqua"}}>Loading...</h3>
           <Icon type="sync" style={{fontSize:'40px'}} spin />
-          <h2 style={{color:"Aqua"}}>{loadingBody1}</h2>
-          <h2 style={{color:"Aqua"}}>{loadingBody2}</h2>
         </Animated>
       </div>
     )

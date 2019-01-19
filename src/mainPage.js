@@ -103,7 +103,7 @@ class mainPage extends Component {
         }
         // window.location.href = "http://localhost:3000"
         const url = require('url');
-        
+
         let urlDetails = window.location.href;
         console.log("urlDetails:",urlDetails);
 
@@ -118,7 +118,7 @@ class mainPage extends Component {
     this.setState({
 
       userLoggedIn : false,
-      pageId : 'coursePage',
+      pageId : 'landingPage',
     })
   }
 
@@ -182,7 +182,7 @@ class mainPage extends Component {
       this.setState({
         userProfile: profileObj,
         userLoggedIn: true,
-        pageId : "coursePage",
+        pageId : "landingPage",
       })
     })
     .catch(err => {
@@ -215,7 +215,7 @@ class mainPage extends Component {
         this.registerUser(profileObj)
       } else {
         this.setState({
-          pageId : "coursePage",
+          pageId : "landingPage",
           userLoggedIn : true,
         })
       }
@@ -289,7 +289,7 @@ class mainPage extends Component {
   resetQuizDetails = () => {
 
     this.setState({
-      pageId : "coursePage",
+      pageId : "landingPage",
       totalQuestions : 0,
       currentQuestionNum : 0,
       typeCounts : [],
@@ -343,7 +343,7 @@ class mainPage extends Component {
 
   goBackToCourse = () => {
     this.setState({
-      pageId: "coursePage"
+      pageId: "landingPage"
     })
   }
 
@@ -895,19 +895,19 @@ class mainPage extends Component {
     if (this.state.gotPMPQuestions) {
       return(
         <div>
-          <Affix offsetTop={0}>
-            <Header
-              homeButton = {this.goToHome}
-              logOutButton = {this.logOut}
-              pageLoaded = "LandingPage"
-              profile = {this.state.userProfile}
-            />
-          </Affix>
           <LandingPage
             success = {this.googleSuccess}
             error = {this.googleError}
             facebookResp = {this.facebookResp}
             guestLogin = {this.guestLogin}
+            userProfile = {this.state.userProfile}
+            userPackage = {this.state.userPackage}
+            pmpQuiz = {this.pmpQuiz}
+            pmpLearn = {this.pmpLearn}
+            historyPage = {this.goToHistoryPage}
+            homeButton = {this.goToHome}
+            logOut = {this.logOut}
+            pageLoaded = "LandingPage"
           />
         </div>
       )
@@ -1029,14 +1029,6 @@ class mainPage extends Component {
   countPageRender = () => {
     return (
       <div>
-        <Affix offsetTop={0}>
-          <Header
-            homeButton = {this.goBackToCourse}
-            logOutButton = {this.logOut}
-            pageLoaded = "CoursePage"
-            profile={this.state.userProfile}
-          />
-        </Affix>
         <CountPage
           countEnded={this.countEnded}
         />
