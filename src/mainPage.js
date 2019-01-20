@@ -282,6 +282,12 @@ class mainPage extends Component {
           })
           console.log(res);
         })
+        .catch(err => {
+          console.log("error:", err);
+          this.setState({
+            userLocation:  null
+          })
+        })
       }
 
 
