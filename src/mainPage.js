@@ -112,6 +112,8 @@ class mainPage extends Component {
           responseData = url_parts.query;
         console.log("responseData:",responseData);
 
+        let loadUrl = 'https://' +  url_parts.hostname
+        window.location.href = loadUrl
 
   }
 
@@ -462,8 +464,13 @@ class mainPage extends Component {
 
   getPMPQuestionsApi = () => {
       console.log("get PMP // QUESTION: ");
+      // let proxyUrl = 'https://cors-anywhere.herokuapp.com/?'
+      let proxyUrl = 'https://corsheader.herokuapp.com/'
+      // let proxyUrl = 'https://cors.io/?'
+      let destinationUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
 
-    let targetUrl = 'https://cors.io/?https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+      let targetUrl = proxyUrl + destinationUrl;
+    // let targetUrl = 'https://cors.io/?https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
       .then(res => {

@@ -147,7 +147,7 @@ class header extends Component {
           </div>
 
           <div>
-            <p>{alertText}</p>
+
           </div>
 
           <div>
@@ -155,7 +155,7 @@ class header extends Component {
           </div>
 
           <div>
-            <FontAwesomeIcon icon={faCrown}  onClick={this.clickedGoPremium} className='faCrownClass'/>
+
           </div>
 
           <div>
@@ -193,3 +193,6 @@ export default header
           //
           // <Tag color="DimGray">Login with Google</Tag>
           // <Tag color="DodgerBlue">Login with Facebook</Tag>
+
+          // <FontAwesomeIcon icon={faCrown}  onClick={this.clickedGoPremium} className='faCrownClass'/>
+            // <p>{alertText}</p>

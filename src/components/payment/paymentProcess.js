@@ -78,7 +78,7 @@ let onBuyNowClick = (paymentData) => {
   data.allow_repeated_payments =  false;
 
   let request= require('request');
-  let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  let proxyUrl = 'https://corsheader.herokuapp.com/';
   let targetUrl = 'https://test.instamojo.com/api/1.1/payment-requests/'
       targetUrl = proxyUrl + targetUrl
   //

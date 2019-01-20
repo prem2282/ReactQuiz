@@ -25,7 +25,7 @@ class shareBar extends Component {
     return(
       <div>
         <FacebookShareButton size={32} url={url} round={true} />
-      <GooglePlusShareButton size={32} url={url} round={true} />
+        <GooglePlusShareButton size={32} url={url} round={true} />
         <LinkedinShareButton size={32} url={url} round={true} />
         <TwitterShareButton size={32} url={url} round={true} />
         <WhatsappShareButton size={32} url={url}  round={true} />
