@@ -98,7 +98,7 @@ class header extends Component {
             <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
             <GoogleLogin
               render={renderProps => (
-                  <Tag color="#D34836" onClick={renderProps.onClick}>Sign with Google</Tag>
+                <Button className="googleButton"  onClick={renderProps.onClick}><Icon type="google" />Sign with Google</Button>
               )}
                onSuccess={this.props.success} onFailure={this.props.error} clientId={clientId}/>
            </Animated>

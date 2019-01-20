@@ -301,7 +301,7 @@ class mainPage extends Component {
   }
   componentWillMount = () => {
 
-    this.getUserLocation();
+    // this.getUserLocation();
 
     if (localStorage.userId) {
       this.getUserSavedLocally(localStorage.userId)

@@ -20,13 +20,15 @@ class shareBar extends Component {
 
 
   render () {
+
+    let url = "https://www.quizmebuddy.com/"
     return(
       <div>
-        <FacebookShareButton size={32} round={true} />
-        <GooglePlusShareButton size={32} round={true} />
-        <LinkedinShareButton size={32} round={true} />
-        <TwitterShareButton size={32} round={true} />
-        <WhatsappShareButton size={32} round={true} />
+        <FacebookShareButton size={32} url={url} round={true} />
+      <GooglePlusShareButton size={32} url={url} round={true} />
+        <LinkedinShareButton size={32} url={url} round={true} />
+        <TwitterShareButton size={32} url={url} round={true} />
+        <WhatsappShareButton size={32} url={url}  round={true} />
       </div>
     )
   }
