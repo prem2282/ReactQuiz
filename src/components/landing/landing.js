@@ -12,6 +12,7 @@ import Welcome from './welcome';
 import GetStarted from './getStarted';
 import CoursePage from '../..//components/menu/coursePageNew';
 import './landing.css';
+import GetUserLocation from './location';
 import Delayed from '../..//components/header/delayed';
 import GoPremium from '../..//components/payment/goPremium';
 const clientId = "374998186039-sogtupo8o5aksqq2te2eie0anmm13tst.apps.googleusercontent.com";
@@ -78,7 +79,6 @@ class landingPage  extends Component {
 
   render() {
 
-
       let quizText = null;
       let userProfile = this.props.userProfile;
       let getStartedClicked = this.state.getStartedClicked;
@@ -106,6 +106,7 @@ class landingPage  extends Component {
         </Affix>
         <Welcome
           userProfile = {userProfile}
+            userLocation = {this.props.userLocation}
           />
         {pageId === "login"?
         <Delayed waitBeforeShow={500}>

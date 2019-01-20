@@ -74,7 +74,7 @@ class header extends Component {
 
       switch (this.props.pageLoaded) {
         case "LandingPage":
-          headerText = "Hello " + userName + ipAddress;
+          headerText = "Hello " + userName;
           break;
         case "CoursePage":
           headerText = "Hello " + userName;

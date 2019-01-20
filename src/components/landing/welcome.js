@@ -18,7 +18,7 @@ class welcome extends Component {
       <Delayed waitBeforeShow={100}>
         <Animated  animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
           <div className="wecomeNote">
-            <h2 className="welcomeText">Welcome to QuizMeBuddy</h2>
+            <h2 className="welcomeText">Welcome to QuizMeBuddy {this.props.userLocation.country}</h2>
             <h3 className="welcomeText2">Quiz yourself and get better at it!</h3>
           </div>
         </Animated>

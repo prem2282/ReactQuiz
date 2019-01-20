@@ -64,6 +64,7 @@ class mainPage extends Component {
       userProfile : null,
       userPackage : null,
       userLoggedIn : false,
+      userLocation : null,
       // userId : null,
       // userName : null,
       // emailId : null,
@@ -267,6 +268,25 @@ class mainPage extends Component {
     })
   }
 
+
+  getUserLocation = () => {
+
+    let targetUrl = 'http://ip-api.com/json';
+
+      if (!this.state.userLocation) {
+        axios.get(targetUrl,{
+        })
+        .then(res => {
+          this.setState({
+            userLocation:  res.data
+          })
+          console.log(res);
+        })
+      }
+
+
+  }
+
   componentDidMount = () => {
     window.history.pushState(null,document.title,window.location.href);
     window.addEventListener('popstate',function(event){
@@ -275,7 +295,7 @@ class mainPage extends Component {
   }
   componentWillMount = () => {
 
-    // this.getGroupSet();
+    this.getUserLocation();
 
     if (localStorage.userId) {
       this.getUserSavedLocally(localStorage.userId)
@@ -902,6 +922,7 @@ class mainPage extends Component {
             guestLogin = {this.guestLogin}
             userProfile = {this.state.userProfile}
             userPackage = {this.state.userPackage}
+            userLocation = {this.state.userLocation}
             pmpQuiz = {this.pmpQuiz}
             pmpLearn = {this.pmpLearn}
             historyPage = {this.goToHistoryPage}
