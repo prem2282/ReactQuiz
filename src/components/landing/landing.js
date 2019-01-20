@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Affix } from 'antd';
 import Header from '../..//components/header/header';
+import ShareBar from './shareBar';
 import {Animated} from 'react-animated-css';
 import {GoogleLogin} from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
@@ -115,6 +116,7 @@ class landingPage  extends Component {
         </Delayed>
         :null
         }
+        <ShareBar/>
         {pageId === "login"?
           <Login
             success = {this.props.success}
@@ -138,6 +140,7 @@ class landingPage  extends Component {
             pmpQuiz = {this.props.pmpQuiz}
             pmpLearn = {this.props.pmpLearn}
             historyPage = {this.props.historyPage}
+            userProfile = {this.props.userProfile}
             />
           :null
         }

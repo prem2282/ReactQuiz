@@ -9,6 +9,18 @@
   background-color: #E1DDD8;
 }
 
+.shareBar {
+
+  display: grid;
+  grid-template-columns: 5% 5% 5% 5% 5% 5% ;
+  /*margin: 1em;*/
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+  background-color: #E1DDD8;
+}
+
+
 .getStartedContainer {
   display: flex;
   grid-template-columns: 100%;

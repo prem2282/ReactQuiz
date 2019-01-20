@@ -1,3 +1,21 @@
+.googleButton {
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  background-color:  #D34836;
+  color: Gainsboro;
+  font-size: 20px;
+}
+
+.faceBookButton {
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  background-color:  SteelBlue;
+  color: Aqua;
+  font-size: 20px;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 9% 10% 60% 10% 9%;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, Button, Alert} from 'antd';
+import {Icon, Button, message} from 'antd';
 import './menuPage.css';
 import './pmpStyles.css';
 import {Animated} from 'react-animated-css';
@@ -10,6 +10,17 @@ class coursePageNew extends Component {
 
   constructor(props) {
     super(props);
+
+  }
+
+  reportCard = () => {
+
+    if (this.props.userProfile) {
+        this.props.historyPage();
+    } else {
+        message.warning('Please login to use this feature');
+    }
+
 
   }
 
@@ -27,7 +38,7 @@ class coursePageNew extends Component {
             </Animated>
 
             <Animated  animationIn="slideInRight" animationOut="fadeOut" isVisible={true}>
-              <Button className="guestButton"  onClick={this.props.historyPage}><Icon type="ordered-list" />Report Card</Button>
+              <Button className="guestButton"  onClick={this.reportCard}><Icon type="ordered-list" />Report Card</Button>
             </Animated>
         </div>
       </div>

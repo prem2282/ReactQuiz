@@ -6,6 +6,11 @@ import {Animated} from 'react-animated-css';
 import {faCrown} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import GoPremium from '../..//components/payment/goPremium';
+import {GoogleLogin} from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+const clientId = "374998186039-sogtupo8o5aksqq2te2eie0anmm13tst.apps.googleusercontent.com";
+const ip = require('ip');
+const iplocation = require('iplocation').default;
 
 class header extends Component {
 
@@ -40,6 +45,8 @@ class header extends Component {
 
     render() {
 
+      let ipAddress = ip.address();
+
       let screenHeight = window.innerHeight;
       let screenWidth = window.innerWidth;
       let alertText = screenWidth + ":" + screenHeight;
@@ -67,7 +74,7 @@ class header extends Component {
 
       switch (this.props.pageLoaded) {
         case "LandingPage":
-          headerText = "Hello " + userName;
+          headerText = "Hello " + userName + ipAddress;
           break;
         case "CoursePage":
           headerText = "Hello " + userName;
@@ -87,8 +94,29 @@ class header extends Component {
 
       const guestContent = (
         <div>
-          <Tag color="DimGray">Login with Google</Tag>
-          <Tag color="DodgerBlue">Login with Facebook</Tag>
+          <div >
+            <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
+            <GoogleLogin
+              render={renderProps => (
+                  <Tag color="#D34836" onClick={renderProps.onClick}>Sign with Google</Tag>
+              )}
+               onSuccess={this.props.success} onFailure={this.props.error} clientId={clientId}/>
+           </Animated>
+          </div>
+          <div>
+            <Animated  animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
+            <FacebookLogin
+              appId="348732972376990"
+              autoLoad={false}
+              fields="name,email,picture"
+              callback={this.props.facebookResp}
+              render={renderProps => (
+                <Button  className="faceBookButton"  onClick={renderProps.onClick}><Icon type="facebook" />Sign with Facebook</Button>
+              )}
+            />
+          </Animated>
+          </div>
+
         </div>
       )
       let premiumText = " Go Premium "
@@ -160,3 +188,8 @@ class header extends Component {
 }
 
 export default header
+// <Button className="googleButton"  onClick={renderProps.onClick}><Icon type="google" />Sign with Google</Button>
+          //
+          //
+          // <Tag color="DimGray">Login with Google</Tag>
+          // <Tag color="DodgerBlue">Login with Facebook</Tag>
