@@ -97,6 +97,9 @@ class landingPage  extends Component {
       <div>
         <Affix offsetTop={0}>
           <Header
+            success = {this.props.success}
+            error = {this.props.error}
+            facebookResp = {this.props.facebookResp}
             homeButton = {this.goToHome}
             logOutButton = {this.logOut}
             pageLoaded = "LandingPage"
