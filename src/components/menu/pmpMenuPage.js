@@ -590,48 +590,36 @@ class pmpMenuPage extends Component {
 
         {(this.state.menuName==='front')?
               <div className="coursePageContainer">
-                <Delayed waitBeforeShow={1*200}>
-                  <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <div className="subProcessContainer"  onClick={this.type1Selected} >
-                      <div className="subProcessIcon" >
+                <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
+                  <div className="wecomeNote">
+                    <h2 className="welcomeText">Choose a category</h2>
+                    <h3 className="welcomeText2">Quizzes are organized by these categories</h3>
+                  </div>
+                </Animated>
+                  <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
+                    <Button className="subProcessButton"  onClick={this.type1Selected} >
                         <Icon type="project" style={{color:'LightSteelBlue'}}/>
-                      </div>
-                        <p className="subProcessText">Project Phases</p>
-                    </div>
+                        By Project Phases
+                    </Button>
                   </Animated>
-                </Delayed>
-                <Delayed waitBeforeShow={2*200}>
-                  <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <div className="subProcessContainer"  onClick={this.type2Selected} >
-                      <div className="subProcessIcon" >
+                  <Animated  animationIn="slideInRight" animationOut="fadeOut" isVisible={true}>
+                    <Button className="subProcessButton"  onClick={this.type2Selected} >
                         <Icon type="experiment" style={{color:'LightSteelBlue'}}/>
-                      </div>
-                        <p className="subProcessText">Process Groups</p>
-
-                    </div>
+                        By Process Groups
+                    </Button>
                   </Animated>
-                </Delayed>
-                <Delayed waitBeforeShow={3*200}>
-                  <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <div className="subProcessContainer"  onClick={this.generalClicked} >
-                      <div className="subProcessIcon" >
+                  <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
+                    <Button className="subProcessButton"  onClick={this.generalClicked} >
                         <Icon type="bulb" style={{color:'LightSteelBlue'}}/>
-                      </div>
-                        <p className="subProcessText">Soft Skills</p>
-
-                    </div>
+                        By Soft Skills
+                    </Button>
                   </Animated>
-                </Delayed>
-                <Delayed waitBeforeShow={4*200}>
-                  <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <div className="subProcessContainer"  onClick={this.mathClicked} >
-                      <div className="subProcessIcon" >
+                  <Animated  animationIn="slideInRight" animationOut="fadeOut" isVisible={true}>
+                    <Button className="subProcessButton"  onClick={this.mathClicked} >
                         <Icon type="calculator" style={{color:'LightSteelBlue'}}/>
-                      </div>
-                        <p className="subProcessText">Formula based challenges</p>
-                    </div>
+                        Formula based challenges
+                    </Button>
                   </Animated>
-                </Delayed>
 
               </div>
           :null
@@ -639,16 +627,21 @@ class pmpMenuPage extends Component {
 
         {(this.state.menuName==='type1')?
           <div className = "pmpContainer">
+            <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
+              <div className="wecomeNote">
+                <h2 className="welcomeText">By Project Phase</h2>
+                <h3 className="welcomeText2">Now choose one of the phases</h3>
+              </div>
+            </Animated>
             {phaseList.map((item,i) => {
               return(
-                <Delayed key={item} id={item} waitBeforeShow={i*100}>
-                  <Animated key={item} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <div className="subProcessContainer" onClick={() => this.phaseClicked(i)}>
-                      <div className="subProcessIcon" style={{color:phaseColorList[i]}}>
-                        {phaseFontList[i]}
+                <Delayed key={item} id={item} waitBeforeShow={0*100}>
+                  <Animated key={item} animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
+                    <Button className="subProcessButton" onClick={() => this.phaseClicked(i)}>
+                      <div style={{color:phaseColorList[i]}}>
+                        {phaseFontList[i]} {pmpPhaseMapping(item)}
                       </div>
-                        <p className="subProcessText">{pmpPhaseMapping(item)}</p>
-                    </div>
+                    </Button>
                   </Animated>
                 </Delayed>
 
@@ -660,10 +653,17 @@ class pmpMenuPage extends Component {
 
           {(this.state.menuName==='type2')?
             <div className = "pmpContainer">
+              <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
+                <div className="wecomeNote">
+                  <h2 className="welcomeText">By Process Groups</h2>
+                  <h3 className="welcomeText2">Now choose one of the groups</h3>
+                </div>
+              </Animated>
               <div className = "processContainter">
+
               {typeList.map((item,i) => {
                 return(
-                  <Delayed key={item} id={item} waitBeforeShow={i*100}>
+                  <Delayed key={item} id={item} waitBeforeShow={0*100}>
                     <Animated key={item} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                       <div className="processOuterBox" onClick={() => this.typeClicked(i)}>
                         <i className="material-icons" style={{fontSize:48, color:typeColorList[i]}}>
@@ -743,3 +743,8 @@ export default pmpMenuPage
 //     <Button className="menuItem" onClick={this.mathClicked} ghost> Math Problems </Button>
 //   </Animated>
 // </div>
+
+// <div className="subProcessIcon" style={{color:phaseColorList[i]}}>
+//   {phaseFontList[i]}
+// </div>
+//   <p className="subProcessText">{pmpPhaseMapping(item)}</p>

@@ -18,7 +18,8 @@
 
 .pmpContainer{
   display: grid;
-  gird-template-columns: 40%;
+  gird-template-columns: 100%;
+  background-color: #E1DDD8;
   margin-top: .1em;
   height: auto;
   width: auto;
@@ -31,7 +32,8 @@
 
 .coursePageContainer{
   display: grid;
-  gird-template-columns: 30%;
+  gird-template-columns: 100%;
+  background-color: #E1DDD8;
   margin-top: .1em;
   height: auto;
   width: auto;
@@ -135,6 +137,16 @@
   justify-content: space-between;
 }
 
+
+
+.subProcessButton {
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  background-color:  DarkSlateGray;
+  color: Gainsboro;
+  font-size: 20px;
+}
 
 .subProcessContainer {
   display: grid;
@@ -241,6 +253,7 @@
 .processOuterBox {
   display: grid;
   border-color: NavajoWhite;
+  background-color: DarkSlateGray;
   border-radius: 5px;
   margin: 5px;
   padding: 5px;

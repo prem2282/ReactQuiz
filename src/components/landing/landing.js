@@ -11,6 +11,7 @@ import Categories from './categories';
 import Welcome from './welcome';
 import GetStarted from './getStarted';
 import CoursePage from '../..//components/menu/coursePageNew';
+import LoadingPage from '../..//components/menu/loadingPage';
 import './landing.css';
 import GetUserLocation from './location';
 import Delayed from '../..//components/header/delayed';
@@ -82,13 +83,14 @@ class landingPage  extends Component {
       let quizText = null;
       let userProfile = this.props.userProfile;
       let getStartedClicked = this.state.getStartedClicked;
+      let gotPMPQuestions = this.props.gotPMPQuestions;
       console.log("userProfile");
       let pageId = null;
       if (getStartedClicked) {
         pageId = "coursePage"
       } else if (userProfile) {
         pageId = "getStarted"
-      } else if (true) {
+      } else {
         pageId = "login";
       }
 

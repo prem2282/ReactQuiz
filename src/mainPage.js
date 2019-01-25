@@ -465,11 +465,12 @@ class mainPage extends Component {
   getPMPQuestionsApi = () => {
       console.log("get PMP // QUESTION: ");
       // let proxyUrl = 'https://cors-anywhere.herokuapp.com/?'
-      let proxyUrl = 'https://corsheader.herokuapp.com/'
+      // let proxyUrl = 'https://corsheader.herokuapp.com/'
       // let proxyUrl = 'https://cors.io/?'
       let destinationUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
 
-      let targetUrl = proxyUrl + destinationUrl;
+      // let targetUrl = proxyUrl + destinationUrl;
+      let targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
     // let targetUrl = 'https://cors.io/?https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
@@ -925,7 +926,7 @@ class mainPage extends Component {
 
   landingPageRender = () => {
 
-    if (this.state.gotPMPQuestions) {
+    // if (this.state.gotPMPQuestions) {
       return(
         <div>
           <LandingPage
@@ -942,15 +943,16 @@ class mainPage extends Component {
             homeButton = {this.goToHome}
             logOut = {this.logOut}
             pageLoaded = "LandingPage"
+            gotPMPQuestions = {this.state.gotPMPQuestions}
           />
         </div>
       )
-    } else {
-      return(
-        <LoadingPage/>
-      )
-
-    }
+    // } else {
+    //   return(
+    //     <LoadingPage/>
+    //   )
+    //
+    // }
 
 
   }
