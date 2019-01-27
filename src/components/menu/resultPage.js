@@ -249,6 +249,8 @@ class resultPage extends Component {
             quizDetails = {this.props.quizDetails}
             PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
             handleCancel = {this.handleModalClose}
+            questionArray = {this.props.questionArray}
+            selectedGroupSet = {this.props.selectedGroupSet}
           />
         :null}
       </div>

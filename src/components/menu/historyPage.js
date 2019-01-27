@@ -91,7 +91,7 @@ class historyPage extends Component {
 
       let quizItem = {...this.state.quizItem};
       let quizSet = [];
-
+      let groupSet = this.props.groupSet.data;
 
       for (let i = 0; i < this.state.quizList.length; i++) {
 
@@ -105,15 +105,32 @@ class historyPage extends Component {
         if (groupIdArray[0]=='PMP') {
             quizItem.board = 'PMP';
             if (groupIdArray[1]=='P') {
-              quizItem.standard = pmpPhaseMapping(groupIdArray[2]);
-            } else {
-              quizItem.standard = pmpTypeMapping(groupIdArray[2]);
+              quizItem.standard = "Phase"
+              quizItem.subject = pmpPhaseMapping(groupIdArray[2]);
+            } else if (groupIdArray[1]=='T') {
+              quizItem.standard = "Process"
+              quizItem.subject = pmpTypeMapping(groupIdArray[2]);
+            } else if (groupIdArray[1]=='M') {
+              quizItem.standard = "Type"
+              quizItem.subject = 'Formula Based';
+            } else if (groupIdArray[1]=='G') {
+              quizItem.standard = "Type"
+              quizItem.subject = 'Soft Skills';
             }
-            quizItem.subject = '';
+            // quizItem.subject = '';
             quizItem.lessonNum = groupIdArray[3];
             quizItem.lessonName = 'Set ' + groupIdArray[3];
         } else {
-          //Placeholder for non pmp
+          console.log("groupSet:",groupSet);
+          let group = _.filter(groupSet, function(group) {
+                  return (group.id === Number(groupId)
+                  )})
+          console.log("group:",group);
+          quizItem.board = group[0].board;
+          quizItem.standard = group[0].standard;
+          quizItem.subject = group[0].subject;
+          quizItem.lessonNum = group[0].lessonNum;
+          quizItem.lessonName = group[0].lessonName;
         }
 
         quizItem.ans_inds = this.state.quizList[i].answerSet;
@@ -126,6 +143,7 @@ class historyPage extends Component {
 
 
         let thisItem = {...quizItem};
+        console.log("quizItem:", thisItem);
         quizSet.push(thisItem)
 
       }
@@ -151,19 +169,10 @@ class historyPage extends Component {
         })
       }
 
-      let headerText = 'Your Quiz Reports'
+
       return (
            <div>
-             <Affix offsetTop={0}>
-               <Header
-                 homeButton = {this.props.homeButton}
-                 logOutButton = {this.props.logOutButton}
-                 backButton = {this.props.backButton}
-                 pageLoaded = "pmpMenuPage"
-                 profile = {this.props.userProfile}
-                 headerText = {headerText}
-               />
-             </Affix>
+
              <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                <div>
                  {(this.state.showDetails)?
@@ -180,7 +189,7 @@ class historyPage extends Component {
                                       remove={this.removeQuizFromHistory}
                                       retakeQuiz={this.retakeQuiz}
                                       PMPBaseQuizSet={this.props.PMPBaseQuizSet}
-                                      // questionArray = {this.state.questionArray[i]}
+                                      questionArray = {this.state.questionArray[i]}
                                       quizNumber = {i+1}
                                       />
                                    </Animated>

@@ -9,6 +9,12 @@
   background-color: #E1DDD8;
 }
 
+.backButton{
+  width: 100px;
+  margin: 0px;
+  justify-content: space-around;
+}
+
 .shareBar {
 
   display: grid;

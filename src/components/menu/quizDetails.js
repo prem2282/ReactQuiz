@@ -137,12 +137,21 @@ class quizDetails extends React.Component {
 
   render() {
 
+    console.log("quizDetails:",this.props.quizDetails);
+    console.log("group:", this.props.selectedGroupSet);
+
     let questionNum = this.props.quizDetails.questionSet.split(',');
 
-    let questionArray = this.props.PMPBaseQuizSet;
-    let groupId = this.props.quizDetails.groupId;
+    let questionArray = this.props.questionArray;
+    let group = this.props.selectedGroupSet;
+    let groupId = group.id;
+    let title = group.board + '/' + group.standard + '/' + group.subject
 
-    let title = this.getTitle(groupId);
+    if (group.board === 'PMP') {
+      questionArray = this.props.PMPBaseQuizSet;
+      groupId = this.props.quizDetails.groupId;
+      title = this.getTitle(groupId);
+    }
 
     for (var i = 0; i < questionNum.length; i++) {
       questionNum[i] = Number(questionNum[i])

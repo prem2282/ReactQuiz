@@ -71,59 +71,6 @@ class historyDetailsModel extends React.Component {
 
   }
 
-  showQuizModal = () => {
-
-        let groupId = this.props.quizList.groupId ;
-        console.log("groupId:", groupId);
-
-        let groupIdArray = String(groupId).split("-")
-        console.log("groupIdArray:",groupIdArray);
-
-        let targetUrl = null;
-        if (groupIdArray[0]=='PMP') {
-          targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
-          // targetUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/';
-
-        } else {
-           targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
-          //  targetUrl = 'http://127.0.0.1:8000/api/QuestionList/';
-
-        }
-
-        let questionSet = this.props.quizList.questionSet
-        console.log("questionSet:",questionSet);
-        //
-        // questionSet = [1,2,3,4,5];
-
-        let  questionArray = [];
-
-        if (this.state.groupId == groupId) {
-
-        } else {
-          Request.get(targetUrl)
-                 .query({ questionSet: questionSet })
-                  .catch(function(error) {
-
-                  })
-                  .then((response) => {
-                    if (response.body.length>0) {
-                      console.log("API response:",response.body);
-                      for (let i = 0; i < response.body.length; i++) {
-                        questionArray.push(response.body[i]);
-                      }
-                      this.setState({
-                        questionArray : questionArray,
-                        visible: true,
-                        modalName : "quiz",
-                        groupIdClicked : groupId,
-                      })
-                    }
-                  })
-
-
-        }
-  }
-
   getQustionArray = (id) => {
 
         let groupId = this.props.quizList.groupId ;
@@ -622,20 +569,18 @@ class historyDetailsModel extends React.Component {
   }
 
   render() {
-
+                console.log(this.props.quizTopic);
                 let board = this.props.quizTopic.board;
                 let standard = _.toString(this.props.quizTopic.standard);
                 let subject = this.props.quizTopic.subject;
                 let lessonName = _.toString(this.props.quizTopic.lessonName);
                 let score = _.toString(this.props.quizTopic.score);
-                let title = '';
-                if (subject) {
-                  title= board + ' - ' + standard + ' - ' + subject;
-                } else {
-                  title= board + ' - ' + standard;
-                }
+                let title= board + ' - ' + standard + ' - ' + subject;
+                // if (subject) {
+                //   title= board + ' - ' + standard + ' - ' + subject;
+                // }
 
-                title = title + " " + score;
+                // title = title + " " + score;
                 let quizStatus = this.props.quizTopic.quizStatus;
                 let quizNum = _.toString(this.props.quizNumber);
                 let moment = require('moment');

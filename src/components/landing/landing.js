@@ -24,10 +24,11 @@ class landingPage  extends Component {
     super(props);
     this.state = {
       displayFeatures : false,
-      category : 'PMP',
+      category : null,
       getStartedClicked : false,
       showPremiumDetails: false,
       showPremiumBox: false,
+      groupSet : this.props.groupSet,
     }
   }
 
@@ -37,13 +38,28 @@ class landingPage  extends Component {
       getStartedClicked : true,
     })
   }
+  pmpSelected = () => {
 
+  }
+  selectedGroup = (selectedGroup) => {
+    this.props.selectedGroup(selectedGroup)
+  }
   goToHome = () => {
     this.setState({
       getStartedClicked : false,
     })
   }
 
+  backButton = () => {
+
+    this.setState({
+      category : null
+    })
+    if (!this.props.userProfile) {
+      this.props.backButton();
+    }
+
+  }
   logOut = () => {
     this.setState({
       getStartedClicked : false,
@@ -63,11 +79,11 @@ class landingPage  extends Component {
     }
 
   }
-  catSelected = (e) => {
-    console.log(e.target.id);
+  catSelected = (category) => {
+    console.log("category:",category);
     this.setState({
       displayFeatures: true,
-      category: e.target.id
+      category: category
     })
   }
 
@@ -84,14 +100,23 @@ class landingPage  extends Component {
       let userProfile = this.props.userProfile;
       let getStartedClicked = this.state.getStartedClicked;
       let gotPMPQuestions = this.props.gotPMPQuestions;
-      console.log("userProfile");
+      let loginSelected = this.props.loginSelected;
+      let category = this.state.category;
+      console.log("userProfile", userProfile);
+      console.log("loginSelected", loginSelected);
+      console.log("category:", category);
+
       let pageId = null;
-      if (getStartedClicked) {
+      if (category) {
         pageId = "coursePage"
-      } else if (userProfile) {
-        pageId = "getStarted"
+      } else if (userProfile || loginSelected) {
+        pageId = "categories"
       } else {
         pageId = "login";
+      }
+
+      if (!this.props.groupSet) {
+        pageId = "loading"
       }
 
     return (
@@ -113,11 +138,15 @@ class landingPage  extends Component {
           userProfile = {userProfile}
             userLocation = {this.props.userLocation}
           />
-        {pageId === "login"?
+        {pageId === "categories"?
         <Delayed waitBeforeShow={500}>
         <Categories
           catSelected={this.catSelected}
-
+          groupSet = {this.props.groupSet}
+          selectedGroup = {this.selectedGroup}
+          pmpSelected = {this.pmpSelected}
+          backButton = {this.backButton}
+          userProfile = {this.props.userProfile}
           />
         </Delayed>
         :null
@@ -128,7 +157,7 @@ class landingPage  extends Component {
             success = {this.props.success}
             error = {this.props.error}
             facebookResp = {this.props.facebookResp}
-            guestLogin = {this.getStarted}
+            guestLogin = {this.props.guestLogin}
             />
           :null
         }
@@ -150,6 +179,12 @@ class landingPage  extends Component {
             />
           :null
         }
+        {pageId === "loading"?
+          <LoadingPage
+            />
+          :null
+        }
+
 
         <Features
             toDisplay = {this.state.category}

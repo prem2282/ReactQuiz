@@ -9,6 +9,7 @@ import CountPage from '..//src/components/questions/countPage';
 import QuestType1 from '..//src/components/questions/questType1';
 import QuestType5 from '..//src/components/questions/questType5';
 import Header from '..//src/components/header/header';
+import PMPHeader from '..//src/components/header/headerPMP';
 import ResultPage from '..//src/components/menu/resultPage';
 import HeaderQuiz from '..//src/components/header/headerQuiz';
 import HistoryPage from '..//src/components/menu/historyPage';
@@ -20,6 +21,13 @@ import {Progress, Affix} from 'antd';
 import Request from 'superagent';
 const url = require('url');
 
+const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
+const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
+const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
+
+// const groupingUrl = 'http://127.0.0.1:8000/api/Grouping/'
+// const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/'
+// const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
 
 let moment = require('moment')
 class mainPage extends Component {
@@ -39,6 +47,7 @@ class mainPage extends Component {
       selSubject : null,
       selLesson : null,
       quizStatus : 'none',
+      groupSet : null,
       groupSetFetched : false,
       quizSet : [],
       baseQuizSet : [],
@@ -63,6 +72,7 @@ class mainPage extends Component {
       },
       userProfile : null,
       userPackage : null,
+      loginSelected: false,
       userLoggedIn : false,
       userLocation : null,
       // userId : null,
@@ -77,7 +87,6 @@ class mainPage extends Component {
       selectedGroupSet : null,
       muteVoice : false,
       gotPMPQuestions : false,
-      boardSelected : null,
     }
   }
 
@@ -121,6 +130,7 @@ class mainPage extends Component {
     this.setState({
 
       userLoggedIn : false,
+      loginSelected: true,
       pageId : 'landingPage',
     })
   }
@@ -185,6 +195,7 @@ class mainPage extends Component {
       this.setState({
         userProfile: profileObj,
         userLoggedIn: true,
+        loginSelected: true,
         pageId : "landingPage",
       })
     })
@@ -220,6 +231,7 @@ class mainPage extends Component {
         this.setState({
           pageId : "landingPage",
           userLoggedIn : true,
+          loginSelected: true,
         })
       }
     })
@@ -267,6 +279,7 @@ class mainPage extends Component {
     this.setState({
       userProfile : userProfile,
       userLoggedIn : true,
+      loginSelected: true,
     })
   }
 
@@ -301,6 +314,7 @@ class mainPage extends Component {
       window.history.pushState(null,document.title,window.location.href);
     })
   }
+
   componentWillMount = () => {
 
     // this.getUserLocation();
@@ -309,7 +323,8 @@ class mainPage extends Component {
       this.getUserSavedLocally(localStorage.userId)
     }
     if (!this.state.gotPMPQuestions) {
-      this.getPMPQuestionsApi();
+      // this.getPMPQuestionsApi();
+      this.getGroupSet();
     }
 
   }
@@ -327,7 +342,7 @@ class mainPage extends Component {
       selSubject : null,
       selLesson : null,
       quizStatus : 'none',
-      groupSetFetched : false,
+      // groupSetFetched : false,
       quizSet : [],
       // baseQuizSet : [],
       quizDetails: null,
@@ -459,7 +474,64 @@ class mainPage extends Component {
       userQuizData: null,
       pageId: "landingPage",
       userLoggedIn: false,
+      loginSelected: false,
     })
+  }
+
+  startQuiz = (quizSet,groupId) => {
+
+    if (this.state.userLoggedIn) {
+      this.checkUserForQuiz(groupId,'Completed');
+      this.checkUserForQuiz(groupId,'Running');
+    }
+    this.setState({
+      quizSet: quizSet,
+      groupSetFetched: true,
+      quizIdRunning: groupId,
+      pageId: "refresh",
+      refreshTo: "countPage",
+    })
+
+  }
+
+  selectedGroup = (group) => {
+    this.setState({
+      pageId: "loading",
+      selectedGroupSet: group
+    })
+    console.log("selectedGroup",group);
+      // let targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
+      let targetUrl = QuestionListUrl;
+      let groupId = group.id
+      axios.get(targetUrl, {params:{
+        category:group.category,
+        board: group.board,
+        standard: group.standard,
+        subject: group.subject,
+        lessonNum: group.lessonNum,
+      }})
+      .then(res => {
+        console.log("quizset is here");
+        this.startQuiz(res.data,groupId)
+      })
+
+  }
+  getGroupSet = () => {
+      // let targetUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/';
+
+      let targetUrl = groupingUrl;
+
+      if (!this.state.groupSetFetched) {
+        axios.get(targetUrl)
+        .then(res => {
+          console.log("response is good");
+          this.setState({
+            groupSet: res,
+            groupSetFetched: true,
+            // pageId : "pmpMenuPage",
+          })
+        })
+      }
   }
 
   getPMPQuestionsApi = () => {
@@ -467,10 +539,11 @@ class mainPage extends Component {
       // let proxyUrl = 'https://cors-anywhere.herokuapp.com/?'
       // let proxyUrl = 'https://corsheader.herokuapp.com/'
       // let proxyUrl = 'https://cors.io/?'
-      let destinationUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
+      // let destinationUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
 
       // let targetUrl = proxyUrl + destinationUrl;
-      let targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
+      // let targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
+      let targetUrl = PMPQuestionListUrl
     // let targetUrl = 'https://cors.io/?https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
@@ -663,6 +736,7 @@ class mainPage extends Component {
   }
 
   addUserQuiz = (userQuizDetails) => {
+    console.log("adding quiz details");
     let moment = require('moment')
     let updatedTime = moment().format();
     let targetUrl =  'https://prem2282.pythonanywhere.com/api/UserQuiz/create';
@@ -769,15 +843,19 @@ class mainPage extends Component {
       quizStatus: "Completed"
     }
 
-    if (this.state.userSavedQuizData) {
-      this.removeQuizHistory(this.state.userSavedQuizData.id)
+    if (this.state.userProfile) {
+      if (this.state.userSavedQuizData) {
+        this.removeQuizHistory(this.state.userSavedQuizData.id)
+      }
+
+      if(quizDetails.userQuizId) {
+        this.updateUserQuiz(quizDetails);
+      } else {
+        this.addUserQuiz(quizDetails);
+      }
     }
 
-    if(quizDetails.userQuizId) {
-      this.updateUserQuiz(quizDetails);
-    } else {
-      this.addUserQuiz(quizDetails);
-    }
+
 
     this.setState({
       quizDetails: quizDetails
@@ -788,6 +866,7 @@ class mainPage extends Component {
   beforeResultProcess = () => {
     const ansInd = this.checkAnswers();
     const score = this.findMarks();
+
 
     this.saveQuizDetails(ansInd, score);
     this.setState(
@@ -924,6 +1003,13 @@ class mainPage extends Component {
     )
   }
 
+  landingBackButton = () => {
+    console.log("landingBackButton");
+    this.setState({
+      loginSelected: false
+    })
+  }
+
   landingPageRender = () => {
 
     // if (this.state.gotPMPQuestions) {
@@ -944,6 +1030,10 @@ class mainPage extends Component {
             logOut = {this.logOut}
             pageLoaded = "LandingPage"
             gotPMPQuestions = {this.state.gotPMPQuestions}
+            loginSelected = {this.state.loginSelected}
+            groupSet = {this.state.groupSet}
+            selectedGroup = {this.selectedGroup}
+            backButton = {this.landingBackButton}
           />
         </div>
       )
@@ -1047,7 +1137,10 @@ class mainPage extends Component {
 
   }
   retakeQuizFromResult = () => {
-    this.checkUserForQuiz(this.state.quizIdRunning,'Completed');
+    if (this.state.userProfile) {
+          this.checkUserForQuiz(this.state.quizIdRunning,'Completed');
+    }
+
 
     let quizSet = this.state.quizSet;
 
@@ -1100,6 +1193,7 @@ class mainPage extends Component {
           userProfile={this.state.userProfile}
           pageLoaded="ResultPage"
           backButton= {this.goBackToCourse}
+          selectedGroupSet={this.state.selectedGroupSet}
         />
     </div>
     )
@@ -1112,14 +1206,25 @@ class mainPage extends Component {
   }
 
   historyPageRender = () => {
-
+    let headerText = 'Your Quiz Reports'
     return(
       <div>
+        <Affix offsetTop={0}>
+          <PMPHeader
+            homeButton = {this.goToHome}
+            logOutButton = {this.logOut}
+            backButton={this.goBackToCourse}
+            pageLoaded = "historyPage"
+            userProfile={this.state.userProfile}
+            headerText = {headerText}
+          />
+        </Affix>
         <HistoryPage
           quizList = {this.state.userQuizHistory}
           quizTopicData={this.state.groupSet}
           questionArray={this.state.questionArray}
           PMPBaseQuizSet={this.state.baseQuizSet.data}
+          groupSet = {this.state.groupSet}
           backButton={this.goBackToCourse}
           userProfile={this.state.userProfile}
           removeQuizHistory={this.removeQuizFromHistory}
@@ -1195,6 +1300,11 @@ class mainPage extends Component {
           case "refresh":
             return (
               this.refreshRender(this.state.refreshTo)
+            )
+            break;
+          case "loading":
+            return (
+              <LoadingPage/>
             )
             break;
           case "loadQuestion":
