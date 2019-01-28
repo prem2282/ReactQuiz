@@ -323,9 +323,12 @@ class mainPage extends Component {
       this.getUserSavedLocally(localStorage.userId)
     }
     if (!this.state.gotPMPQuestions) {
-      // this.getPMPQuestionsApi();
-      this.getGroupSet();
+      this.getPMPQuestionsApi();
+
     }
+
+    this.getGroupSet();
+
 
   }
 

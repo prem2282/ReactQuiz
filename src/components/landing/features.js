@@ -93,7 +93,7 @@ class features extends Component {
       )
     } else {
       return(
-        <div>Yet to be added</div>
+        this.pmpFeaturesRender()
       )
     }
 
