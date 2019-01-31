@@ -5,6 +5,7 @@ import {Button, Avatar} from 'antd';
 // import {VoicePlayer} from 'react-voice-components';
 import VoicePlayer from '../..//components/apicalls/VoicePlayer';
 
+
 class questType1 extends Component {
 
     constructor(props) {
@@ -77,13 +78,10 @@ class questType1 extends Component {
       let picSize = 200;
       let screenWidth = window.innerWidth;
 
-      if (screenWidth<600) {
-        picSize = screenWidth/5;
-      } else {
-        picSize = screenWidth/8;
-      }
+      picSize = screenWidth/4;
 
       return (
+        <div>
         <div className = "questionContainer">
           {!this.state.muteVoice?
             <VoicePlayer play onEnd={this.speechEnded} text={questionVoice}/>
@@ -92,10 +90,10 @@ class questType1 extends Component {
           <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
             {pic?
               <div className="questionWithPic">
-                <div className="questionPic">
-                  <Avatar shape="square" size={picSize} src={pic} />
-                </div>
                 <p className="questionBox">{this.props.quiz.Question}</p>
+                <div className="questionPic">
+                  <Avatar className="questionPic" shape="square" size={picSize} src={pic} />
+                </div>
               </div>
             :
               <div>
@@ -110,20 +108,25 @@ class questType1 extends Component {
             <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
               <p className={this.state.ansBoxClass[1]} id='1' onClick={this.choiceSelected}>{this.props.quiz.answer_2}</p>
             </Animated>
-            <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
-              <p className={this.state.ansBoxClass[2]} id='2' onClick={this.choiceSelected}>{this.props.quiz.answer_3}</p>
-            </Animated>
+            {this.props.quiz.answer_3?
+              <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
+                <p className={this.state.ansBoxClass[2]} id='2' onClick={this.choiceSelected}>{this.props.quiz.answer_3}</p>
+              </Animated>
+            :null}
+            {this.props.quiz.answer_4?
             <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
               <p className={this.state.ansBoxClass[3]} id='3' onClick={this.choiceSelected}>{this.props.quiz.answer_4}</p>
             </Animated>
+            :null}
+            <Animated animationIn="zoomIn" animationOut="zoomOut" isVisible={this.state.submitVisibility}>
+              <div className='buttonContainer'>
+                <Button className="submitButton" onClick={this.submitSelected} ghost> Submit </Button>
+              </div>
+            </Animated>
+
           </div>
-          {this.state.submitVisibility?
-          <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-            <Button className="clickBox" onClick={this.submitSelected} ghost> Submit </Button>
-          </Animated>
-          :
-          null
-          }
+        </div>
+
         </div>
       )
 

@@ -121,7 +121,7 @@ class landingPage  extends Component {
 
     return (
 
-      <div>
+      <div className='App'>
         <Affix offsetTop={0}>
           <Header
             success = {this.props.success}
@@ -147,6 +147,8 @@ class landingPage  extends Component {
           pmpSelected = {this.pmpSelected}
           backButton = {this.backButton}
           userProfile = {this.props.userProfile}
+          selectedGroupSet = {this.props.selectedGroupSet}
+          userQuizHistory = {this.props.userQuizHistory}
           />
         </Delayed>
         :null
@@ -176,6 +178,7 @@ class landingPage  extends Component {
             pmpLearn = {this.props.pmpLearn}
             historyPage = {this.props.historyPage}
             userProfile = {this.props.userProfile}
+
             />
           :null
         }
@@ -184,8 +187,6 @@ class landingPage  extends Component {
             />
           :null
         }
-
-
         <Features
             toDisplay = {this.state.category}
           />
@@ -196,9 +197,11 @@ class landingPage  extends Component {
             userProfile = {this.props.userProfile}
             handleOk={this.proHandleOk}
             handleCancel={this.proHandleCancel}
+
           />
         </Animated>
       </div>
+
 
     )
   }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Animated} from 'react-animated-css';
 import {Button, Modal, Icon, Tag, Avatar} from 'antd';
 import QuizDetails from './quizDetails';
-
+import QuizDetails2 from './quizDetails2';
 import './menuPage.css'
 
 class resultPage extends Component {
@@ -227,20 +227,26 @@ class resultPage extends Component {
     return(
       <div>
         <Animated  animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
-          <h2 className="historyQuestion">{scoreText}</h2>
-        </Animated>
-        <Animated  animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
-          <h3 className="historyQuestion">You Scored</h3>
+          <h2 className="historyQuestion">You Scored</h2>
         </Animated>
         <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
           <h1 className="historyQuestion">{this.props.score} %</h1>
         </Animated>
+        <QuizDetails2
+          quizDetails = {this.props.quizDetails}
+          PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
+          handleCancel = {this.handleModalClose}
+          questionArray = {this.props.questionArray}
+          selectedGroupSet = {this.props.selectedGroupSet}
+        />
         <Animated  animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
-          <div className="menuContainer">
-            <Button className="menuItem" ghost onClick={this.renderNewModel}>Review</Button>
-            <Button className="menuItem" ghost onClick={this.props.retakeQuiz}>Retake</Button>
-            <Button className="menuItem" ghost onClick={this.props.goBackToCourse}>Return</Button>
-
+          <div className="resultButtonContainer">
+            <div>
+              <Button className="menuItem" type="primary" onClick={this.props.retakeQuiz}>Retake</Button>
+            </div>
+            <div>
+              <Button className="menuItem" type="primary" onClick={this.props.goBackToCourse}>Return</Button>
+            </div>
           </div>
         </Animated>
         {this.renderModal()}
@@ -253,6 +259,7 @@ class resultPage extends Component {
             selectedGroupSet = {this.props.selectedGroupSet}
           />
         :null}
+
       </div>
     )
   }

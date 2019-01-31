@@ -1,5 +1,6 @@
+
 import React, { Component } from 'react';
-import { Button, Icon } from 'antd';
+import { Button, Icon, Affix, Tag } from 'antd';
 import {Animated} from 'react-animated-css';
 import './landing.css';
 import _ from 'lodash';
@@ -16,15 +17,42 @@ class categories extends Component {
 
   constructor(props) {
     super(props);
+
+    let   levelSelected = null;
+    let      choiceSelected= null;
+    let      categorySelected= null;
+    let      boardSelected= null;
+    let      standardSelected= null;
+    let      subjectSelected= null;
+    let      lessonSelected= null;
+    let group = this.props.selectedGroupSet;
+    let subGroupSet = null;
+
+    if (this.props.selectedGroupSet) {
+      levelSelected = 'subject';
+      choiceSelected= group.subject;
+      categorySelected= group.category;
+      boardSelected= group.board;
+      standardSelected= group.standard;
+      subjectSelected= group.subject;
+      subGroupSet = _.filter(this.props.groupSet.data, function(group) {
+        return (group.category === categorySelected &&
+                group.board === boardSelected &&
+                group.standard === standardSelected &&
+                group.subject === subjectSelected
+        )})
+    }
+
     this.state = {
       showPremiumBox: false,
       showPremiumDetails : false,
-      levelSelected : null,
+      levelSelected : levelSelected,
       choiceSelected: null,
-      categorySelected: null,
-      boardSelected: null,
-      standardSelected: null,
-      subjectSelected: null,
+      categorySelected: categorySelected,
+      boardSelected: boardSelected,
+      standardSelected: standardSelected,
+      subjectSelected: subjectSelected,
+      subGroupSet: subGroupSet,
       lessonSelected: null,
       backLevel: null,
       backChoice: null,
@@ -219,14 +247,34 @@ class categories extends Component {
   getLesson = () => {
     let subGroupSet = this.state.subGroupSet;
     let returnList = [];
-
     for (let i = 0; i < subGroupSet.length; i++) {
       returnList.push(subGroupSet[i].lessonName);
     }
+
     returnList = [...new Set(returnList)];
     return(returnList);
 
   }
+
+  getScores = () => {
+    let subGroupSet = this.state.subGroupSet;
+    let scoreList = [];
+    for (let i = 0; i < subGroupSet.length; i++) {
+      let userQuizHistory = _.filter(this.props.userQuizHistory, function(group) { return group.groupId === String(subGroupSet[i].id)})
+      console.log("userQuizHistory", userQuizHistory);
+      if (userQuizHistory.length > 0) {
+            scoreList.push(userQuizHistory[0].score)
+      } else {
+            scoreList.push(null)
+      }
+    }
+
+    scoreList = [...new Set(scoreList)];
+    return(scoreList);
+
+  }
+
+
 
   loadCategory =(category) => {
     let groupSet = this.props.groupSet.data
@@ -237,6 +285,20 @@ class categories extends Component {
       subGroupSet : categoryArray,
       categorySelected: category,
     });
+
+    // let returnList = [];
+    //
+    // for (let i = 0; i < categoryArray.length; i++) {
+    //   returnList.push(categoryArray[i].category);
+    // }
+    //
+    // returnList = [...new Set(returnList)];
+    //
+    //
+    // if (returnList.length === 1) {
+    //   this.loadBoard(returnList[0].category)
+    // }
+
   }
 
   loadBoard = (board) => {
@@ -250,11 +312,20 @@ class categories extends Component {
       subGroupSet : boardArray,
       boardSelected: board,
     });
-
-    if (boardList.length === 1) {
-      this.menuSelected(boardList[0])
-    }
-
+    //
+    // let returnList = [];
+    //
+    // for (let i = 0; i < boardArray.length; i++) {
+    //   returnList.push(boardArray[i].board);
+    // }
+    //
+    // returnList = [...new Set(returnList)];
+    //
+    //
+    // if (returnList.length === 1) {
+    //   this.loadStandard(returnList[0].board)
+    // }
+    //
 
 
   }
@@ -271,10 +342,18 @@ class categories extends Component {
       standardSelected: standard,
     });
 
-    if (standardList.length === 1) {
-      this.menuSelected(standardList[0])
-    }
-
+    // let returnList = [];
+    //
+    // for (let i = 0; i < standardArray.length; i++) {
+    //   returnList.push(standardArray[i].board);
+    // }
+    //
+    // returnList = [...new Set(returnList)];
+    //
+    //
+    // if (returnList.length === 1) {
+    //   this.loadStandard(returnList[0].standard)
+    // }
 
 
   }
@@ -292,10 +371,6 @@ class categories extends Component {
       subjectSelected: subject,
     });
 
-    if (subjectList.length === 1) {
-      this.menuSelected(subjectList[0])
-    }
-
 
 
   }
@@ -312,16 +387,13 @@ class categories extends Component {
       lessonSelected: lesson,
     });
 
-    if (lessonList.length === 1) {
-      this.menuSelected(lessonList[0])
-    }
 
 
 
   }
 
 
-  renderMenu = (menuList) => {
+  renderMenu = (menuList,scoreList) => {
 
     let showBackButton = true;
     if (!this.state.levelSelected) {
@@ -332,24 +404,57 @@ class categories extends Component {
     }
 
     console.log("menuList:", menuList);
+    console.log("scoreList:",scoreList);
+    let itemText = null;
+    if (this.state.levelSelected === 'board') {
+      itemText = 'Class: '
+    }
     return(
       <div>
           <div className='outerCatGrid'>
 
               {menuList.map((item,i) => {
+
+                let score = scoreList[i];
+                let tagColor = "MediumSeaGreen";
+                if (Number(score) < 60) {
+                  tagColor = "IndianRed"
+                }
                 return(
                     <Slide key={i} id={i} bottom>
                       <div key={i} id={item}  className='outerCatBox'>
-                          <Button id={item} className="guestButton" onClick={() => this.menuSelected(item)}>{item}</Button>
+                          <Button id={item} className="guestButton"  onClick={() => this.menuSelected(item)}>
+                            <div>
+                              {itemText}{item}
+                            </div>
+                            <div>
+                              {score?
+                                <Tag color={tagColor}>
+                                  Scored {score} %
+                                </Tag>
+                              :null
+                              }
+                            </div>
+                          </Button>
+
                       </div>
                     </Slide>
                 )
               })}
+              <div className="dummyDiv">
+              </div>
               {showBackButton?
-                <Button className = 'backButton' type="primary"   onClick={this.backButton}>
-                  <Icon type="double-left" theme="outlined" />
-                  Back
-                </Button>
+                <Affix offsetBottom={20}>
+                  <Animated animationIn="slideInUp" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                    <div className="buttonContainer">
+                      <Button className = 'backButton' type="primary"   onClick={this.backButton}>
+                        <Icon type="double-left" theme="outlined" />
+                        Back
+                      </Button>
+                    </div>
+                  </Animated>
+                </Affix>
+
               :null}
 
 
@@ -364,6 +469,7 @@ class categories extends Component {
 
     console.log("groupSet:", this.props.groupSet);
     let menuList = [];
+    let scoreList = [];
     let choiceSelected = this.state.choiceSelected;
     console.log('levelSelected:',this.state.levelSelected);
     console.log('choiceSelected:',this.state.choiceSelected);
@@ -377,6 +483,7 @@ class categories extends Component {
           menuList = this.getSubject(choiceSelected)
     } else if (this.state.levelSelected === 'subject') {
           menuList = this.getLesson(choiceSelected)
+          scoreList = this.getScores(choiceSelected)
     }
     let pageId = this.state.pageId;
 
@@ -386,7 +493,7 @@ class categories extends Component {
       )
     } else {
         return(
-            this.renderMenu(menuList)
+            this.renderMenu(menuList,scoreList)
         )
     }
 

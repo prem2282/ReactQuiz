@@ -324,11 +324,8 @@ class mainPage extends Component {
     }
     if (!this.state.gotPMPQuestions) {
       this.getPMPQuestionsApi();
-
+      this.getGroupSet();
     }
-
-    this.getGroupSet();
-
 
   }
 
@@ -345,9 +342,7 @@ class mainPage extends Component {
       selSubject : null,
       selLesson : null,
       quizStatus : 'none',
-      // groupSetFetched : false,
       quizSet : [],
-      // baseQuizSet : [],
       quizDetails: null,
       correctAnsIndex: [],
       selectedAnsIndex: [],
@@ -366,19 +361,9 @@ class mainPage extends Component {
         answer : null,
         yourAns : null,
       },
-      // userProfile : null,
-      // userId : null,
-      // userName : null,
-      // emailId : null,
-      // profilePic : null,
-      // userQuizHistory : null,
       quizIdRunning : null,
-      // userQuizData : null,
-      // userSavedQuizData : null,
       questionArray : [],
-      selectedGroupSet : null,
-      // muteVoice : false,
-      // gotPMPQuestions : false,
+      // selectedGroupSet : null,
       boardSelected : null,
     })
   }
@@ -1037,7 +1022,10 @@ class mainPage extends Component {
             groupSet = {this.state.groupSet}
             selectedGroup = {this.selectedGroup}
             backButton = {this.landingBackButton}
+            selectedGroupSet = {this.state.selectedGroupSet}
+            userQuizHistory = {this.state.userQuizHistory}
           />
+
         </div>
       )
     // } else {
