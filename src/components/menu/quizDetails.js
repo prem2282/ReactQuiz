@@ -31,7 +31,7 @@ class quizDetails extends React.Component {
   }
 
   handleCancel = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -59,12 +59,12 @@ class quizDetails extends React.Component {
     let selectedAnsIndex = this.props.quizDetails.selectedAnsIndex.split(',');
 
 
-    console.log("questionNums:",questionNums);
-    console.log("selectedAnsIndex", selectedAnsIndex);
-    console.log("questionId", questionId);
-    console.log("questionIndex", questionIndex);
+    // console.log("questionNums:",questionNums);
+    // console.log("selectedAnsIndex", selectedAnsIndex);
+    // console.log("questionId", questionId);
+    // console.log("questionIndex", questionIndex);
     let answerText = selectedAnsIndex[questionIndex];
-    console.log("answerText:", answerText);
+    // console.log("answerText:", answerText);
     let textArray = answerText?answerText.split('-'):[];
     let textArrayNew =  textArray.map((txt, i) =>{
                     switch (txt) {
@@ -111,15 +111,15 @@ class quizDetails extends React.Component {
     let answerCheck = _.toString(yourAnswer[questionIndex]);
     return(answerCheck);
 
-    console.log("questionId", questionId);
-    console.log("answerCheck", answerCheck);
+    // console.log("questionId", questionId);
+    // console.log("answerCheck", answerCheck);
 
   }
 
   getTitle = (groupId) => {
 
       let groupIdSet = groupId.split('-');
-      console.log("groupIdSet:", groupIdSet);
+      // console.log("groupIdSet:", groupIdSet);
       let text = 'Title';
       if (groupIdSet[1] === 'T') {
         text = 'Process Group:' + pmpTypeMapping(groupIdSet[2]) + ' Set :' + groupIdSet[3]
@@ -136,21 +136,27 @@ class quizDetails extends React.Component {
 
 
   render() {
-
-    console.log("quizDetails:",this.props.quizDetails);
-    console.log("group:", this.props.selectedGroupSet);
+    //
+    // console.log("quizDetails:",this.props.quizDetails);
+    // console.log("group:", this.props.selectedGroupSet);
 
     let questionNum = this.props.quizDetails.questionSet.split(',');
 
     let questionArray = this.props.questionArray;
-    let group = this.props.selectedGroupSet;
-    let groupId = group.id;
-    let title = group.board + '/' + group.standard + '/' + group.subject
+        console.log("questionArray:", this.props.questionArray);
 
-    if (group.board === 'PMP') {
-      questionArray = this.props.PMPBaseQuizSet;
-      groupId = this.props.quizDetails.groupId;
+    // let groupId = null;
+    let title = null;
+    let  groupId = this.props.quizDetails.groupId;
+
+    let groupIdArray = groupId.split("-")
+    if (groupIdArray[0] === 'PMP') {
+      questionArray = this.props.questionArray;
       title = this.getTitle(groupId);
+    } else {
+      let group = this.props.selectedGroupSet;
+      groupId = group.id;
+      title = group.board + '/' + group.standard + '/' + group.subject + '/' + group.lessonName
     }
 
     for (var i = 0; i < questionNum.length; i++) {
@@ -178,7 +184,7 @@ class quizDetails extends React.Component {
                                 })
 
                           let questionSet = questionSetA[0]
-                          console.log("questionSet:", questionSet);
+                          // console.log("questionSet:", questionSet);
                           let screenWidth = window.innerWidth;
                           let correctText = "✔️"
                           let wrongText = "❌"
@@ -254,11 +260,11 @@ class quizDetails extends React.Component {
                             }
 
 
-                            console.log("variableValues:", this.props.quizDetails.variableSet);
+                            // console.log("variableValues:", this.props.quizDetails.variableSet);
                             let varSet = questionSet.answer_1;
                             varSet = varSet.split(",")
                             let variableSet =  this.props.quizDetails.variableSet.split(",")
-                            console.log("variableSet",variableSet);
+                            // console.log("variableSet",variableSet);
                             let replaceSet = variableSet[i].split("-")
                             for (var k = 0; k < varSet.length; k++) {
                               let replaceValue = Number(replaceSet[k]).toLocaleString();
@@ -287,8 +293,8 @@ class quizDetails extends React.Component {
                               expArray_2 = explanation_2.split(";")
                             }
 
-                            console.log("expArray_1 after:", expArray_1);
-                            console.log("expArray_2 after:", expArray_2);
+                            // console.log("expArray_1 after:", expArray_1);
+                            // console.log("expArray_2 after:", expArray_2);
 
                             // explainTextArray = expArray_1.concat(expArray_2);
 

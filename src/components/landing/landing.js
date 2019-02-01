@@ -134,12 +134,16 @@ class landingPage  extends Component {
             userPackage = {this.props.userPackage}
           />
         </Affix>
+        {pageId === "login"?
         <Welcome
           userProfile = {userProfile}
             userLocation = {this.props.userLocation}
           />
+        :null
+        }
         {pageId === "categories"?
         <Delayed waitBeforeShow={500}>
+        <div className="categoryCover">
         <Categories
           catSelected={this.catSelected}
           groupSet = {this.props.groupSet}
@@ -149,7 +153,10 @@ class landingPage  extends Component {
           userProfile = {this.props.userProfile}
           selectedGroupSet = {this.props.selectedGroupSet}
           userQuizHistory = {this.props.userQuizHistory}
+          goToHistoryPage = {this.props.historyPage}
+
           />
+        </div>
         </Delayed>
         :null
         }
@@ -187,9 +194,13 @@ class landingPage  extends Component {
             />
           :null
         }
+        {pageId === "coursePage"?
         <Features
             toDisplay = {this.state.category}
           />
+          :null
+        }
+
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.showPremiumBox}>
           <GoPremium
             visible={this.state.showPremiumBox}

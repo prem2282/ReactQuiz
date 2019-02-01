@@ -95,7 +95,7 @@ class categories extends Component {
       return (group.category === categorySelected &&
               group.board === boardSelected
       )})
-      console.log("back for standard");
+      //console.log("back for standard");
     } else if (levelSelected === 'board') {
       levelSelected = 'category'
       boardSelected = null
@@ -126,6 +126,12 @@ class categories extends Component {
 
 
   }
+
+  historySelected = () => {
+    ////console.log("in categories history clicked");
+    this.props.goToHistoryPage();
+  }
+
   returnGroupId = (choice) => {
     let groupSet = this.state.subGroupSet;
     let returnList =[];
@@ -137,8 +143,8 @@ class categories extends Component {
   }
 
   otherProcess = (choice) => {
-    console.log("choice:", choice);
-    console.log('this.state.levelSelected:',this.state.levelSelected);
+    //console.log("choice:", choice);
+    //console.log('this.state.levelSelected:',this.state.levelSelected);
     let levelSelected = this.state.levelSelected
     let backLevel = levelSelected;
     let backChoice = this.state.choiceSelected;
@@ -199,7 +205,7 @@ class categories extends Component {
           categoryArray.push(groupSet[i].category);
         }
         let categoryList = [...new Set(categoryArray)];
-        console.log(categoryList);
+        //console.log(categoryList);
 
         return(categoryList)
 
@@ -261,13 +267,13 @@ class categories extends Component {
     let scoreList = [];
     for (let i = 0; i < subGroupSet.length; i++) {
       let userQuizHistory = _.filter(this.props.userQuizHistory, function(group) { return group.groupId === String(subGroupSet[i].id)})
-      console.log("userQuizHistory", userQuizHistory);
+      //console.log("userQuizHistory", userQuizHistory);
       if (userQuizHistory.length > 0) {
             scoreList.push(userQuizHistory[0].score)
-            console.log("pushing score:" , userQuizHistory[0].score);
+            //console.log("pushing score:" , userQuizHistory[0].score);
       } else {
             scoreList.push(null)
-              console.log("pushing score: null" );
+              //console.log("pushing score: null" );
       }
     }
 
@@ -281,7 +287,7 @@ class categories extends Component {
     let groupSet = this.props.groupSet.data
     let categoryArray = _.filter(groupSet, function(group) { return group.category === category})
 
-    console.log("categoryArray:", categoryArray);
+    //console.log("categoryArray:", categoryArray);
     this.setState({
       subGroupSet : categoryArray,
       categorySelected: category,
@@ -291,10 +297,10 @@ class categories extends Component {
   loadBoard = (board) => {
 
     let groupSet = this.state.subGroupSet
-    console.log("groupSet:",groupSet);
+    //console.log("groupSet:",groupSet);
     let boardArray = _.filter(groupSet, function(group) { return group.board === board})
 
-    console.log("boardArray:", boardArray);
+    //console.log("boardArray:", boardArray);
     this.setState({
       subGroupSet : boardArray,
       boardSelected: board,
@@ -304,10 +310,10 @@ class categories extends Component {
   loadStandard = (standard) => {
 
     let groupSet = this.state.subGroupSet
-    console.log("groupSet:",groupSet);
+    //console.log("groupSet:",groupSet);
     let standardArray = _.filter(groupSet, function(group) { return group.standard === standard})
 
-    console.log('standardArray:',standardArray);
+    //console.log('standardArray:',standardArray);
     this.setState({
       subGroupSet : standardArray,
       standardSelected: standard,
@@ -332,10 +338,10 @@ class categories extends Component {
   loadSubject = (subject) => {
 
     let groupSet = this.state.subGroupSet
-    console.log("groupSet:",groupSet);
+    //console.log("groupSet:",groupSet);
     let subjectArray = _.filter(groupSet, function(group) { return group.subject === subject})
 
-    console.log('subjectArray:',subjectArray);
+    //console.log('subjectArray:',subjectArray);
 
     this.setState({
       subGroupSet : subjectArray,
@@ -349,10 +355,10 @@ class categories extends Component {
   loadLesson= (lesson) => {
 
     let groupSet = this.state.subGroupSet
-    console.log("groupSet:",groupSet);
+    //console.log("groupSet:",groupSet);
     let lessonArray = _.filter(groupSet, function(group) { return group.lessonNum === lesson})
 
-    console.log('lessonArray:',lessonArray);
+    //console.log('lessonArray:',lessonArray);
     this.setState({
       subGroupSet : lessonArray,
       lessonSelected: lesson,
@@ -364,7 +370,7 @@ class categories extends Component {
   }
 
 
-  renderMenu = (menuList,scoreList) => {
+  renderMenu = (menuList,scoreList,topText) => {
 
     let showBackButton = true;
     if (!this.state.levelSelected) {
@@ -374,8 +380,8 @@ class categories extends Component {
 
     }
 
-    console.log("menuList:", menuList);
-    console.log("scoreList:",scoreList);
+    //console.log("menuList:", menuList);
+    //console.log("scoreList:",scoreList);
     let itemText = null;
     if (this.state.levelSelected === 'board') {
       itemText = 'Class: '
@@ -383,7 +389,15 @@ class categories extends Component {
     return(
       <div>
           <div className='outerCatGrid'>
-
+              <div className="wecomeNote">
+                <Animated animationIn="slideInDown" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                <h2 className="welcomeText">{topText.topText1}</h2>
+                <h3 className="welcomeText2"> {topText.topText2}</h3>
+                </Animated>
+              </div>
+                <Tag color="DarkGray"  onClick={this.historySelected}>
+                  My Scorecard
+                </Tag>
               {menuList.map((item,i) => {
 
                 let score = scoreList[i];
@@ -394,6 +408,7 @@ class categories extends Component {
                 return(
                     <Slide key={i} id={i} bottom>
                       <div key={i} id={item}  className='outerCatBox'>
+
                           <Button id={item} className="guestButton"  onClick={() => this.menuSelected(item)}>
                             <div>
                               {itemText}{item}
@@ -412,6 +427,8 @@ class categories extends Component {
                     </Slide>
                 )
               })}
+
+
               <div className="dummyDiv">
               </div>
               {showBackButton?
@@ -426,6 +443,14 @@ class categories extends Component {
                 </Affix>
 
               :null}
+              <Affix offsetBottom={20}>
+                <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                  <div className="buttonContainer">
+                    <Avatar  className = 'scrollButton'  id="scrollTop" onClick={this.topFunction}
+                     icon="arrow-up" />
+                  </div>
+                </Animated>
+              </Affix>
 
 
           </div>
@@ -435,27 +460,60 @@ class categories extends Component {
     )
   }
 
+  topFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  scrollFunction = () => {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollTop").style.display = "block";
+    } else {
+      document.getElementById("scrollTop").style.display = "none";
+    }
+  }
+
   render () {
 
-    console.log("groupSet:", this.props.groupSet);
+    this.topFunction();
+    // window.onscroll =  this.scrollFunction();
+
+    //console.log("groupSet:", this.props.groupSet);
     let menuList = [];
     let scoreList = [];
+
     let choiceSelected = this.state.choiceSelected;
-    console.log('levelSelected:',this.state.levelSelected);
-    console.log('choiceSelected:',this.state.choiceSelected);
+    let topText1 = null;
+    let topText2 = null;
+    //console.log('levelSelected:',this.state.levelSelected);
+    //console.log('choiceSelected:',this.state.choiceSelected);
     if (!this.state.levelSelected) {
           menuList = this.getCategory();
+          topText1 = "Welcome to QuizMeBuddy"
+          topText2 = "Select your Category"
     } else if (this.state.levelSelected === 'category') {
           menuList = this.getBoard(choiceSelected)
+          topText1 = this.state.categorySelected
+          topText2 = "Select your Choice"
     } else if (this.state.levelSelected === 'board') {
           menuList = this.getStandard(choiceSelected)
+          topText1 = this.state.boardSelected
+          topText2 = "Select your Choice"
     } else if (this.state.levelSelected === 'standard') {
           menuList = this.getSubject(choiceSelected)
+          topText1 = this.state.boardSelected + " / " + this.state.standardSelected
+          topText2 = "Select your Choice"
     } else if (this.state.levelSelected === 'subject') {
           menuList = this.getLesson(choiceSelected)
           scoreList = this.getScores(choiceSelected)
+          topText1 = this.state.boardSelected + " / " + this.state.standardSelected + " / " + this.state.subjectSelected
+          topText2 = "Select your Choice"
     }
     let pageId = this.state.pageId;
+    let topText = {
+      topText1:topText1,
+      topText2:topText2,
+    }
 
     if (pageId === 'refresh') {
       return(
@@ -463,7 +521,7 @@ class categories extends Component {
       )
     } else {
         return(
-            this.renderMenu(menuList,scoreList)
+            this.renderMenu(menuList,scoreList, topText)
         )
     }
 

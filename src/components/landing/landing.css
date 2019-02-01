@@ -1,3 +1,4 @@
+
 .landingContainer {
 
   display: grid;
@@ -11,9 +12,14 @@
 
 .dummyDiv {
 
-    height: 300px;
+    height: 100px;
     background-color: #C3BBB2;
     /*background-color: yellow;*/
+}
+
+.categoryCover {
+  height: 100vh;
+  background-color: #C3BBB2;
 }
 .buttonContainer {
   /*position:fixed !important;
@@ -29,6 +35,21 @@
   /*grid-template-columns: 100%;*/
 }
 
+.scrollButton {
+  position:fixed !important;
+  position:absolute;
+  /*top:0;*/
+  right:0;
+  bottom:0;
+  /*left:0;*/
+  /*width: 25%;*/
+  /*height: 50px;*/
+  margin: 20px;
+  justify-content: space-between;
+  align-self: center;
+  background-color: DarkSlateBlue;
+  cursor: pointer;
+}
 .backButton{
   position:fixed !important;
   position:absolute;
@@ -107,6 +128,7 @@
   font-size: 20px;
 }
 
+
 .guestButton {
   margin: 10px;
   width: 300px;
@@ -115,6 +137,7 @@
   color: Gainsboro;
   font-size: 20px;
 }
+
 .guestButton:hover{
   color:  DarkSlateGray;
   background-color:  Gainsboro;

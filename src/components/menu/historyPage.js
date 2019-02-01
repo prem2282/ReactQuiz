@@ -191,6 +191,7 @@ class historyPage extends Component {
                                       PMPBaseQuizSet={this.props.PMPBaseQuizSet}
                                       questionArray = {this.state.questionArray[i]}
                                       quizNumber = {i+1}
+                                      groupSet = {this.props.groupSet}
                                       />
                                    </Animated>
                                  </Delayed>

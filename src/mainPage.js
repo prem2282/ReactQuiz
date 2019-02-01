@@ -17,7 +17,7 @@ import LoadingPage from '..//src/components/menu/loadingPage';
 import './App.css';
 import _ from 'lodash';
 import axios from 'axios';
-import {Progress, Affix} from 'antd';
+import {Progress, Affix, message} from 'antd';
 import Request from 'superagent';
 const url = require('url');
 
@@ -500,7 +500,13 @@ class mainPage extends Component {
       }})
       .then(res => {
         console.log("quizset is here");
-        this.startQuiz(res.data,groupId)
+        if (res.data.length > 0) {
+                this.startQuiz(res.data,groupId)
+        } else {
+          message.warning('This is not yet ready. Please check back later');
+          this.goBackToLanding();
+        }
+
       })
 
   }

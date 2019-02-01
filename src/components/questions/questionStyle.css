@@ -88,16 +88,18 @@
 
   display: grid;
   grid-template-columns: 50% 50%;
-  height: 80%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   padding: 5px;
   border-color: white;
-  background-color: #333;
+  background-color: DarkSlateGray;
+  /*background-color: transparent;*/
   border-radius: 10px;
   align-self: center;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-
+  background-size: contain;;
+  background-repeat: no-repeat,
 }
 
 /*.questionContainer{
@@ -119,6 +121,8 @@
   grid-template-columns: 100%;
   align-items: center;
   justify-content: space-around;
+  background-size: cover;
+  background-repeat: no-repeat,
 }
 
 .questionPic {
@@ -175,8 +179,12 @@
   margin: .3em .3em .3em .3em ;
   padding: 3%;
   color: Khaki;
-  background-color: #400;
+  background-color: transparent;
+  /*background-color: #433;*/
   border-radius: 5px;
+  border: 1px solid Aqua;
+  /*border-color: Aqua;
+  border-width: 2px;*/
   align-content: space-around;
   justify-content: space-around;
   /* align-self: stretch; */
@@ -194,8 +202,8 @@
 .answerBoxType1:hover {
   background-color: #443;
   color: white;
-  /* -webkit-transform: scale(1.02);
-  transform: scale(1.02); */
+   -webkit-transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .answerBoxSel {
