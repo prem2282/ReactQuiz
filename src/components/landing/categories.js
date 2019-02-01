@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Button, Icon, Affix, Tag } from 'antd';
+import { Button, Icon, Affix, Tag, Avatar } from 'antd';
 import {Animated} from 'react-animated-css';
 import './landing.css';
 import _ from 'lodash';
@@ -264,14 +264,15 @@ class categories extends Component {
       console.log("userQuizHistory", userQuizHistory);
       if (userQuizHistory.length > 0) {
             scoreList.push(userQuizHistory[0].score)
+            console.log("pushing score:" , userQuizHistory[0].score);
       } else {
             scoreList.push(null)
+              console.log("pushing score: null" );
       }
     }
 
-    scoreList = [...new Set(scoreList)];
+    // scoreList = [...new Set(scoreList)];
     return(scoreList);
-
   }
 
 
@@ -285,20 +286,6 @@ class categories extends Component {
       subGroupSet : categoryArray,
       categorySelected: category,
     });
-
-    // let returnList = [];
-    //
-    // for (let i = 0; i < categoryArray.length; i++) {
-    //   returnList.push(categoryArray[i].category);
-    // }
-    //
-    // returnList = [...new Set(returnList)];
-    //
-    //
-    // if (returnList.length === 1) {
-    //   this.loadBoard(returnList[0].category)
-    // }
-
   }
 
   loadBoard = (board) => {
@@ -312,22 +299,6 @@ class categories extends Component {
       subGroupSet : boardArray,
       boardSelected: board,
     });
-    //
-    // let returnList = [];
-    //
-    // for (let i = 0; i < boardArray.length; i++) {
-    //   returnList.push(boardArray[i].board);
-    // }
-    //
-    // returnList = [...new Set(returnList)];
-    //
-    //
-    // if (returnList.length === 1) {
-    //   this.loadStandard(returnList[0].board)
-    // }
-    //
-
-
   }
 
   loadStandard = (standard) => {
@@ -445,12 +416,11 @@ class categories extends Component {
               </div>
               {showBackButton?
                 <Affix offsetBottom={20}>
-                  <Animated animationIn="slideInUp" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                  <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
                     <div className="buttonContainer">
-                      <Button className = 'backButton' type="primary"   onClick={this.backButton}>
-                        <Icon type="double-left" theme="outlined" />
-                        Back
-                      </Button>
+                      <Avatar  className = 'backButton'  onClick={this.backButton}
+                       icon="double-left" />
+
                     </div>
                   </Animated>
                 </Affix>
@@ -521,3 +491,8 @@ export default categories
 //     " Go ahead and try it out. All the best !",
 //   ],
 // ]
+//
+// <Button className = 'backButton' type="primary"   onClick={this.backButton}>
+//   <Icon type="double-left" theme="outlined" />
+//   Back
+// </Button>

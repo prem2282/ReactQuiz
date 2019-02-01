@@ -36,11 +36,19 @@
   /*right:0;*/
   bottom:0;
   left:0;
-  width: 25%;
-  height: 50px;
-  margin: 0px;
+  /*width: 25%;*/
+  /*height: 50px;*/
+  margin: 20px;
   justify-content: space-between;
   align-self: center;
+  background-color: DarkSlateBlue;
+  cursor: pointer;
+}
+
+.backButton:hover{
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+  background-color: SteelBlue;
 }
 
 .shareBar {
@@ -152,7 +160,7 @@
   display: grid;
   grid-template-columns: 100%;
   height:  auto;
-  justify-content:  space-between;;
+  justify-content:  space-around;
   align-items: center;
   /*background-color: #D7D1CB;*/
   background-color: #C3BBB2;

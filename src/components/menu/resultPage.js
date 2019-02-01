@@ -4,6 +4,7 @@ import {Button, Modal, Icon, Tag, Avatar} from 'antd';
 import QuizDetails from './quizDetails';
 import QuizDetails2 from './quizDetails2';
 import './menuPage.css'
+import VoicePlayer from '../..//components/apicalls/VoicePlayer';
 
 class resultPage extends Component {
 
@@ -97,11 +98,13 @@ class resultPage extends Component {
         newQuestion = newQuestion.replace(varSet[i],replaceValue);
       }
 
+      let displayQuestion = newQuestion.replace("<dash>","__________")
+
       return (
         <Animated key={i} animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
           <div className={(this.props.ansInd[i]?"historyBoxRight":"historyBoxWrong")}>
             <div className="historyQuestBox">
-              <p>{newQuestion}</p>
+              <p>{displayQuestion}</p>
               <Tag className="historyBox1Close" color={this.props.ansInd[i]?"#87d068":"#f50"}>
                 <p>{this.props.ansInd[i]?correctText:wrongText}</p>
               </Tag>
@@ -208,17 +211,23 @@ class resultPage extends Component {
     let scoreText = "";
     score = Number(score);
     if (score < 30) {
-      scoreText = "Need more preparation! You can do it!"
+      scoreText = "Oh No! You need more preparation! You can do it!"
     } else if (score >= 30 & score < 50) {
-      scoreText = "Not Bad! But you can do much better!"
+      scoreText = "Not Bad. But you can do much better!"
     } else if (score >= 50 & score < 80) {
-      scoreText = "Good Job! Try! Try! Try! You will be on top!"
+      scoreText = "Good Job. Try Try Try. You will be on top!"
     } else if (score >= 80 & score < 100) {
-      scoreText = "Great Job Buddy! Keep going!"
+      scoreText = "Great Job. Try a little more and you can get 100 percent"
     } else if (score === 100) {
       scoreText = "Excellent! You are the best!"
     }
+
+    scoreText = scoreText + "You scored " + score + "percent!"
     return(scoreText);
+  }
+
+  speechEnded = () => {
+
   }
 
   render () {
@@ -226,6 +235,7 @@ class resultPage extends Component {
 
     return(
       <div>
+        <VoicePlayer play onEnd={this.speechEnded} text={scoreText}/>
         <Animated  animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
           <h2 className="historyQuestion">You Scored</h2>
         </Animated>

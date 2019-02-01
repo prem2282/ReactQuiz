@@ -72,8 +72,24 @@ class questType1 extends Component {
 
       let pic = this.props.quiz.Q_image;
       let questionVoice = this.props.quiz.Question;
+          // questionVoice = questionVoice.replace("_","dash")
           questionVoice = questionVoice.split("_").join(" ")
           // questionVoice = "Question " + questionVoice;
+          questionVoice = questionVoice.replace("<dash>","dash")
+      let displayQuestion = this.props.quiz.Question.replace("<dash>","__________")
+      // let selectedAnsIndex = this.state.selectedAnsIndex
+      // if (!selectedAnsIndex) {
+      //   selectedAnsIndex = Number(selectedAnsIndex)
+      // }
+      // if (selectedAnsIndex === 0) {
+      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_1)
+      // } else if (selectedAnsIndex === 1) {
+      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_2)
+      // } else if (selectedAnsIndex === 2) {
+      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_3)
+      // } else if (selectedAnsIndex === 3) {
+      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_4)
+      // }
 
       let picSize = 200;
       let screenWidth = window.innerWidth;
@@ -90,14 +106,14 @@ class questType1 extends Component {
           <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
             {pic?
               <div className="questionWithPic">
-                <p className="questionBox">{this.props.quiz.Question}</p>
+                <p className="questionBox">{displayQuestion}</p>
                 <div className="questionPic">
                   <Avatar className="questionPic" shape="square" size={picSize} src={pic} />
                 </div>
               </div>
             :
               <div>
-                <p className="questionBox">{this.props.quiz.Question}</p>
+                <p className="questionBox">{displayQuestion}</p>
               </div>
             }
           </Animated>
