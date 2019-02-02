@@ -16,13 +16,7 @@ class App extends Component {
         <Router>
           <div>
             <BaseRouter/>
-              <AdSense.Google
-                client='ca-pub-9863004487978817'
-                slot='7763046972'
-                style={{ display: 'block' }}
-                layout='in-article'
-                format='fluid'
-              />
+
           </div>
         </Router>
       </div>
@@ -30,3 +24,11 @@ class App extends Component {
   }
 }
 export default App;
+
+// <AdSense.Google
+//   client='ca-pub-9863004487978817'
+//   slot='7763046972'
+//   style={{ display: 'block' }}
+//   layout='in-article'
+//   format='fluid'
+// />

@@ -86,19 +86,7 @@ class questType1 extends Component {
           // questionVoice = "Question " + questionVoice;
           questionVoice = questionVoice.replace("<dash>","dash")
       let displayQuestion = this.props.quiz.Question.replace("<dash>","__________")
-      // let selectedAnsIndex = this.state.selectedAnsIndex
-      // if (!selectedAnsIndex) {
-      //   selectedAnsIndex = Number(selectedAnsIndex)
-      // }
-      // if (selectedAnsIndex === 0) {
-      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_1)
-      // } else if (selectedAnsIndex === 1) {
-      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_2)
-      // } else if (selectedAnsIndex === 2) {
-      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_3)
-      // } else if (selectedAnsIndex === 3) {
-      //     displayQuestion = this.props.quiz.Question.replace("<dash>",this.props.quiz.answer_4)
-      // }
+
 
       let picSize = 200;
       let screenWidth = window.innerWidth;

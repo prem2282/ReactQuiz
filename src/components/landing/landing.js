@@ -132,6 +132,7 @@ class landingPage  extends Component {
             pageLoaded = "LandingPage"
             profile = {this.props.userProfile}
             userPackage = {this.props.userPackage}
+            goToHistoryPage = {this.props.historyPage}
           />
         </Affix>
         {pageId === "login"?

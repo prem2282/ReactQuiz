@@ -98,7 +98,7 @@
   align-self: center;
   justify-content: space-between;
   align-items: center;
-  background-size: contain;;
+  background-size: contain;
   background-repeat: no-repeat,
 }
 
@@ -232,10 +232,11 @@
 @media screen and (max-width: 550px) {
   .questionContainer{
     grid-template-columns: 90%;
+    background-size: cover;
   }
   .questionBox {
     height: auto;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: lighter;
     width: auto;
     font-style: normal;
@@ -247,14 +248,14 @@
   .answerBoxType1 {
     font-size: 16px;
     margin: .4em .4em .4em .4em ;
-    padding: 2%;
+    padding: 4%;
 
   }
 
   .answerBoxSel {
     font-size: 16px;
     margin: .4em .4em .4em .4em ;
-    padding: 2%;
+    padding: 4%;
   }
 
   .answerContainer{
@@ -286,14 +287,14 @@
   }
   .answerBoxType1 {
     font-size: 18px;
-    margin: .2em .2em .2em .2em ;
-    padding: 2%;
+    margin: .3em .3em .3em .3em ;
+    padding: 4%;
 
   }
   .answerBoxSel {
     font-size: 18px;
-    margin: .2em .2em .2em .2em ;
-    padding: 2%;
+    margin: .3em .3em .3em .3em ;
+    padding: 4%;
   }
   .answerContainer{
     grid-template-columns: 90%;

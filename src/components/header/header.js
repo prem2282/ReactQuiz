@@ -143,7 +143,7 @@ class header extends Component {
           <div className="grid-container">
           <div>
             <Avatar className="avatarBox" onClick={this.props.homeButton}
-            style = {{color: 'LightSlateGray'}} icon="home" />
+             icon="home" />
           </div>
 
           <div>
@@ -155,7 +155,11 @@ class header extends Component {
           </div>
 
           <div>
-
+            {this.props.profile?
+                <Avatar className="avatarBox" icon="solution" onClick={this.props.goToHistoryPage}/>
+              :
+              null
+            }
           </div>
 
           <div>

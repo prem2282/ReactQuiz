@@ -1,5 +1,57 @@
-  .modalClass {
+.modalClass {
   box-shadow: 5px 5px 2px black;
+}
+
+.detailsContainer {
+  display: grid;
+  grid-template-columns: 40%;
+  width: auto;
+  height:  auto;
+  justify-content:  space-around;
+  align-items: center;
+  padding: 5px;
+}
+
+.resultTopBox100 {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  width: auto;
+  height:  auto;
+  justify-content:  space-around;
+  align-items: center;
+  /* padding: 2px; */
+  background-image: url("https://media.giphy.com/media/peAFQfg7Ol6IE/giphy.gif");
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.resultTopBox {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  width: auto;
+  height:  auto;
+  justify-content:  space-around;
+  align-items: center;
+  /* padding: 2px; */
+  border-radius: 10px;
+}
+
+.resultBox1 {
+  /* background-color: #444; */
+}
+.resultBox2 {
+
+}
+.resultBox3 {
+  /* background-color: #444; */
+}
+
+.resultText1 {
+  color: Aqua
+}
+
+.resultText2 {
+  color: Aqua
 }
 
 .choiceDefault {
@@ -79,13 +131,10 @@
   padding-left: 10px;
 }
 
-.historyModal {
-    zoom: 1;
-}
-@media screen and (min-height: 1400px) and (max-width: 1000px) {
+@media screen and (orientation: portrait) {
 
-  .historyModal {
-    zoom: 2;
+  .detailsContainer {
+    grid-template-columns: 90%;
   }
 
 

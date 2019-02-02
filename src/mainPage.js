@@ -530,15 +530,9 @@ class mainPage extends Component {
 
   getPMPQuestionsApi = () => {
       console.log("get PMP // QUESTION: ");
-      // let proxyUrl = 'https://cors-anywhere.herokuapp.com/?'
-      // let proxyUrl = 'https://corsheader.herokuapp.com/'
-      // let proxyUrl = 'https://cors.io/?'
-      // let destinationUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
 
-      // let targetUrl = proxyUrl + destinationUrl;
-      // let targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
       let targetUrl = PMPQuestionListUrl
-    // let targetUrl = 'https://cors.io/?https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
       .then(res => {
@@ -1172,6 +1166,7 @@ class mainPage extends Component {
             logOutButton = {this.logOut}
             pageLoaded = "ResultPage"
             profile = {this.state.userProfile}
+            goToHistoryPage = {this.goToHistoryPage}
           />
         </Affix>
         <ResultPage

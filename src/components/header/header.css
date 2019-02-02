@@ -49,6 +49,7 @@
     transform: scale(1.2);
 }
 .avatarBox {
+  background-color: DarkGray;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0,0,0,0);

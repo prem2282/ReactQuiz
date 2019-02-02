@@ -14,16 +14,9 @@ class resultPage extends Component {
     this.state = {
       visible : false,
       showOnlyWrong: false,
-      modalName : null,
-      showNewModal: false,
     }
   }
 
-  handleModalClose = (e) => {
-    this.setState({
-      showNewModal:false,
-    })
-  }
   yourAnswerText = (selectedAnsIndex) => {
     let textArray = selectedAnsIndex?String(selectedAnsIndex).split('-'):[];
     let textArrayNew = textArray.map((txt,i) => {
@@ -55,157 +48,9 @@ class resultPage extends Component {
     return(textArrayNew)
   }
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-      showOnlyWrong: false,
-    })
-  }
 
-  showModalWrong = () => {
-    this.setState({
-      visible: true,
-      showOnlyWrong: true,
-    })
-  }
 
-  handleOk = (e) => {
-    this.setState({
-      visible: false,
-      showOnlyWrong: false,
-    })
-  }
 
-  handleCancel = (e) => {
-    this.setState({
-      visible: false,
-      showOnlyWrong: false,
-    })
-  }
-
-  modalContent = (questionSet, i) => {
-    let screenWidth = window.innerWidth;
-    let correctText = "Correct";
-    let wrongText = "Wrong";
-    console.log("this.props.variableValues",this.props.variableValues);
-    if (questionSet.QuestionType === '5') {
-      let newQuestion = questionSet.Question;
-      let varSet = questionSet.answer_1;
-      varSet = varSet.split(",");
-      let replaceSet = this.props.variableValues[i].split("-");
-      for (let i = 0; i < varSet.length; i++) {
-        let replaceValue = replaceSet[i];
-        newQuestion = newQuestion.replace(varSet[i],replaceValue);
-      }
-
-      let displayQuestion = newQuestion.replace("<dash>","__________")
-
-      return (
-        <Animated key={i} animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
-          <div className={(this.props.ansInd[i]?"historyBoxRight":"historyBoxWrong")}>
-            <div className="historyQuestBox">
-              <p>{displayQuestion}</p>
-              <Tag className="historyBox1Close" color={this.props.ansInd[i]?"#87d068":"#f50"}>
-                <p>{this.props.ansInd[i]?correctText:wrongText}</p>
-              </Tag>
-            </div>
-            <div className="historyAnsBox">
-              <p>Correct Answer : {this.props.correctAns[i]}</p>
-            </div>
-            <div className="historyAnsBox">
-              <p>Your Answer : {this.yourAnswerText(this.props.selectedAnsIndex[i])}</p>
-            </div>
-          </div>
-        </Animated>
-      )
-
-    }
-
-    else {
-      return (
-      <Animated key={i} animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
-        <div className={(this.props.ansInd[i]?"historyBoxRight":"historyBoxWrong")}>
-          <div className="historyQuestBox">
-            <p>{questionSet.Question}</p>
-            <Tag className="historyBox1Close" color={this.props.ansInd[i]?"#87d068":"#f50"}>
-              <p>{this.props.ansInd[i]?correctText:wrongText}</p>
-            </Tag>
-          </div>
-          {questionSet.answer_1?
-            <div className="historyAnsBox">
-              <p className={questionSet.answer_1_ind?"historyAnsTextRight":null}>
-                A) {questionSet.answer_1}
-                {questionSet.answer_1_ind?<Icon type="check" />:null}
-              </p>
-            </div>
-            :null
-          }
-          {questionSet.answer_2?
-            <div className="historyAnsBox">
-              <p className={questionSet.answer_2_ind?"historyAnsTextRight":null}>
-                A) {questionSet.answer_2}
-                {questionSet.answer_2_ind?<Icon type="check" />:null}
-              </p>
-            </div>
-            :null
-          }
-          {questionSet.answer_3?
-            <div className="historyAnsBox">
-              <p className={questionSet.answer_3_ind?"historyAnsTextRight":null}>
-                A) {questionSet.answer_3}
-                {questionSet.answer_3_ind?<Icon type="check" />:null}
-              </p>
-            </div>
-            :null
-          }
-          {questionSet.answer_4?
-            <div className="historyAnsBox">
-              <p className={questionSet.answer_4_ind?"historyAnsTextRight":null}>
-                A) {questionSet.answer_4}
-                {questionSet.answer_4_ind?<Icon type="check" />:null}
-              </p>
-            </div>
-            :null
-          }
-          <div className="historyAnsBox">
-            <p>Your Answer : {this.yourAnswerText(this.props.selectedAnsIndex[i])}</p>
-          </div>
-        </div>
-      </Animated>
-    )
-  }
-  }
-
-  renderNewModel = () => {
-    this.setState({
-      showNewModal: true,
-    })
-  }
-  renderModal = () => {
-    return (
-      <Modal
-        className = "modalStyle"
-        visible = {this.state.visible}
-        title = "Quiz Result"
-        onOk = {this.handleOk}
-        onCancel = {this.handleCancel}
-      >
-      {
-        this.props.questionArray.map((questionSet,i)=>{
-          if (this.state.showOnlyWrong) {
-            if (this.props.ansInd[i]) {
-              return null
-            } else {
-              return this.modalContent(questionSet, i)
-            }
-          } else {
-            return this.modalContent(questionSet, i)
-          }
-        })
-      }
-      </Modal>
-    )
-  }
 
   scoreText = (score) => {
     let scoreText = "";
@@ -232,44 +77,52 @@ class resultPage extends Component {
 
   render () {
     let scoreText = this.scoreText(this.props.score);
+    let resultTopBox = "resultTopBox"
+    if (this.props.score === 100) {
+      resultTopBox = "resultTopBox100"
+    }
+
+
 
     return(
       <div>
         <VoicePlayer play onEnd={this.speechEnded} text={scoreText}/>
-        <Animated  animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
-          <h2 className="historyQuestion">You Scored</h2>
-        </Animated>
-        <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
-          <h1 className="historyQuestion">{this.props.score} %</h1>
-        </Animated>
-        <QuizDetails2
-          quizDetails = {this.props.quizDetails}
-          PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
-          handleCancel = {this.handleModalClose}
-          questionArray = {this.props.questionArray}
-          selectedGroupSet = {this.props.selectedGroupSet}
-        />
-        <Animated  animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
-          <div className="resultButtonContainer">
-            <div>
-              <Button className="menuItem" type="primary" onClick={this.props.retakeQuiz}>Retake</Button>
+        <div className='detailsContainer'>
+          <div className={resultTopBox}>
+            <div className="resultBox1">
+              <Button className="menuItem" type="primary" ghost onClick={this.props.goBackToCourse}><Icon type="double-left" /> Return</Button>
             </div>
-            <div>
-              <Button className="menuItem" type="primary" onClick={this.props.goBackToCourse}>Return</Button>
+            <div className="resultBox2">
+              <Animated  animationIn="slideDown" animationOut="fadeOut" isVisible={true}>
+                <h2 className="resultText1">You Scored</h2>
+              </Animated>
+              <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
+                <h1 className="resultText2">{this.props.score} %</h1>
+              </Animated>
+            </div>
+            <div className="resultBox3">
+              <Button className="menuItem" type="primary" ghost onClick={this.props.retakeQuiz}><Icon type="reload" /> Retake</Button>
             </div>
           </div>
-        </Animated>
-        {this.renderModal()}
-        {this.state.showNewModal?
-          <QuizDetails
+        </div>
+
+        <div className="detailsContainer">
+          <QuizDetails2
             quizDetails = {this.props.quizDetails}
             PMPBaseQuizSet = {this.props.PMPBaseQuizSet}
             handleCancel = {this.handleModalClose}
             questionArray = {this.props.questionArray}
             selectedGroupSet = {this.props.selectedGroupSet}
           />
-        :null}
-
+        </div>
+        <Animated  animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
+          <div className="resultButtonContainer">
+            <div>
+            </div>
+            <div>
+            </div>
+          </div>
+        </Animated>
       </div>
     )
   }

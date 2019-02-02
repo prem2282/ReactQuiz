@@ -11,7 +11,7 @@ import Request from 'superagent';
 import Formulas from  '../..//components/constants/mathFormulas';
 import MathExplanations from  '../..//components/constants/mathExplanations';
 import QuizDetails from './quizDetails';
-
+import Slide from 'react-reveal/Slide';
 
 const confirm = Modal.confirm;
 const Panel = Collapse.Panel;
@@ -388,54 +388,56 @@ class historyDetailsModel extends React.Component {
 
 
                 return (
-                  <div>
-                      <div className="historyBoxWrapper"  >
-                          <div className="historyBox1" >
+                  <Slide  bottom>
+                    <div>
+                        <div className="historyBoxWrapper"  >
+                            <div className="historyBox1" >
 
-                              <div className="historyBox1Main" style={{cursor:'pointer'}} onClick={this.showQuizModalPMP}>
+                                <div className="historyBox1Main" style={{cursor:'pointer'}} onClick={this.showQuizModalPMP}>
 
-                                <Tag color="#4D3F54">
-                                  <p style={{color:'Turquoise'}}>{title}</p>
-                                </Tag>
-                                <p className="historyHeadText1">{lessonName}</p>
-                                <p className="historyHeadText2">{timeDiff}</p>
-                              </div>
-                              <div className="historyBox1Close">
-                                <Tag color="#4D3F54">
-                                {quizStatus==="Running"?
-                                <p style={{color:'Turquoise'}} id={this.props.quizNumber} onClick={this.retakeQuiz}>Continue</p>
-                                :
-                                <p style={{color:'Turquoise'}} id={this.props.quizNumber} onClick={this.retakeQuiz}>Retake</p>
-                                }
-                                </Tag>
-                                {quizStatus==="Running"?
-                                <h3 style={{color:'Gold'}}>Saved</h3>
-                                :
-                                <h3 style={{color:'Gold'}}>{score} %</h3>
-                                }
-                                <Tag color="#4D3F54">
-                                  <p style={{color:'Turquoise'}} id={this.props.quizNumber} onClick={this.showQuizModalPMP}>View</p>
-                                </Tag>
-                              </div>
-                              <div>
-                                <Icon style={{cursor:'pointer'}} type="close" onClick={this.showRemoveModal}  />
-                              </div>
+                                  <Tag color="#4D3F54">
+                                    <p style={{color:'Turquoise'}}>{title}</p>
+                                  </Tag>
+                                  <p className="historyHeadText1">{lessonName}</p>
+                                  <p className="historyHeadText2">{timeDiff}</p>
+                                </div>
+                                <div className="historyBox1Close">
+                                  <Tag color="#4D3F54">
+                                  {quizStatus==="Running"?
+                                  <p style={{color:'Turquoise'}} id={this.props.quizNumber} onClick={this.retakeQuiz}>Continue</p>
+                                  :
+                                  <p style={{color:'Turquoise'}} id={this.props.quizNumber} onClick={this.retakeQuiz}>Retake</p>
+                                  }
+                                  </Tag>
+                                  {quizStatus==="Running"?
+                                  <h3 style={{color:'Gold'}}>Saved</h3>
+                                  :
+                                  <h3 style={{color:'Gold'}}>{score} %</h3>
+                                  }
+                                  <Tag color="#4D3F54">
+                                    <p style={{color:'Turquoise'}} id={this.props.quizNumber} onClick={this.showQuizModalPMP}>View</p>
+                                  </Tag>
+                                </div>
+                                <div>
+                                  <Icon style={{cursor:'pointer'}} type="close" onClick={this.showRemoveModal}  />
+                                </div>
 
-                          </div>
+                            </div>
 
-                      </div>
-                      {this.state.showNewModal?
-                        <div className='historyModal'>
-                          <QuizDetails
-                                quizDetails = {quizDetails}
-                                questionArray = {this.state.questionArray}
-                                handleCancel = {this.handleModalClose}
-                                selectedGroupSet = {selectedGroupSet[0]}
-                            />
-                          </div>
-                          :null
-                          }
-                  </div>
+                        </div>
+                        {this.state.showNewModal?
+                          <div className='historyModal'>
+                            <QuizDetails
+                                  quizDetails = {quizDetails}
+                                  questionArray = {this.state.questionArray}
+                                  handleCancel = {this.handleModalClose}
+                                  selectedGroupSet = {selectedGroupSet[0]}
+                              />
+                            </div>
+                            :null
+                            }
+                    </div>
+                  </Slide>
                 )
 
   }

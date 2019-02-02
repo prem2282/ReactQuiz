@@ -395,9 +395,6 @@ class categories extends Component {
                 <h3 className="welcomeText2"> {topText.topText2}</h3>
                 </Animated>
               </div>
-                <Tag color="DarkGray"  onClick={this.historySelected}>
-                  My Scorecard
-                </Tag>
               {menuList.map((item,i) => {
 
                 let score = scoreList[i];
