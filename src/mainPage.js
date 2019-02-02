@@ -21,13 +21,13 @@ import {Progress, Affix, message} from 'antd';
 import Request from 'superagent';
 const url = require('url');
 
-// const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
-// const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
-// const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
+const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
+const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
+const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
 
-const groupingUrl = 'http://127.0.0.1:8000/api/Grouping/'
-const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/'
-const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
+// const groupingUrl = 'http://127.0.0.1:8000/api/Grouping/'
+// const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/'
+// const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
 
 let moment = require('moment')
 class mainPage extends Component {
