@@ -9,6 +9,7 @@ import pmpTypeMapping from '../..//components/constants/pmpTypeMapping';
 import PMPConstants from '../..//components/constants/pmpConstants';
 import Delayed from '../..//components/header/delayed';
 import Header from '../..//components/header/headerPMP';
+import Slide from 'react-reveal/Slide';
 
 
 // import Header from '../..//components/header/headerPMP';
@@ -213,10 +214,9 @@ class pmpLearnPage extends Component {
         this.typeClicked(this.state.processSelected)
         break;
       case 'process':
-      this.setState({
-        backMenuName : 'type1',
-        processSelected : null,
-      })
+        backMenuName = 'type1';
+        processSelected = null;
+        subProcessSelected = null;
 
         break;
       case 'type1':
@@ -355,7 +355,7 @@ class pmpLearnPage extends Component {
           <div className="pmpContainer">
               {this.state.subProcessList.map((item,i) => {
                 return(
-                  <Delayed key={item} id={item} waitBeforeShow={i*200}>
+                  <Slide bottom>
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                       <div className='subProcessContainer' onClick={() => this.processClicked(i)}>
                         <div className='subProcessIcon' style={{color:this.state.subProcessColourList[i]}}>
@@ -364,7 +364,8 @@ class pmpLearnPage extends Component {
                         <p className="subProcessText">{item}</p>
                       </div>
                     </Animated>
-                  </Delayed>
+                  </Slide>
+
                 )
               }
               )}

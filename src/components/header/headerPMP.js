@@ -58,7 +58,9 @@ class headerPMP extends Component {
           <Avatar className="avatarBox" onClick={this.props.backButton} style={{backgroundColor:'LightSlateGray'}} icon="left"/>
         </div>
         <div>
-          <p className="headerBoxText">{this.props.headerText}</p>
+          <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={true}>
+            <p className="headerBoxText">{this.props.headerText}</p>
+          </Animated>
         </div>
         <div>
         </div>

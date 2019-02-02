@@ -66,12 +66,12 @@
 }
 
 .headerBoxText {
-  font-size: 18px;
+  font-size: 16px;
   color: LightSlateGray;
   font-size-adjust: auto;
-  font-family: monospace;
+  /* font-family: monospace; */
   text-align: center;
   align-self: center;
   margin-bottom: 0em;
-  padding: 10px;
+  padding: 0px;
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import BaseRouter from './routes';
 import LandingPage from '..//src/components/landing/landing';
-import CoursePage from '..//src/components/menu/coursePage';
+import CoursePage from '..//src/components/menu/coursePageNew';
 import PMPMenuPage from '..//src/components/menu/pmpMenuPage';
 import PMPLearnPage from '..//src/components/menu/pmpLearnPage';
 import CountPage from '..//src/components/questions/countPage';
@@ -21,13 +21,13 @@ import {Progress, Affix, message} from 'antd';
 import Request from 'superagent';
 const url = require('url');
 
-const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
-const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
-const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
+// const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
+// const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
+// const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
 
-// const groupingUrl = 'http://127.0.0.1:8000/api/Grouping/'
-// const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/'
-// const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
+const groupingUrl = 'http://127.0.0.1:8000/api/Grouping/'
+const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/'
+const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
 
 let moment = require('moment')
 class mainPage extends Component {
@@ -252,7 +252,7 @@ class mainPage extends Component {
       this.saveUserProfile(res.data[0]);
       this.getUserQuizHistory(userId);
       this.getUserPackage(userId);
-      this.goBackToCourse();
+      this.goBackToLanding();
     })
     .catch(err => {
 
@@ -332,7 +332,7 @@ class mainPage extends Component {
   resetQuizDetails = () => {
 
     this.setState({
-      pageId : "landingPage",
+
       totalQuestions : 0,
       currentQuestionNum : 0,
       typeCounts : [],
@@ -363,18 +363,24 @@ class mainPage extends Component {
       },
       quizIdRunning : null,
       questionArray : [],
-      // selectedGroupSet : null,
+      selectedGroupSet : null,
       boardSelected : null,
+      pageId : "landingPage",
     })
   }
 
   goToHome = () => {
+    console.log("resetQuizDetails");
+    this.setState({
+      pageId: "refresh",
+      refreshTo: "landingPage",
+    })
     this.resetQuizDetails();
   }
 
   goBackToCourse = () => {
     this.setState({
-      pageId: "landingPage"
+      pageId: "coursePage"
     })
   }
 
@@ -1184,7 +1190,7 @@ class mainPage extends Component {
           logOutButton={this.logOut}
           userProfile={this.state.userProfile}
           pageLoaded="ResultPage"
-          backButton= {this.goBackToCourse}
+          backButton= {this.goBackToLanding}
           selectedGroupSet={this.state.selectedGroupSet}
         />
     </div>
@@ -1205,9 +1211,9 @@ class mainPage extends Component {
           <PMPHeader
             homeButton = {this.goToHome}
             logOutButton = {this.logOut}
-            backButton={this.goBackToCourse}
+            backButton={this.goBackToLanding}
             pageLoaded = "historyPage"
-            userProfile={this.state.userProfile}
+            profile={this.state.userProfile}
             headerText = {headerText}
           />
         </Affix>
@@ -1217,7 +1223,7 @@ class mainPage extends Component {
           questionArray={this.state.questionArray}
           PMPBaseQuizSet={this.state.baseQuizSet.data}
           groupSet = {this.state.groupSet}
-          backButton={this.goBackToCourse}
+          backButton={this.goBackToLanding}
           userProfile={this.state.userProfile}
           removeQuizHistory={this.removeQuizFromHistory}
           retakeQuiz={this.retakeQuizFromHistory}

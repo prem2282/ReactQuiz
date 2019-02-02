@@ -28,6 +28,8 @@ class categories extends Component {
     let group = this.props.selectedGroupSet;
     let subGroupSet = null;
 
+    console.log("group", group);
+
     if (this.props.selectedGroupSet) {
       levelSelected = 'subject';
       choiceSelected= group.subject;
@@ -372,6 +374,7 @@ class categories extends Component {
 
   renderMenu = (menuList,scoreList,topText) => {
 
+
     let showBackButton = true;
     if (!this.state.levelSelected) {
       if (this.props.userProfile) {
@@ -380,8 +383,8 @@ class categories extends Component {
 
     }
 
-    //console.log("menuList:", menuList);
-    //console.log("scoreList:",scoreList);
+    console.log("menuList:", menuList);
+    console.log("scoreList:",scoreList);
     let itemText = null;
     if (this.state.levelSelected === 'board') {
       itemText = 'Class: '
@@ -404,23 +407,25 @@ class categories extends Component {
                 }
                 return(
                     <Slide key={i} id={i} bottom>
-                      <div key={i} id={item}  className='outerCatBox'>
+                      <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                        <div key={i} id={item}  className='outerCatBox'>
 
                           <Button id={item} className="guestButton"  onClick={() => this.menuSelected(item)}>
-                            <div>
-                              {itemText}{item}
-                            </div>
-                            <div>
-                              {score?
-                                <Tag color={tagColor}>
-                                  Scored {score} %
-                                </Tag>
-                              :null
-                              }
-                            </div>
-                          </Button>
+                              <div>
+                                {itemText}{item}
+                              </div>
+                              <div>
+                                {score?
+                                  <Tag color={tagColor}>
+                                    Scored {score} %
+                                  </Tag>
+                                :null
+                                }
+                                </div>
+                            </Button>
 
-                      </div>
+                          </div>
+                        </Animated>
                     </Slide>
                 )
               })}
@@ -475,7 +480,8 @@ class categories extends Component {
     this.topFunction();
     // window.onscroll =  this.scrollFunction();
 
-    //console.log("groupSet:", this.props.groupSet);
+    console.log("selectedGroupSet:", this.props.selectedGroupSet);
+
     let menuList = [];
     let scoreList = [];
 

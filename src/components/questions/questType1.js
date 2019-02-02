@@ -5,6 +5,7 @@ import {Animated} from 'react-animated-css';
 import {Button, Avatar} from 'antd';
 // import {VoicePlayer} from 'react-voice-components';
 import VoicePlayer from '../..//components/apicalls/VoicePlayer';
+import Delayed from '../..//components/header/delayed';
 
 // let  picBox = {
 //   display: "grid",
@@ -100,7 +101,9 @@ class questType1 extends Component {
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
           <div className = "questionContainer" style={{  backgroundImage:backgroundImage, }}>
             {!this.state.muteVoice?
-              <VoicePlayer play onEnd={this.speechEnded} text={questionVoice}/>
+              <Delayed waitBeforeShow={500}>
+                <VoicePlayer play onEnd={this.speechEnded} text={questionVoice}/>
+              </Delayed>
               :null
             }
             <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>

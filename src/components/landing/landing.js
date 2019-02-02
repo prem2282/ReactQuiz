@@ -87,6 +87,14 @@ class landingPage  extends Component {
     })
   }
 
+  homeButton = () => {
+    console.log("homeButton in landingPage");
+    this.setState({
+      category : null,
+    })
+    this.props.homeButton();
+
+  }
   proHandleCancel = () => {
     this.setState({
       showPremiumBox: false
@@ -119,6 +127,7 @@ class landingPage  extends Component {
         pageId = "loading"
       }
 
+      console.log("pageId", pageId);
     return (
 
       <div className='App'>
@@ -127,7 +136,7 @@ class landingPage  extends Component {
             success = {this.props.success}
             error = {this.props.error}
             facebookResp = {this.props.facebookResp}
-            homeButton = {this.goToHome}
+            homeButton = {this.props.homeButton}
             logOutButton = {this.logOut}
             pageLoaded = "LandingPage"
             profile = {this.props.userProfile}

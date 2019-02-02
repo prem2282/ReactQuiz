@@ -151,7 +151,9 @@ class header extends Component {
           </div>
 
           <div>
-            <h3 style = {{color: 'LightSlateGray'}}>{headerText}</h3>
+            <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={true}>
+              <h3 style = {{color: 'LightSlateGray'}}>{headerText}</h3>
+            </Animated>
           </div>
 
           <div>
