@@ -11,6 +11,7 @@ import Request from 'superagent';
 import Formulas from  '../..//components/constants/mathFormulas';
 import MathExplanations from  '../..//components/constants/mathExplanations';
 import QuizDetails from './quizDetails';
+import QuizDetails2 from './quizDetails2';
 import Slide from 'react-reveal/Slide';
 
 const confirm = Modal.confirm;
@@ -426,13 +427,22 @@ class historyDetailsModel extends React.Component {
 
                         </div>
                         {this.state.showNewModal?
-                          <div className='historyModal'>
-                            <QuizDetails
-                                  quizDetails = {quizDetails}
-                                  questionArray = {this.state.questionArray}
-                                  handleCancel = {this.handleModalClose}
-                                  selectedGroupSet = {selectedGroupSet[0]}
-                              />
+                          <div className = "historyModal">
+                            <Modal
+                              className="custom modalClass"
+                              title={title}
+                              visible={this.state.visible}
+                              onOk={this.handleOk}
+                              onCancel={this.handleCancel}
+                              footer = {null}
+                            >
+                              <QuizDetails2
+                                    quizDetails = {quizDetails}
+                                    questionArray = {this.state.questionArray}
+                                    handleCancel = {this.handleModalClose}
+                                    selectedGroupSet = {selectedGroupSet[0]}
+                                />
+                            </Modal>
                             </div>
                             :null
                             }

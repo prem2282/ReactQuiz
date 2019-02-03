@@ -6,6 +6,27 @@
   /*grid-template-columns: 100%;*/
 }
 
+.matchTypeContainer{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  margin: 5px;
+}
+.matchTypeQDiv {
+  background-color: #222;
+  margin-right: 5px;
+}
+
+.matchTypeQText {
+  /* font-size: 16px; */
+  color: Aqua;
+  padding: 4%;
+  margin-bottom: 0em;
+}
+
+.matchTypeA {
+  background-color: #222;
+}
 .submitButton{
   width: 200px;
   height: 50px;

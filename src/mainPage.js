@@ -7,6 +7,7 @@ import PMPMenuPage from '..//src/components/menu/pmpMenuPage';
 import PMPLearnPage from '..//src/components/menu/pmpLearnPage';
 import CountPage from '..//src/components/questions/countPage';
 import QuestType1 from '..//src/components/questions/questType1';
+import MatchType from '..//src/components/questions/matchType';
 import QuestType5 from '..//src/components/questions/questType5';
 import Header from '..//src/components/header/header';
 import PMPHeader from '..//src/components/header/headerPMP';
@@ -93,7 +94,7 @@ class mainPage extends Component {
   facebookResp = (response) => {
 
         let loginTime = moment().format()
-        console.log("facebook response", response);
+        //console.log("facebook response", response);
         localStorage.setItem('emailId',response.email);
         localStorage.setItem('userId',response.id);
         localStorage.setItem('userName',response.name);
@@ -115,11 +116,11 @@ class mainPage extends Component {
         const url = require('url');
 
         let urlDetails = window.location.href;
-        console.log("urlDetails:",urlDetails);
+        // //console.log("urlDetails:",urlDetails);
 
         let url_parts = url.parse( urlDetails, true),
           responseData = url_parts.query;
-        console.log("responseData:",responseData);
+        // //console.log("responseData:",responseData);
 
         let loadUrl = 'https://' +  url_parts.hostname
         window.location.href = loadUrl
@@ -138,7 +139,7 @@ class mainPage extends Component {
   googleSuccess = (response) => {
 
     let loginTime = moment().format()
-    console.log("google response", response.profileObj);
+    //console.log("google response", response.profileObj);
     localStorage.setItem('emailId',response.profileObj.email);
     localStorage.setItem('userId',response.profileObj.googleId);
     localStorage.setItem('userName',response.profileObj.name);
@@ -173,7 +174,7 @@ class mainPage extends Component {
   }
 
   registerUser = (profileObj) => {
-    console.log("inside registerUser");
+    // //console.log("inside registerUser");
     let registeredDate = moment().format()
     let userId = localStorage.userId;
     let userName = localStorage.userName;
@@ -223,9 +224,9 @@ class mainPage extends Component {
       this.getUserQuizHistory(localStorage.userId);
       this.getUserPackage(localStorage.userId);
 
-      console.log("res:", res);
+      //console.log("res:", res);
       if (res.data.length===0) {
-        console.log("going to registerUser");
+        //console.log("going to registerUser");
         this.registerUser(profileObj)
       } else {
         this.setState({
@@ -236,7 +237,7 @@ class mainPage extends Component {
       }
     })
     .catch(err => {
-      console.log("err:", err);
+      //console.log("err:", err);
     })
 
   }
@@ -295,10 +296,10 @@ class mainPage extends Component {
           this.setState({
             userLocation:  res.data
           })
-          console.log(res);
+          //console.log(res);
         })
         .catch(err => {
-          console.log("error:", err);
+          //console.log("error:", err);
           this.setState({
             userLocation:  null
           })
@@ -370,7 +371,7 @@ class mainPage extends Component {
   }
 
   goToHome = () => {
-    console.log("resetQuizDetails");
+    //console.log("resetQuizDetails");
     this.setState({
       pageId: "refresh",
       refreshTo: "landingPage",
@@ -392,7 +393,7 @@ class mainPage extends Component {
 
   goToHistoryPage = () => {
 
-    console.log("Quiz History Clicked");
+    //console.log("Quiz History Clicked");
     this.setState(
       {
         pageId : "historyPage"
@@ -402,7 +403,7 @@ class mainPage extends Component {
 
   checkUserForQuiz = (groupId,quizStatus) => {
 
-      console.log("groupId:",groupId);
+      //console.log("groupId:",groupId);
 
       let userId = this.state.userProfile.userId;
 
@@ -414,16 +415,16 @@ class mainPage extends Component {
       }})
       .then(res => {
 
-                console.log(res.data);
+                //console.log(res.data);
         if (res.data.length>0) {
 
           if (res.data[0].quizStatus === 'Completed') {
-            console.log("completed quiz found:",res.data[0] );
+            //console.log("completed quiz found:",res.data[0] );
             this.setState({
               userQuizData: res.data[0],
             })
           } else {
-            console.log("saved quiz found:",res.data[0] );
+            //console.log("saved quiz found:",res.data[0] );
             this.setState({
 
               userSavedQuizData: res.data[0],
@@ -432,7 +433,7 @@ class mainPage extends Component {
         }
       })
       .catch(err => {
-        console.log(err);
+        //console.log(err);
       })
 
   }
@@ -493,7 +494,7 @@ class mainPage extends Component {
       pageId: "loading",
       selectedGroupSet: group
     })
-    console.log("selectedGroup",group);
+    //console.log("selectedGroup",group);
       // let targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
       let targetUrl = QuestionListUrl;
       let groupId = group.id
@@ -505,7 +506,7 @@ class mainPage extends Component {
         lessonNum: group.lessonNum,
       }})
       .then(res => {
-        console.log("quizset is here");
+        //console.log("quizset is here");
         if (res.data.length > 0) {
                 this.startQuiz(res.data,groupId)
         } else {
@@ -524,7 +525,7 @@ class mainPage extends Component {
       if (!this.state.groupSetFetched) {
         axios.get(targetUrl)
         .then(res => {
-          console.log("response is good");
+          //console.log("response is good");
           this.setState({
             groupSet: res,
             groupSetFetched: true,
@@ -535,14 +536,14 @@ class mainPage extends Component {
   }
 
   getPMPQuestionsApi = () => {
-      console.log("get PMP // QUESTION: ");
+      //console.log("get PMP // QUESTION: ");
 
       let targetUrl = PMPQuestionListUrl
 
     if (!this.state.gotPMPQuestions) {
       axios.get(targetUrl)
       .then(res => {
-        console.log("response is good");
+        //console.log("response is good");
         this.setState({
           baseQuizSet: res,
           gotPMPQuestions: true,
@@ -598,14 +599,16 @@ class mainPage extends Component {
 
   questTypeCheck = () => {
     let questionNum = this.state.currentQuestionNum;
-    console.log("questionNum:",questionNum);
-    console.log("this.state.quizSet:",this.state.quizSet);
+    //console.log("questionNum:",questionNum);
+    //console.log("this.state.quizSet:",this.state.quizSet);
     let questionType = Number(this.state.quizSet[questionNum].QuestionType);
     switch (questionType) {
       case 1:
         return (<div>{this.questType1render()}</div>);
         break;
-
+      case 2:
+        return (<div>{this.matchTyperender()}</div>);
+        break;
       case 5:
         return (<div>{this.questType5render()}</div>);
         break;
@@ -629,11 +632,28 @@ class mainPage extends Component {
 
   }
 
+  matchTypeAnswered = (matchTypeResponse) => {
+    let selectedAnsIndex = [...this.state.selectedAnsIndex];
+    let correctAnsIndex = [...this.state.correctAnsIndex];
+    selectedAnsIndex[this.state.currentQuestionNum] = matchTypeResponse.selectedAns;
+    correctAnsIndex[this.state.currentQuestionNum] = matchTypeResponse.correctAns
+    let variableValues = [...this.state.variableValues];
+    variableValues[this.state.currentQuestionNum] =  null;
+    this.setState({
+      selectedAnsIndex: selectedAnsIndex,
+      correctAnsIndex: correctAnsIndex,
+      variableValues: variableValues,
+    })
+    this.nextQuestion();
+
+  }
+
+
   correctAnsChoice = () => {
     const questionNum = this.state.currentQuestionNum;
     // const correctAns = [...this.state.correctAns];
     const correctAnsIndex = [...this.state.correctAnsIndex];
-    console.log("inside correctAnsChoice");
+    //console.log("inside correctAnsChoice");
     let correctAnswer = null;
     let correctAnswerIndex = null;
 
@@ -656,13 +676,14 @@ class mainPage extends Component {
 
     // correctAns[questionNum] = correctAnswer;
     correctAnsIndex[questionNum] = correctAnswerIndex;
-    console.log("3correctAnsIndex:",correctAnsIndex);
+    //console.log("3correctAnsIndex:",correctAnsIndex);
     this.setState({
       // correctAns: correctAns,
       correctAnsIndex: correctAnsIndex,
     })
 
   }
+
 
   checkAnswers = () => {
 
@@ -682,17 +703,39 @@ class mainPage extends Component {
       let correctAns = _.trim(_.lowerCase(this.state.correctAnsIndex[i]));
       let selectedAns = _.trim(_.lowerCase(this.state.selectedAnsIndex[i]));
 
-      console.log("Question:", i);
-      console.log("correctAns:" , correctAns);
-      console.log("selectedAns: ", selectedAns);
-      if (correctAns === selectedAns) {
-        ansInd.push(true);
-        ansI = true;
+      if (this.state.quizSet[i].QuestionType === "2") {
+
+        correctAns = this.state.correctAnsIndex[i]
+        selectedAns = this.state.selectedAnsIndex[i]
+
+        let rightAns = 0;
+        let wrongAns = 0;
+        for (var j = 0; j < correctAns.length; j++) {
+          if (correctAns[j] === selectedAns[j]) {
+            rightAns = rightAns + 1
+          } else {
+            wrongAns = wrongAns + 1
+          }
+        }
+
+        let answerText = rightAns + "-" + wrongAns
+        ansInd.push(answerText);
+
       } else {
-        ansInd.push(false);
-        ansI = false;
+
+          correctAns = _.trim(_.lowerCase(this.state.correctAnsIndex[i]));
+          selectedAns = _.trim(_.lowerCase(this.state.selectedAnsIndex[i]));
+
+          if (correctAns === selectedAns) {
+            ansInd.push(true);
+            ansI = true;
+          } else {
+            ansInd.push(false);
+            ansI = false;
+          }
+
       }
-      console.log("ansI: ", ansI);
+
       dataObject.q_no = i+1;
       dataObject.ansInd = (ansI?"Y":"X")
       dataObject.question = this.state.quizSet[i].Question;
@@ -709,20 +752,36 @@ class mainPage extends Component {
     return(ansInd);
   }
 
+
   findMarks = () => {
     let myMarks = 0;
     let totalMarks = 0;
 
     for (let i = 0; i < this.state.quizSet.length; i++) {
-      let correctAns = _.trim(_.lowerCase(this.state.correctAnsIndex[i]));
-      let selectedAns = _.trim(_.lowerCase(this.state.selectedAnsIndex[i]));
-      totalMarks = totalMarks + this.state.quizSet[i].marks;
-      console.log("correctAns:",correctAns);
-      console.log("selectedAns:",selectedAns);
-      if (correctAns === selectedAns) {
-        myMarks = myMarks + this.state.quizSet[i].marks;
 
+      if (this.state.quizSet[i].QuestionType === "2") {
+
+        let correctAns = this.state.correctAnsIndex[i]
+        let selectedAns = this.state.selectedAnsIndex[i]
+
+
+        for (var j = 0; j < correctAns.length; j++) {
+          totalMarks = totalMarks + 1;
+          if (correctAns[j] === selectedAns[j]) {
+          myMarks = myMarks + 1
+          }
+
+        }
+
+      } else {
+        let correctAns = _.trim(_.lowerCase(this.state.correctAnsIndex[i]));
+        let selectedAns = _.trim(_.lowerCase(this.state.selectedAnsIndex[i]));
+        totalMarks = totalMarks + this.state.quizSet[i].marks;
+        if (correctAns === selectedAns) {
+          myMarks = myMarks + this.state.quizSet[i].marks;
+        }
       }
+
 
     }
     let score = Math.round((myMarks/totalMarks)*100);
@@ -730,7 +789,7 @@ class mainPage extends Component {
   }
 
   addUserQuiz = (userQuizDetails) => {
-    console.log("adding quiz details");
+    //console.log("adding quiz details");
     let moment = require('moment')
     let updatedTime = moment().format();
     let targetUrl =  'https://prem2282.pythonanywhere.com/api/UserQuiz/create';
@@ -799,10 +858,10 @@ class mainPage extends Component {
 
     axios.delete(targetUrl)
     .then(res => {
-      console.log("Quiz deleted");
+      //console.log("Quiz deleted");
     })
     .catch(err => {
-      console.log("error:", err);
+      //console.log("error:", err);
     })
 
   }
@@ -814,6 +873,11 @@ class mainPage extends Component {
     questionSet = _.toString(questionSet);
     let answerSetNew = answerSet.map((answer, i) => {
       if (answer) {
+        if (answer === true) {
+                  return 1
+        } else {
+          return answer
+        }
         return 1
       } else {
         return 0
@@ -878,6 +942,8 @@ class mainPage extends Component {
 
     if (questionType === 1) {
           this.correctAnsChoice();
+    } else if (questionType === 2) {
+
     }
 
 
@@ -943,6 +1009,20 @@ class mainPage extends Component {
     )
   }
 
+  matchTyperender = () => {
+    const questionNum = this.state.currentQuestionNum + 1;
+    const currentQuestionNum = this.state.currentQuestionNum;
+
+    return (
+        <MatchType
+          quiz = {this.state.quizSet[currentQuestionNum]}
+          questionNum = {questionNum}
+          selected = {this.matchTypeAnswered}
+          saveQuiz = {this.saveIncompleteQuiz}
+        />
+    )
+  }
+
   questType5render = () => {
     const questionNum = this.state.currentQuestionNum + 1;
     const currentQuestionNum = this.state.currentQuestionNum;
@@ -962,9 +1042,9 @@ class mainPage extends Component {
 
   Q5answered = (Q5return) => {
 
-    console.log("Q5return:",Q5return);
-    console.log("correctAnsIndex:", this.state.correctAnsIndex);
-    console.log("selectedAnsIndex:", this.state.selectedAnsIndex);
+    //console.log("Q5return:",Q5return);
+    //console.log("correctAnsIndex:", this.state.correctAnsIndex);
+    //console.log("selectedAnsIndex:", this.state.selectedAnsIndex);
     let questionNum = this.state.currentQuestionNum;
     let correctAnsIndex = [...this.state.correctAnsIndex];
     let selectedAnsIndex = [...this.state.selectedAnsIndex];
@@ -973,8 +1053,8 @@ class mainPage extends Component {
     selectedAnsIndex[questionNum] = Q5return.selectedAns;
     let variableValues = [...this.state.variableValues];
     variableValues[questionNum] = Q5return.varValues;
-    console.log("2correctAnsIndex:", correctAnsIndex);
-    console.log("2selectedAnsIndex:", selectedAnsIndex);
+    //console.log("2correctAnsIndex:", correctAnsIndex);
+    //console.log("2selectedAnsIndex:", selectedAnsIndex);
     this.setState({
                     selectedAnsIndex: selectedAnsIndex,
                     variableValues: variableValues,
@@ -998,7 +1078,7 @@ class mainPage extends Component {
   }
 
   landingBackButton = () => {
-    console.log("landingBackButton");
+    //console.log("landingBackButton");
     this.setState({
       loginSelected: false
     })
@@ -1114,8 +1194,8 @@ class mainPage extends Component {
 
   retakeQuizFromHistory = (id, questionArray) => {
     id = id -1;
-    console.log('id',id);
-    console.log('questionArray',questionArray);
+    //console.log('id',id);
+    //console.log('questionArray',questionArray);
     let groupId = this.state.userQuizHistory[id].groupId;
     let questionSet = this.state.userQuizHistory[id].questionSet;
     questionSet = questionSet.split(',').map(Number);
@@ -1237,13 +1317,13 @@ class mainPage extends Component {
   render() {
 
     let urlDetails = window.location.href;
-    console.log(urlDetails);
+    //console.log(urlDetails);
 
     let url_parts = url.parse( urlDetails, true),
       responseData = url_parts.query;
-      console.log("url_parts:", url_parts);
-      console.log("responseData:", responseData);
-    console.log(responseData);
+      //console.log("url_parts:", url_parts);
+      //console.log("responseData:", responseData);
+    //console.log(responseData);
 
         switch (this.state.pageId) {
 
@@ -1312,7 +1392,7 @@ class mainPage extends Component {
             )
             break;
           case "historyPage":
-            console.log("going to historyPage");
+            //console.log("going to historyPage");
             return(
                 this.historyPageRender()
             )

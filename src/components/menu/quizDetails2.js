@@ -7,6 +7,7 @@ import _ from 'lodash';
 import {Animated} from 'react-animated-css';
 import Formulas from  '../..//components/constants/mathFormulas';
 import MathExplanations from  '../..//components/constants/mathExplanations';
+import MyFunctions from '../..//components/constants/functions';
 const confirm = Modal.confirm;
 const Panel = Collapse.Panel;
 message.config({
@@ -58,13 +59,7 @@ class quizDetails2 extends React.Component {
     let questionIndex = questionNums.indexOf(questionId);
     let selectedAnsIndex = this.props.quizDetails.selectedAnsIndex.split(',');
 
-
-    // console.log("questionNums:",questionNums);
-    // console.log("selectedAnsIndex", selectedAnsIndex);
-    // console.log("questionId", questionId);
-    // console.log("questionIndex", questionIndex);
     let answerText = selectedAnsIndex[questionIndex];
-    // console.log("answerText:", answerText);
     let textArray = answerText?answerText.split('-'):[];
     let textArrayNew =  textArray.map((txt, i) =>{
                     switch (txt) {
@@ -111,15 +106,12 @@ class quizDetails2 extends React.Component {
     let answerCheck = _.toString(yourAnswer[questionIndex]);
     return(answerCheck);
 
-    // console.log("questionId", questionId);
-    // console.log("answerCheck", answerCheck);
 
   }
 
   getTitle = (groupId) => {
 
       let groupIdSet = groupId.split('-');
-      // console.log("groupIdSet:", groupIdSet);
       let text = 'Title';
       if (groupIdSet[1] === 'T') {
         text = 'Process Group:' + pmpTypeMapping(groupIdSet[2]) + ' Set :' + groupIdSet[3]
@@ -137,8 +129,6 @@ class quizDetails2 extends React.Component {
 
   render() {
 
-    // console.log("quizDetails:",this.props.quizDetails);
-    // console.log("group:", this.props.selectedGroupSet);
 
     let questionNum = this.props.quizDetails.questionSet.split(',');
 
@@ -174,12 +164,17 @@ class quizDetails2 extends React.Component {
                           let screenWidth = window.innerWidth;
                           let correctText = "✔️"
                           let wrongText = "❌"
-
+                          let answerCheck = this.yourAnswerCheck(questionSet)
                           let checkText = null
-                          if (this.yourAnswerCheck(questionSet)==="1") {
+                          console.log("answerCheck",answerCheck);
+                          if (answerCheck==="1") {
                             checkText =correctText
-                          } else {
+                          } else if (answerCheck==="0") {
                             checkText =wrongText
+                          } else {
+                            let split = answerCheck.split("-");
+                            checkText = split[0] + correctText + " , " + split[1] + wrongText;
+                            console.log("checkText",checkText);
                           }
                           let choice1Class = "choiceDefault";
                           let choice2Class = "choiceDefault";
@@ -229,8 +224,6 @@ class quizDetails2 extends React.Component {
                               choice4Class = "choiceWrong"
                             }
                           }
-
-
                           let explanation_1 = null;
                           let explanation_2 = null;
                           let explainTextArray = [];
@@ -246,12 +239,9 @@ class quizDetails2 extends React.Component {
                               explanation_2 = questionSet.answer_4;
                             }
 
-
-                            // console.log("variableValues:", this.props.quizDetails.variableSet);
                             let varSet = questionSet.answer_1;
                             varSet = varSet.split(",")
                             let variableSet =  this.props.quizDetails.variableSet.split(",")
-                            // console.log("variableSet",variableSet);
                             let replaceSet = variableSet[i].split("-")
                             for (var k = 0; k < varSet.length; k++) {
                               let replaceValue = Number(replaceSet[k]).toLocaleString();
@@ -262,14 +252,10 @@ class quizDetails2 extends React.Component {
                               if (explanation_2) {
                                   explanation_2 = explanation_2.replace(varSet[k],replaceValue);
                               }
-                              // explanation_1 = explanation_1.replace(varSet[k],replaceValue);
-                              // explanation_2 = explanation_2.replace(varSet[k],replaceValue);
                             }
                             for (var k = 0; k < varSet.length; k++) {
                               let replaceValue = Number(replaceSet[k]).toLocaleString();
                               newQuestion = newQuestion.replace(varSet[k],replaceValue);
-                              // explanation_1 = explanation_1.replace(varSet[k],replaceValue);
-                              // explanation_2 = explanation_2.replace(varSet[k],replaceValue);
                             }
                             let expArray_1 = []
                             let expArray_2 = []
@@ -279,11 +265,6 @@ class quizDetails2 extends React.Component {
                             if (explanation_2) {
                               expArray_2 = explanation_2.split(";")
                             }
-
-                            // console.log("expArray_1 after:", expArray_1);
-                            // console.log("expArray_2 after:", expArray_2);
-
-                            // explainTextArray = expArray_1.concat(expArray_2);
 
                             let formula = questionSet.answer_2;
                             let mathExplanations = MathExplanations(formula,replaceSet)
@@ -296,9 +277,7 @@ class quizDetails2 extends React.Component {
                             if (Number(yourAnswerText)>0) {
                                 yourAnswerText = Number(yourAnswerText).toLocaleString();
                             }
-                            console.log("newQuestion:",newQuestion);
                             let displayQuestion = newQuestion.replace("<dash>","__________")
-                            console.log("displayQuestion:",displayQuestion);
                             return(
                               <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
                                 <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
@@ -339,9 +318,56 @@ class quizDetails2 extends React.Component {
                               </Animated>
 
                             )
-                          } else {
+                          } else if (questionSet.QuestionType === '2') {
+                            let data = MyFunctions("matchType",questionSet.Question);
+                            let questionText = data.questionText;
+                            let matchQuestion = data.matchQuestion;
+                            let matchAnswer = data.matchAnswer;
+                            let yourAnswer = this.props.quizDetails.selectedAnsIndex.split(",")
+                            return(
+                              <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
+                                <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
+                                  <Panel header={collapseText}>
 
-                            // console.log("newQuestion:",newQuestion);
+                                    <div >
+                                      <div  className="historyQuestBox">
+                                        <p>
+                                          {questionText}
+                                        </p>
+
+                                        {matchQuestion.map((item, i) => {
+                                          let yourAnsColor = 'Red';
+                                          let answerInd = false;
+                                          let tickText = wrongText;
+                                          if (yourAnswer[i] === matchAnswer[i]) {
+                                            yourAnsColor = 'Green'
+                                            answerInd = true
+                                            tickText = correctText
+                                          }
+                                          return(
+                                            <div className = 'matchType'>
+                                              <p className="matchTypeAnswer">{tickText}</p>
+                                              <p className="matchTypeQuestion">{matchQuestion[i]}</p>
+                                              <p className="matchTypeAnswer">{matchAnswer[i]}</p>
+                                              {answerInd?
+                                              null:
+                                              <p className="matchTypeWrongAnswer">{yourAnswer[i]}</p>
+                                              }
+
+                                            </div>
+                                          )
+
+
+                                        })}
+                                      </div>
+                                    </div>
+                                  </Panel>
+                                </Collapse>
+                              </Animated>
+
+                            )
+
+                          } else {
                             let displayQuestion = questionSet.Question.replace("<dash>","__________")
                             console.log("displayQuestion:",displayQuestion);
 

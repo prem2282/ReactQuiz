@@ -17,41 +17,6 @@ class resultPage extends Component {
     }
   }
 
-  yourAnswerText = (selectedAnsIndex) => {
-    let textArray = selectedAnsIndex?String(selectedAnsIndex).split('-'):[];
-    let textArrayNew = textArray.map((txt,i) => {
-      switch (txt) {
-        case "0":
-          return "A";
-          break;
-        case "1":
-          return "B";
-          break;
-        case "2":
-          return "C";
-          break;
-        case "3":
-          return "D";
-          break;
-        case "4":
-          return "E";
-          break;
-        case "5":
-          return "F";
-          break;
-        default:
-          return txt;
-          break
-
-      }
-    })
-    return(textArrayNew)
-  }
-
-
-
-
-
   scoreText = (score) => {
     let scoreText = "";
     score = Number(score);
