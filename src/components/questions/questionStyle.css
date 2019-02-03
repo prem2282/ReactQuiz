@@ -8,24 +8,48 @@
 
 .matchTypeContainer{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 40% 40%;
   justify-content: center;
   margin: 5px;
+
 }
 .matchTypeQDiv {
   background-color: #222;
   margin-right: 5px;
+    border-radius: 10px;
+}
+
+.matchTypeHeadText {
+  font-size: 20px;
+    color: Aqua;
+    padding: 10px;
 }
 
 .matchTypeQText {
-  /* font-size: 16px; */
+  font-size: 18px;
   color: Aqua;
+  padding: 4%;
+  margin-bottom: 0em;
+}
+
+
+.matchTypeQTextA {
+  font-size: 18px;
+  color: Gray;
+  padding: 4%;
+  margin-bottom: 0em;
+}
+
+.matchTypeQTextB {
+  font-size: 18px;
+  color: Orange;
   padding: 4%;
   margin-bottom: 0em;
 }
 
 .matchTypeA {
   background-color: #222;
+      border-radius: 10px;
 }
 .submitButton{
   width: 200px;
@@ -33,6 +57,12 @@
   margin: 10px;
   justify-content: space-between;
   align-self: center;
+}
+
+.ant-dropdown-menu {
+  background-color: DarkSlateGray;
+  display: grid;
+  text-align: center;
 }
 
 .listTypeHeader {
@@ -251,6 +281,29 @@
 
 
 @media screen and (max-width: 550px) {
+
+  .ant-dropdown-menu {
+      display: grid;
+
+  }
+
+  .matchTypeHeadText {
+    font-size: 16px;
+  }
+  .matchTypeQText {
+    font-size: 14px;
+  }
+  .matchTypeQTextA {
+    font-size: 14px;
+  }
+  .matchTypeQTextB {
+    font-size: 14px;
+  }
+
+  .matchTypeContainer{
+    grid-template-columns: 50% 50%;
+  }
+
   .questionContainer{
     grid-template-columns: 90%;
     background-size: cover;
@@ -295,6 +348,8 @@
 
 
 @media screen and (min-width: 550px) and (max-width:850px) {
+
+
 
   .questionBox {
     height: auto;
@@ -360,6 +415,7 @@
 }
 
 @media screen and (min-height: 1400px) and (max-width: 1000px) {
+
 
   .answerContainer{
     grid-template-columns: 95%;

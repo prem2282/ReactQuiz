@@ -132,7 +132,7 @@ class matchType extends Component {
         })}
         {this.state.selectedAnswers[this.state.questionSelected]?
           <Menu.Item>
-            <Tag style={{margin:'5px'}} color="DarkSlateGray" onClick={this.resetChoice}>Clear</Tag>
+            <Tag style={{margin:'5px'}} color="SteelBlue" onClick={this.resetChoice}>Clear</Tag>
           </Menu.Item>
         :null}
 
@@ -142,26 +142,31 @@ class matchType extends Component {
 
     return(
       <div>
-        <h3>{this.state.questionText}</h3>
+        <h3 className="matchTypeHeadText">{this.state.questionText}</h3>
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.visibility}>
         {this.state.matchQuestion.map((item, i) => {
           let valueText = "select"
+          let classText = "matchTypeQTextA"
           if (this.state.selectedAnswers[i]) {
             valueText = this.state.selectedAnswers[i]
+            classText = "matchTypeQTextB"
           }
           return(
             <div key={i} id={i} className="matchTypeContainer">
-              <div className="matchTypeQDiv">
-                <p className="matchTypeQText">{this.state.matchQuestion[i]}</p>
-              </div>
-
-              <div className="matchTypeA">
-                <Dropdown key={i} id={i} overlay={menu} onClick={() => this.dropDownClicked(i)} trigger={['click']}>
-                      <p className="matchTypeQText">
-                        {valueText} <Icon type="down" />
-                    </p>
-                </Dropdown>
-              </div>
+              <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.visibility}>
+                <div className="matchTypeQDiv">
+                  <p className="matchTypeQText">{this.state.matchQuestion[i]}</p>
+                </div>
+              </Animated>
+              <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.visibility}>
+                <div className="matchTypeA">
+                  <Dropdown key={i} id={i} overlay={menu} onClick={() => this.dropDownClicked(i)} trigger={['click']}>
+                        <p className={classText}>
+                          {valueText} <Icon type="down" />
+                      </p>
+                  </Dropdown>
+                </div>
+            </Animated>
 
 
             </div>

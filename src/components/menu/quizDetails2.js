@@ -173,7 +173,14 @@ class quizDetails2 extends React.Component {
                             checkText =wrongText
                           } else {
                             let split = answerCheck.split("-");
-                            checkText = split[0] + correctText + " , " + split[1] + wrongText;
+                            if (Number(split[0]) === 0) {
+                                checkText = "(" + split[1] + wrongText + ")";
+                            } else if (Number(split[1]) === 1) {
+                                checkText = "(" + split[0] + correctText + ")";
+                            } else {
+                                checkText = "(" + split[0] + correctText + " , " + split[1] + wrongText + ")";
+                            }
+
                             console.log("checkText",checkText);
                           }
                           let choice1Class = "choiceDefault";
@@ -227,7 +234,7 @@ class quizDetails2 extends React.Component {
                           let explanation_1 = null;
                           let explanation_2 = null;
                           let explainTextArray = [];
-                          let collapseText = "Question :" +  String(i+1) + "   " + checkText;
+                          let collapseText = "Question :" +  String(i+1) + "  " + checkText;
                           // console.log("collapseText:", collapseText);
                           // console.log("questionSet.QuestionType:",questionSet.QuestionType);
                           if (questionSet.QuestionType === '5') {
