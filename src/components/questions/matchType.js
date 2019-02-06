@@ -15,6 +15,8 @@ class matchType extends Component {
   constructor(props) {
     super(props);
     let data = MyFunctions("matchType",this.props.quiz.Question);
+    let selectedAnswers = [];
+    let choiceVisibility = [];
     for (var i = 0; i < data.matchQuestion.length; i++) {
       selectedAnswers.push(null)
       choiceVisibility.push(true)
@@ -30,6 +32,21 @@ class matchType extends Component {
       submitVisibility : false,
       choiceVisibility : choiceVisibility,
     }
+  }
+
+  resetAll = () => {
+    let selectedAnswers = [];
+    let choiceVisibility = [];
+    for (let i = 0; i < this.state.matchQuestion.length; i++) {
+      selectedAnswers.push(null)
+      choiceVisibility.push(true)
+    }
+
+    this.setState({
+      selectedAnswers: selectedAnswers,
+      submitVisibility: false,
+      choiceVisibility: choiceVisibility,
+    })
   }
 
   submitSelected = () => {
@@ -119,13 +136,13 @@ class matchType extends Component {
     const menu = (
       <Menu>
         {this.state.matchQuestion.map((item, i) => {
-          let choiceColor = "Orange"
+          let choiceClass = "matchTypeChoiceText"
           if (!this.state.choiceVisibility[i]) {
-            choiceColor = "Gray"
+            choiceClass = "matchTypeChoiceTextDisable"
           }
           return(
-            <Menu.Item key={i} id={i}>
-              <Tag style={{margin:'5px'}} color={choiceColor} onClick={() => this.choiceSelected(i)}>{this.state.shuffledAnswers[i]}</Tag>
+            <Menu.Item key={i} id={i} onClick={() => this.choiceSelected(i)}>
+              <p className={choiceClass}>{this.state.shuffledAnswers[i]}</p>
             </Menu.Item>
           )
 
@@ -143,6 +160,7 @@ class matchType extends Component {
     return(
       <div>
         <h3 className="matchTypeHeadText">{this.state.questionText}</h3>
+        <Tag style={{margin:'5px'}} color="SteelBlue" onClick={this.resetAll}>Clear All</Tag>
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.visibility}>
         {this.state.matchQuestion.map((item, i) => {
           let valueText = "select"
@@ -153,20 +171,20 @@ class matchType extends Component {
           }
           return(
             <div key={i} id={i} className="matchTypeContainer">
-              <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.visibility}>
                 <div className="matchTypeQDiv">
-                  <p className="matchTypeQText">{this.state.matchQuestion[i]}</p>
+                  <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.visibility}>
+                    <p className="matchTypeQText">{this.state.matchQuestion[i]}</p>
+                  </Animated>
                 </div>
-              </Animated>
-              <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.visibility}>
                 <div className="matchTypeA">
-                  <Dropdown key={i} id={i} overlay={menu} onClick={() => this.dropDownClicked(i)} trigger={['click']}>
-                        <p className={classText}>
-                          {valueText} <Icon type="down" />
-                      </p>
-                  </Dropdown>
+                  <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.visibility}>
+                    <Dropdown key={i} id={i} overlay={menu} onClick={() => this.dropDownClicked(i)} trigger={['click']}>
+                          <p className={classText}>
+                            {valueText} <Icon type="down" />
+                        </p>
+                    </Dropdown>
+                </Animated>
                 </div>
-            </Animated>
 
 
             </div>

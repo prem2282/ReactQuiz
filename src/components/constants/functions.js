@@ -39,6 +39,102 @@ let functions = (name, data) => {
       return(returnData)
 
       break;
+
+    case "listType":
+
+    let superListNames = data.Question.split(',');
+
+    let subList1 = [];
+    let subList2 = [];
+    let subList3 = [];
+    let subList4 = [];
+    let subList5 = [];
+    let subList6 = [];
+
+    if (data.answer_1) {
+      subList1 = data.answer_1.split(',')
+    }
+    if (data.answer_2) {
+      subList2 = data.answer_1.split(',')
+    }
+    if (data.answer_3) {
+      subList3 = data.answer_1.split(',')
+    }
+    if (data.answer_4) {
+      subList4 = data.answer_1.split(',')
+    }
+    if (data.answer_5) {
+      subList5 = data.answer_1.split(',')
+    }
+    if (data.answer_6) {
+      subList6 = data.answer_1.split(',')
+    }
+
+    let selectedAnswer = [];
+
+    let subList = [];
+    let activeList = [];
+
+    for (let i = 0; i < subList1.length; i++) {
+      let questObject = {
+        question: subList1[i],
+        answer:0,
+      }
+      activeList.push(questObject)
+    }
+    for (let i = 0; i < subList2.length; i++) {
+      let questObject = {
+        question: subList2[i],
+        answer:1,
+      }
+      activeList.push(questObject)
+    }
+    for (let i = 0; i < subList3.length; i++) {
+      let questObject = {
+        question: subList3[i],
+        answer:2,
+      }
+      activeList.push(questObject)
+    }
+    for (let i = 0; i < subList4.length; i++) {
+      let questObject = {
+        question: subList4[i],
+        answer:3,
+      }
+      activeList.push(questObject)
+    }
+    for (let i = 0; i < subList5.length; i++) {
+      let questObject = {
+        question: subList5[i],
+        answer:4,
+      }
+      activeList.push(questObject)
+    }
+    for (let i = 0; i < subList6.length; i++) {
+      let questObject = {
+        question: subList6[i],
+        answer:5,
+      }
+      activeList.push(questObject)
+    }
+    let unshuffledList = [...activeList];
+    activeList = _.shuffle(activeList);
+
+    let selectedChoice = [];
+
+    for (let i = 0; i < activeList.length; i++) {
+      selectedChoice.push(null)
+    }
+
+    returnData = {
+      activeList: activeList,
+      unshuffledList: unshuffledList,
+      selectedChoice: selectedChoice,
+      superListNames: superListNames,
+    }
+
+    return(returnData)
+    break;
     default:
 
   }

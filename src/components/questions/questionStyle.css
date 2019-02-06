@@ -25,6 +25,22 @@
     padding: 10px;
 }
 
+.matchTypeChoiceText {
+  font-size: 18px;
+  color: Aqua;
+  padding: 3%;
+  margin-bottom: 0em;
+  background-color: SteelBlue;
+}
+
+.matchTypeChoiceTextDisable {
+  font-size: 18px;
+  color: Aqua;
+  padding: 3%;
+  margin-bottom: 0em;
+  background-color: Gray;
+}
+
 .matchTypeQText {
   font-size: 18px;
   color: Aqua;
@@ -55,6 +71,9 @@
   width: 200px;
   height: 50px;
   margin: 10px;
+  font-family: monospace;
+  font-size: 25px;
+  color: Aqua;
   justify-content: space-between;
   align-self: center;
 }
@@ -137,14 +156,17 @@
 
 .questionContainer{
 
+  position: absolute;
+  top: 10%;
+  bottom: 5%;
   display: grid;
   grid-template-columns: 50% 50%;
   height: 100%;
   width: 100%;
   padding: 5px;
   border-color: white;
-  background-color: DarkSlateGray;
-  /*background-color: transparent;*/
+  /* background-color: DarkSlateGray; */
+  background-color: transparent;
   border-radius: 10px;
   align-self: center;
   justify-content: space-between;
@@ -290,6 +312,13 @@
   .matchTypeHeadText {
     font-size: 16px;
   }
+
+  .matchTypeChoiceText {
+    font-size: 14px;
+  }
+  .matchTypeChoiceTextDisable {
+    font-size: 14px;
+  }
   .matchTypeQText {
     font-size: 14px;
   }
@@ -305,7 +334,7 @@
   }
 
   .questionContainer{
-    grid-template-columns: 90%;
+    grid-template-columns: 100%;
     background-size: cover;
   }
   .questionBox {

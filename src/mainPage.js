@@ -7,6 +7,7 @@ import PMPMenuPage from '..//src/components/menu/pmpMenuPage';
 import PMPLearnPage from '..//src/components/menu/pmpLearnPage';
 import CountPage from '..//src/components/questions/countPage';
 import QuestType1 from '..//src/components/questions/questType1';
+import ListType from '..//src/components/questions/listType2';
 import MatchType from '..//src/components/questions/matchType';
 import QuestType5 from '..//src/components/questions/questType5';
 import Header from '..//src/components/header/header';
@@ -609,6 +610,9 @@ class mainPage extends Component {
       case 2:
         return (<div>{this.matchTyperender()}</div>);
         break;
+      case 3:
+        return (<div>{this.listTyperender()}</div>);
+        break;
       case 5:
         return (<div>{this.questType5render()}</div>);
         break;
@@ -632,6 +636,20 @@ class mainPage extends Component {
 
   }
 
+  listTypeAnsweered = (listTypeResponse) => {
+    let selectedAnsIndex = [...this.state.selectedAnsIndex];
+    let correctAnsIndex = [...this.state.correctAnsIndex];
+    selectedAnsIndex[this.state.currentQuestionNum] = listTypeResponse.selectedAns;
+    correctAnsIndex[this.state.currentQuestionNum] = listTypeResponse.correctAns
+    let variableValues = [...this.state.variableValues];
+    variableValues[this.state.currentQuestionNum] =  null;
+    this.setState({
+      selectedAnsIndex: selectedAnsIndex,
+      correctAnsIndex: correctAnsIndex,
+      variableValues: variableValues,
+    })
+    this.nextQuestion();
+  }
   matchTypeAnswered = (matchTypeResponse) => {
     let selectedAnsIndex = [...this.state.selectedAnsIndex];
     let correctAnsIndex = [...this.state.correctAnsIndex];
@@ -1005,6 +1023,20 @@ class mainPage extends Component {
           saveQuiz = {this.saveIncompleteQuiz}
           selectedAns = {this.state.selectedAns[currentQuestionNum]}
           muteVoice = {this.state.muteVoice}
+        />
+    )
+  }
+
+  listTyperender = () => {
+    const questionNum = this.state.currentQuestionNum + 1;
+    const currentQuestionNum = this.state.currentQuestionNum;
+
+    return (
+        <ListType
+          quiz = {this.state.quizSet[currentQuestionNum]}
+          questionNum = {questionNum}
+          selected = {this.listTypeAnswered}
+          saveQuiz = {this.saveIncompleteQuiz}
         />
     )
   }

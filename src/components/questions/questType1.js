@@ -94,7 +94,7 @@ class questType1 extends Component {
 
       picSize = screenWidth/4;
       let imageUrl = "url('" + this.props.quiz.Q_image + "')"
-      let backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) )," + imageUrl
+      let backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) )," + imageUrl
 
       return (
         <div>
