@@ -137,7 +137,8 @@ class quizDetails2 extends React.Component {
     let group = null;
     let groupId = this.props.quizDetails.groupId;
     let title = null;
-    let groupArray = groupId.split('-');
+    console.log("groupId",groupId);
+    let groupArray = String(groupId).split('-');
 
 
     if (groupArray[0] === 'PMP') {

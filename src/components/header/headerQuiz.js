@@ -80,7 +80,7 @@ class headerQuiz extends Component {
         userPic = this.props.profile.imageUrl;
         userEmail = this.props.profile.email;
         userLoggedIn = true;
-        quitButtonText = "Save & Quit";
+        quitButtonText = "Quit";
         quitConfirm = this.props.saveQuiz;
       }
 
@@ -147,7 +147,7 @@ class headerQuiz extends Component {
 
           <div>
             {this.props.quizOn?
-              <Popconfirm title="Do you really want to Quit?" onConfirm={quitConfirm} onCancel={this.props.homeButton} okText={quitButtonText} cancelText="Quit">
+              <Popconfirm title="Do you really want to Quit?" onConfirm={this.props.homeButton} okText={quitButtonText}>
                 {(screenWidth<600)?
                   <Avatar className="avatarBox" style = {{backgroundColor:'LightSlateGray'}} icon="close"/>
                   :
