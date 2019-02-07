@@ -95,6 +95,7 @@ class quizDetails2 extends React.Component {
 
   yourAnswerCheck = (questionSet) => {
 
+
     let questionId = _.toString(questionSet.id);
     let questionType = questionSet.QuestionType;
 
@@ -132,16 +133,25 @@ class quizDetails2 extends React.Component {
 
     let questionNum = this.props.quizDetails.questionSet.split(',');
 
-    let questionArray = this.props.questionArray;
-    let group = this.props.selectedGroupSet;
-    let groupId = group.id;
-    let title = group.board + '/' + group.standard + '/' + group.subject
+    let questionArray = null;
+    let group = null;
+    let groupId = this.props.quizDetails.groupId;
+    let title = null;
+    let groupArray = groupId.split('-');
 
-    if (group.board === 'PMP') {
-      questionArray = this.props.PMPBaseQuizSet;
+
+    if (groupArray[0] === 'PMP') {
+      questionArray = this.props.questionArray;
       groupId = this.props.quizDetails.groupId;
       title = this.getTitle(groupId);
+    } else {
+      questionArray = this.props.questionArray;
+      group = this.props.selectedGroupSet;
+      groupId = group.id;
+      title = group.board + '/' + group.standard + '/' + group.subject
+
     }
+
 
     for (var i = 0; i < questionNum.length; i++) {
       questionNum[i] = Number(questionNum[i])
@@ -166,7 +176,7 @@ class quizDetails2 extends React.Component {
                           let wrongText = "❌"
                           let answerCheck = this.yourAnswerCheck(questionSet)
                           let checkText = null
-                          console.log("answerCheck",answerCheck);
+
                           if (answerCheck==="1") {
                             checkText =correctText
                           } else if (answerCheck==="0") {
@@ -181,7 +191,7 @@ class quizDetails2 extends React.Component {
                                 checkText = "(" + split[0] + correctText + " , " + split[1] + wrongText + ")";
                             }
 
-                            console.log("checkText",checkText);
+
                           }
                           let choice1Class = "choiceDefault";
                           let choice2Class = "choiceDefault";
@@ -376,7 +386,7 @@ class quizDetails2 extends React.Component {
 
                           } else {
                             let displayQuestion = questionSet.Question.replace("<dash>","__________")
-                            console.log("displayQuestion:",displayQuestion);
+
 
                             return(
                               <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
