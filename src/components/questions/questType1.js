@@ -99,7 +99,7 @@ class questType1 extends Component {
       return (
         <div>
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-          <div className = "questionContainer" style={{  backgroundImage:backgroundImage, }}>
+          <div className = "questionContainer" style={{  backgroundImage:backgroundImage, backgroundColor:'transparent' }}>
             {!this.state.muteVoice?
               <Delayed waitBeforeShow={500}>
                 <VoicePlayer play onEnd={this.speechEnded} text={questionVoice}/>

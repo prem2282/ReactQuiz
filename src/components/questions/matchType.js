@@ -51,7 +51,7 @@ class matchType extends Component {
 
   submitSelected = () => {
 
-    let selectedAns = this.state.selectedAns;
+    let selectedAns = this.state.selectedAnswers;
     let correctAns = this.state.matchAnswer;
     let indexArray = [];
     let correctArray = [];

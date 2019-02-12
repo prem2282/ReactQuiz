@@ -55,15 +55,34 @@ class quizDetails2 extends React.Component {
 
   yourAnswerArray = (questionSet) => {
 
+    console.log('questionSet:', questionSet);
     let questionId = _.toString(questionSet.id);
     let questionNums = this.props.quizDetails.questionSet.split(',');
     let questionIndex = questionNums.indexOf(questionId);
     let selectedAnsIndex = this.props.quizDetails.selectedAnsIndex.split(',');
+    console.log('selectedAnsIndex',selectedAnsIndex);
+    let textArray = [];
+    if (questionSet.QuestionType === '3') {
+      let answerIndex = selectedAnsIndex[questionIndex].split('-');
+      let superListNames = questionSet.Question.split(',')
+      for (let i = 0; i < answerIndex.length; i++) {
+        textArray.push(superListNames[Number(answerIndex[i])])
+      }
 
+    } else if (questionSet.QuestionType === '2') {
+      console.log("match type");
+      let data = MyFunctions("matchType",questionSet.Question);
+      console.log('data:',data);
+      let matchAnswer = data.matchAnswer;
+      let answerIndex = selectedAnsIndex[questionIndex].split('-');
+      console.log('answerIndex', answerIndex);
+      for (let i = 0; i < answerIndex.length; i++) {
+        textArray.push(matchAnswer[Number(answerIndex[i])])
+      }
 
-    let answerText = selectedAnsIndex[questionIndex];
-    console.log("answerText:",answerText);
-    let textArray = answerText?answerText.split('-'):[];
+    }
+
+    // let textArray = answerText?answerText.split('-'):[];
     console.log("your ans text Array:",textArray);
     return(textArray)
   }
@@ -163,6 +182,7 @@ class quizDetails2 extends React.Component {
       title = this.getTitle(groupId);
     } else {
       questionArray = this.props.questionArray;
+      // questionArray = this.props.quizDetails.questionSet.split(',')
       group = this.props.selectedGroupSet;
       groupId = group.id;
       title = group.board + '/' + group.standard + '/' + group.subject
@@ -402,6 +422,61 @@ class quizDetails2 extends React.Component {
                               </Animated>
 
                             )
+
+                          } else if (questionSet.QuestionType === '3') {
+                            let data = MyFunctions("listType",questionSet);
+                            let unshuffledList = data.unshuffledList;
+                            let listQuestion = [];
+                            let listAnswer = [];
+                            let superListNames = data.superListNames;
+                            for (let i = 0; i < unshuffledList.length; i++) {
+                              listQuestion.push(unshuffledList[i].question)
+                              let answerIndex = unshuffledList[i].answer;
+                              listAnswer.push(superListNames[answerIndex]) ;
+                            }
+                            return(
+                              <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
+                                <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
+                                  <Panel header={collapseText}>
+
+                                    <div >
+                                      <div  className="historyQuestBox">
+                                        <p>
+                                          "Select the rigth answer"
+                                        </p>
+
+                                        {listQuestion.map((item, i) => {
+                                          let yourAnsColor = 'Red';
+                                          let answerInd = false;
+                                          let tickText = wrongText;
+                                          if (yourAnswerArray[i] === listAnswer[i]) {
+                                            yourAnsColor = 'Green'
+                                            answerInd = true
+                                            tickText = correctText
+                                          }
+                                          return(
+                                            <div className = 'matchType'>
+                                              <p className="matchTypeAnswer">{tickText}</p>
+                                              <p className="matchTypeQuestion">{listQuestion[i]}</p>
+                                              <p className="matchTypeAnswer">{listAnswer[i]}</p>
+                                              {answerInd?
+                                              null:
+                                              <p className="matchTypeWrongAnswer">{yourAnswerArray[i]}</p>
+                                              }
+
+                                            </div>
+                                          )
+
+
+                                        })}
+                                      </div>
+                                    </div>
+                                  </Panel>
+                                </Collapse>
+                              </Animated>
+
+                            )
+
 
                           } else {
                             let displayQuestion = questionSet.Question.replace("<dash>","__________")
