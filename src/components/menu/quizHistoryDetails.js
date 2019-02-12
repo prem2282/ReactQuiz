@@ -219,21 +219,21 @@ class historyDetailsModel extends React.Component {
 
       // let targetUrl = 'http://127.0.0.1:8000/api/UserQuiz/delete/' + quizId + '/' ;
       let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/delete/' + quizId;
-
-      let updated = false;
-
-        axios.delete(targetUrl, {
-          id: quizId,
-        })
-
-        .then(res => {
-          console.log("Quiz Removed");
-
-          this.props.remove(quizNumber);
-        })
-        .catch(err => {
-
-        })
+      this.props.remove(quizId);
+      // let updated = false;
+      //
+      //   axios.delete(targetUrl, {
+      //     id: quizId,
+      //   })
+      //
+      //   .then(res => {
+      //     console.log("Quiz Removed");
+      //
+      //     this.props.remove(quizNumber);
+      //   })
+      //   .catch(err => {
+      //
+      //   })
 
 
     this.setState({

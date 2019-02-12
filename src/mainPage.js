@@ -872,12 +872,27 @@ class mainPage extends Component {
 
   removeQuizHistory = (quizId) => {
 
-    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/delete' + quizId;
+    console.log("removeQuizHistory:",quizId );
+    let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/delete/' + quizId;
 
     axios.delete(targetUrl)
     .then(res => {
 
       let userQuizHistory = [...this.state.userQuizHistory];
+      let newUserQuizHistory = _.filter(userQuizHistory,
+            function(quizItem) {
+              return (
+                    quizItem.id !== Number(quizId)
+                      )
+            })
+
+
+      console.log('newUserQuizHistory', newUserQuizHistory);
+      this.setState({
+        userQuizHistory : newUserQuizHistory,
+        pageId: 'refresh',
+        refreshTo : 'historyPage',
+      })
 
       //console.log("Quiz deleted");
     })
@@ -1341,7 +1356,7 @@ class mainPage extends Component {
           groupSet = {this.state.groupSet}
           backButton={this.goBackToLanding}
           userProfile={this.state.userProfile}
-          removeQuizHistory={this.removeQuizFromHistory}
+          removeQuizHistory={this.removeQuizHistory}
           retakeQuiz={this.retakeQuizFromHistory}
           homeButton = {this.goToHome}
           logOutButton = {this.logOut}
