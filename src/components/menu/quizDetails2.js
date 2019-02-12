@@ -52,12 +52,28 @@ class quizDetails2 extends React.Component {
       showExplain: !this.state.showExplain
     })
   }
+
+  yourAnswerArray = (questionSet) => {
+
+    let questionId = _.toString(questionSet.id);
+    let questionNums = this.props.quizDetails.questionSet.split(',');
+    let questionIndex = questionNums.indexOf(questionId);
+    let selectedAnsIndex = this.props.quizDetails.selectedAnsIndex.split(',');
+
+
+    let answerText = selectedAnsIndex[questionIndex];
+    console.log("answerText:",answerText);
+    let textArray = answerText?answerText.split('-'):[];
+    console.log("your ans text Array:",textArray);
+    return(textArray)
+  }
   yourAnswerText = (questionSet) => {
 
     let questionId = _.toString(questionSet.id);
     let questionNums = this.props.quizDetails.questionSet.split(',');
     let questionIndex = questionNums.indexOf(questionId);
     let selectedAnsIndex = this.props.quizDetails.selectedAnsIndex.split(',');
+
 
     let answerText = selectedAnsIndex[questionIndex];
     let textArray = answerText?answerText.split('-'):[];
@@ -246,6 +262,7 @@ class quizDetails2 extends React.Component {
                           let explanation_2 = null;
                           let explainTextArray = [];
                           let collapseText = "Question :" +  String(i+1) + "  " + checkText;
+                          let yourAnswerArray = this.yourAnswerArray(questionSet)
                           // console.log("collapseText:", collapseText);
                           // console.log("questionSet.QuestionType:",questionSet.QuestionType);
                           if (questionSet.QuestionType === '5') {
@@ -341,7 +358,8 @@ class quizDetails2 extends React.Component {
                             let questionText = data.questionText;
                             let matchQuestion = data.matchQuestion;
                             let matchAnswer = data.matchAnswer;
-                            let yourAnswer = this.props.quizDetails.selectedAnsIndex.split(",")
+                            // let yourAnswer = this.props.quizDetails.selectedAnsIndex.split(",")
+
                             return(
                               <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
                                 <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
@@ -357,7 +375,7 @@ class quizDetails2 extends React.Component {
                                           let yourAnsColor = 'Red';
                                           let answerInd = false;
                                           let tickText = wrongText;
-                                          if (yourAnswer[i] === matchAnswer[i]) {
+                                          if (yourAnswerArray[i] === matchAnswer[i]) {
                                             yourAnsColor = 'Green'
                                             answerInd = true
                                             tickText = correctText
@@ -369,7 +387,7 @@ class quizDetails2 extends React.Component {
                                               <p className="matchTypeAnswer">{matchAnswer[i]}</p>
                                               {answerInd?
                                               null:
-                                              <p className="matchTypeWrongAnswer">{yourAnswer[i]}</p>
+                                              <p className="matchTypeWrongAnswer">{yourAnswerArray[i]}</p>
                                               }
 
                                             </div>

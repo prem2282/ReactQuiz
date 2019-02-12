@@ -55,19 +55,19 @@ let functions = (name, data) => {
       subList1 = data.answer_1.split(',')
     }
     if (data.answer_2) {
-      subList2 = data.answer_1.split(',')
+      subList2 = data.answer_2.split(',')
     }
     if (data.answer_3) {
-      subList3 = data.answer_1.split(',')
+      subList3 = data.answer_3.split(',')
     }
     if (data.answer_4) {
-      subList4 = data.answer_1.split(',')
+      subList4 = data.answer_4.split(',')
     }
     if (data.answer_5) {
-      subList5 = data.answer_1.split(',')
+      subList5 = data.answer_5.split(',')
     }
     if (data.answer_6) {
-      subList6 = data.answer_1.split(',')
+      subList6 = data.answer_6.split(',')
     }
 
     let selectedAnswer = [];

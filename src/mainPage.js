@@ -636,11 +636,11 @@ class mainPage extends Component {
 
   }
 
-  listTypeAnsweered = (listTypeResponse) => {
+  listTypeAnswered = (listTypeResponse) => {
     let selectedAnsIndex = [...this.state.selectedAnsIndex];
     let correctAnsIndex = [...this.state.correctAnsIndex];
     selectedAnsIndex[this.state.currentQuestionNum] = listTypeResponse.selectedAns;
-    correctAnsIndex[this.state.currentQuestionNum] = listTypeResponse.correctAns
+    correctAnsIndex[this.state.currentQuestionNum] = listTypeResponse.correctAns;
     let variableValues = [...this.state.variableValues];
     variableValues[this.state.currentQuestionNum] =  null;
     this.setState({
@@ -876,8 +876,12 @@ class mainPage extends Component {
 
     axios.delete(targetUrl)
     .then(res => {
+
+      let userQuizHistory = [...this.state.userQuizHistory];
+
       //console.log("Quiz deleted");
     })
+
     .catch(err => {
       //console.log("error:", err);
     })

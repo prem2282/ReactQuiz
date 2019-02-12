@@ -55,7 +55,7 @@ class listType2 extends Component {
     let qNo = this.state.questionSelected;
 
     let selectedChoice = [...this.state.selectedChoice];
-    selectedChoice[qNo] =  choice;
+    selectedChoice[qNo] =  choice+1;
 
     let submitType = this.state.submitType;
     let allDone = true;
@@ -97,7 +97,7 @@ class listType2 extends Component {
 
     for (var i = 0; i < unshuffledList.length; i++) {
       let indexOfItem = activeList.indexOf(unshuffledList[i]);
-      selectedAnsIndex.push(selectedChoice[indexOfItem]);
+      selectedAnsIndex.push(selectedChoice[indexOfItem]-1);
     }
 
     for (var i = 0; i < unshuffledList.length; i++) {
@@ -173,11 +173,15 @@ class listType2 extends Component {
 
           let questClassName = "listTypeQuest1"
           let questClassWrong = "listTypeQuest3"
-          let buttonText = this.state.superListNames[this.state.selectedChoice[i]]
+          // let buttonText = this.state.superListNames[this.state.selectedChoice[i]]
+          let dropDownHeadText = 'select';
+          if (this.state.selectedChoice[i]) {
+            dropDownHeadText = this.state.superListNames[this.state.selectedChoice[i]-1]
+          }
           let visibility = true;
           let iconType = null;
           let iconColor = 'Aqua';
-          if (buttonText) {
+          if (dropDownHeadText !== 'select') {
             questClassName = "listTypeQuest2";
           }
           if (this.state.quizOver) {
@@ -206,19 +210,7 @@ class listType2 extends Component {
 
             return(
               <div className="listTypeContainer">
-                {this.state.quizOver?
-                  <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                  <div>
-                      <p className={questClassName}>
-                        <Icon fill={iconColor} type={iconType} />
-                      </p>
-                  </div>
-                  </Animated>
-                  :
-                  <p className="listTypeQuest1">
-                  {i+1}
-                  </p>
-                }
+
                 {this.state.quizOver?
                 <div>
                   <Animated animationIn="flipInX" animationOut="fadeOut" isVisible={true}>
@@ -237,7 +229,7 @@ class listType2 extends Component {
                   :
                     <Animated key={i} id={i}  animationIn="lightSpeedIn" animationOut="fadeOut" isVisible={true}>
                       <Dropdown overlay={menu} trigger={['click']}>
-                        <p className={questClassName} onClick={() => this.dropDownClicked(i)}>{item}</p>
+                        <p className={questClassName} onClick={() => this.dropDownClicked(i)}>{dropDownHeadText}</p>
                       </Dropdown>
                     </Animated>
 
@@ -250,14 +242,11 @@ class listType2 extends Component {
         null
       }
 
-          <Animated animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
-
-            {(this.state.submitType === 'submit')?
-            <Button className="backButton" onClick={this.submitSelected} ghost> Submit </Button>
-              :
-              null
-            }
-          </Animated>
+        <Animated animationIn="zoomIn" animationOut="zoomOut" isVisible={this.state.submitVisibility}>
+          <div className='buttonContainer'>
+            <Button className="submitButton" onClick={this.submitSelected} ghost> Submit </Button>
+          </div>
+        </Animated>
 
       </div>
 

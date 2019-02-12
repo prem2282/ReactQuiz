@@ -51,9 +51,23 @@ class matchType extends Component {
 
   submitSelected = () => {
 
+    let selectedAns = this.state.selectedAns;
+    let correctAns = this.state.matchAnswer;
+    let indexArray = [];
+    let correctArray = [];
+
+    for (var i = 0; i < selectedAns.length; i++) {
+        let index = correctAns.indexOf(selectedAns[i])
+        indexArray.push(index)
+        correctArray.push(i)
+    }
+
+
+    let selectedAnsIndex = indexArray.join('-')
+    let correctAnsIndex = correctArray.join('-')
     let matchTypeResponse = {
-      selectedAns: this.state.selectedAnswers,
-      correctAns: this.state.matchAnswer
+      selectedAns: selectedAnsIndex,
+      correctAns: correctAnsIndex,
     }
 
     this.props.selected(matchTypeResponse);

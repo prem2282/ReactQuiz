@@ -136,7 +136,7 @@ class landingPage  extends Component {
             success = {this.props.success}
             error = {this.props.error}
             facebookResp = {this.props.facebookResp}
-            homeButton = {this.props.homeButton}
+            homeButton = {this.homeButton}
             logOutButton = {this.logOut}
             pageLoaded = "LandingPage"
             profile = {this.props.userProfile}
