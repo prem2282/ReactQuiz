@@ -31,7 +31,7 @@ class historyPage extends Component {
         savedQuizSet: [],
         questionArray : [...this.props.questionArray],
         quizList : [...this.props.quizList],
-        showDetails : false,
+        showDetails : true,
         showCompleted : false,
         showSave : false,
         quizItem : {
@@ -163,11 +163,11 @@ class historyPage extends Component {
       console.log("this.state.quizSet:" , this.state.quizSet);
       console.log("this.state.questionArray:" , this.state.questionArray);
 
-      if (!this.state.showDetails) {
-        this.setState({
-          showDetails : true,
-        })
-      }
+      // if (!this.state.showDetails) {
+      //   this.setState({
+      //     showDetails : true,
+      //   })
+      // }
 
 
       return (
@@ -176,7 +176,24 @@ class historyPage extends Component {
              <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                <div>
                  {(this.state.showDetails)?
-                   <div>
+                   <div className="historyEmptyContainter">
+                     {this.state.quizSet.length?
+                       null:
+                       <div>
+                         <Delayed waitBeforeShow={500}>
+                         <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
+                           <h1 style={{color:'Gray'}}>You don't have any report card</h1>
+                         </Animated>
+                        </Delayed>
+                        <Delayed waitBeforeShow={1500}>
+                         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+                           <h2 style={{color:'Gray'}}>Your completed Quiz reports will appear here</h2>
+                         </Animated>
+                        </Delayed>
+                       </div>
+
+                     }
+
                       <div className="historyBoxContainter">
                         {
                           this.state.quizSet.map((quiz, i) => {
