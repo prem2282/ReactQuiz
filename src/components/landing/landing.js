@@ -79,12 +79,13 @@ class landingPage  extends Component {
     }
 
   }
-  catSelected = (category) => {
+  pmpSelected = (category) => {
     console.log("category:",category);
     this.setState({
       displayFeatures: true,
       category: category
     })
+    this.props.clearSelectedGroup();
   }
 
   homeButton = () => {
@@ -155,7 +156,7 @@ class landingPage  extends Component {
         <Delayed waitBeforeShow={500}>
         <div className="categoryCover">
         <Categories
-          catSelected={this.catSelected}
+          catSelected={this.pmpSelected}
           groupSet = {this.props.groupSet}
           selectedGroup = {this.selectedGroup}
           pmpSelected = {this.pmpSelected}

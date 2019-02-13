@@ -176,6 +176,8 @@ class historyPage extends Component {
              <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                <div>
                  {(this.state.showDetails)?
+                   <div>
+
                    <div className="historyEmptyContainter">
                      {this.state.quizSet.length?
                        null:
@@ -191,8 +193,8 @@ class historyPage extends Component {
                          </Animated>
                         </Delayed>
                        </div>
-
-                     }
+                      }
+                    </div>
 
                       <div className="historyBoxContainter">
                         {
@@ -216,7 +218,7 @@ class historyPage extends Component {
                           })
                         }
                       </div>
-                  </div>
+                   </div>
                  :null
                  }
                </div>

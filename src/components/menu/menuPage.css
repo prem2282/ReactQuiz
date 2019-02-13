@@ -34,7 +34,7 @@
 
   display: grid;
   margin: .5em;
-  height: 100%;
+  /* height: 100%; */
   box-shadow: 5px 5px 2px black	;
   border-color: #320648;
   border-radius: 2px;

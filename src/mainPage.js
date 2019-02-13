@@ -365,9 +365,10 @@ class mainPage extends Component {
       },
       quizIdRunning : null,
       questionArray : [],
-      selectedGroupSet : null,
+      // selectedGroupSet : null,
       boardSelected : null,
       pageId : "landingPage",
+      userQuizData: null,
     })
   }
 
@@ -376,8 +377,16 @@ class mainPage extends Component {
     this.setState({
       pageId: "refresh",
       refreshTo: "landingPage",
+      // selectedGroupSet:null,
     })
     this.resetQuizDetails();
+  }
+
+  clearSelectedGroup = () => {
+    this.setState({
+      selectedGroup: null,
+      selectedGroupSet:null,
+    })
   }
 
   goBackToCourse = () => {
@@ -388,8 +397,10 @@ class mainPage extends Component {
 
   goBackToLanding = () => {
     this.setState({
-      pageId: "landingPage"
+      pageId: "refresh",
+      refreshTo: "landingPage",
     })
+    this.resetQuizDetails();
   }
 
   goToHistoryPage = () => {
@@ -1161,6 +1172,7 @@ class mainPage extends Component {
             backButton = {this.landingBackButton}
             selectedGroupSet = {this.state.selectedGroupSet}
             userQuizHistory = {this.state.userQuizHistory}
+            clearSelectedGroup = {this.clearSelectedGroup}
           />
 
         </div>
