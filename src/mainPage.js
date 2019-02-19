@@ -10,6 +10,7 @@ import QuestType1 from '..//src/components/questions/questType1';
 import ListType from '..//src/components/questions/listType2';
 import MatchType from '..//src/components/questions/matchType';
 import QuestType5 from '..//src/components/questions/questType5';
+import DictationType from '..//src/components/questions/dictation';
 import Header from '..//src/components/header/header';
 import PMPHeader from '..//src/components/header/headerPMP';
 import ResultPage from '..//src/components/menu/resultPage';
@@ -624,6 +625,9 @@ class mainPage extends Component {
       case 3:
         return (<div>{this.listTyperender()}</div>);
         break;
+      case 4:
+        return (<div>{this.dictationTyperender()}</div>);
+        break;
       case 5:
         return (<div>{this.questType5render()}</div>);
         break;
@@ -641,6 +645,22 @@ class mainPage extends Component {
     variableValues[this.state.currentQuestionNum] =  null;
     this.setState({
       selectedAnsIndex: selectedAnsIndex,
+      variableValues: variableValues,
+    })
+    this.nextQuestion();
+
+  }
+
+  dictationCompleted = (dictationResponse) => {
+    let selectedAnsIndex = [...this.state.selectedAnsIndex];
+    let correctAnsIndex = [...this.state.correctAnsIndex];
+    selectedAnsIndex[this.state.currentQuestionNum] = dictationResponse.selectedAns;
+    correctAnsIndex[this.state.currentQuestionNum] = dictationResponse.correctAns;
+    let variableValues = [...this.state.variableValues];
+    variableValues[this.state.currentQuestionNum] =  null;
+    this.setState({
+      selectedAnsIndex: selectedAnsIndex,
+      correctAnsIndex: correctAnsIndex,
       variableValues: variableValues,
     })
     this.nextQuestion();
@@ -750,7 +770,29 @@ class mainPage extends Component {
         let answerText = rightAns + "-" + wrongAns
         ansInd.push(answerText);
 
-      } else {
+      } else if (this.state.quizSet[i].QuestionType === "4") {
+
+                correctAns = this.state.correctAnsIndex[i].split('-')
+                selectedAns = this.state.selectedAnsIndex[i].split('-')
+
+                let rightAns = 0;
+                let wrongAns = 0;
+                for (var j = 0; j < correctAns.length; j++) {
+                  let correctAnsWord = _.trim(_.lowerCase(correctAns[j]));
+                  let selectedAnsWord = _.trim(_.lowerCase(selectedAns[j]));
+
+                  if (correctAnsWord === selectedAnsWord) {
+                    rightAns = rightAns + 1
+                  } else {
+                    wrongAns = wrongAns + 1
+                  }
+                }
+
+                let answerText = rightAns + "-" + wrongAns
+                ansInd.push(answerText);
+
+
+      }  else {
 
           correctAns = _.trim(_.lowerCase(this.state.correctAnsIndex[i]));
           selectedAns = _.trim(_.lowerCase(this.state.selectedAnsIndex[i]));
@@ -797,6 +839,21 @@ class mainPage extends Component {
         for (var j = 0; j < correctAns.length; j++) {
           totalMarks = totalMarks + 1;
           if (correctAns[j] === selectedAns[j]) {
+          myMarks = myMarks + 1
+          }
+
+        }
+
+      } else if (this.state.quizSet[i].QuestionType === "4") {
+
+        let correctAns = this.state.correctAnsIndex[i].split('-')
+        let selectedAns = this.state.selectedAnsIndex[i].split('-')
+
+        for (var j = 0; j < correctAns.length; j++) {
+          totalMarks = totalMarks + 1;
+          let correctAnsWord = _.trim(_.lowerCase(correctAns[j]));
+          let selectedAnsWord = _.trim(_.lowerCase(selectedAns[j]));
+          if (correctAnsWord === selectedAnsWord) {
           myMarks = myMarks + 1
           }
 
@@ -1057,6 +1114,20 @@ class mainPage extends Component {
     )
   }
 
+  dictationTyperender = () => {
+    const questionNum = this.state.currentQuestionNum + 1;
+    const currentQuestionNum = this.state.currentQuestionNum;
+
+    return (
+        <DictationType
+          quiz = {this.state.quizSet[currentQuestionNum]}
+          questionNum = {questionNum}
+          completed = {this.dictationCompleted}
+          saveQuiz = {this.saveIncompleteQuiz}
+        />
+    )
+
+  }
   listTyperender = () => {
     const questionNum = this.state.currentQuestionNum + 1;
     const currentQuestionNum = this.state.currentQuestionNum;

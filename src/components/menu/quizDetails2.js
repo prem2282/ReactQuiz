@@ -80,6 +80,11 @@ class quizDetails2 extends React.Component {
         textArray.push(matchAnswer[Number(answerIndex[i])])
       }
 
+    } else if (questionSet.QuestionType === '4') {
+      let answerIndex = selectedAnsIndex[questionIndex].split('-');
+      for (let i = 0; i < answerIndex.length; i++) {
+        textArray.push(answerIndex[i])
+      }
     }
 
     // let textArray = answerText?answerText.split('-'):[];
@@ -477,8 +482,55 @@ class quizDetails2 extends React.Component {
 
                             )
 
+                        } else if (questionSet.QuestionType === '4') {
+                          let listQuestion = questionSet.Question.split(',');
+                          return(
+                            <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
+                              <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
+                                <Panel header={collapseText}>
 
-                          } else {
+                                  <div >
+                                    <div  className="historyQuestBox">
+                                      <p>
+                                        "Dictation Words"
+                                      </p>
+
+                                      {listQuestion.map((item, i) => {
+                                        let yourAnsColor = 'Red';
+                                        let answerInd = false;
+                                        let tickText = wrongText;
+                                        let correctAnsWord = _.trim(_.upperCase(item)); ;
+                                        let yourdAnsWord = _.trim(_.upperCase(yourAnswerArray[i]));
+                                        if (correctAnsWord === yourdAnsWord) {
+                                          yourAnsColor = 'Green'
+                                          answerInd = true
+                                          tickText = correctText
+                                        }
+                                        return(
+                                          <div className = 'dictationType'>
+                                            <p className="matchTypeAnswer">{tickText}</p>
+                                            <p className="matchTypeQuestion">{correctAnsWord}</p>
+                                            {answerInd?
+                                            null:
+                                            <p className="matchTypeWrongAnswer">{yourdAnsWord}</p>
+                                            }
+
+                                          </div>
+                                        )
+
+
+                                      })}
+                                    </div>
+                                  </div>
+                                </Panel>
+                              </Collapse>
+                            </Animated>
+
+                          )
+
+                        }
+
+                          else {
                             let displayQuestion = questionSet.Question.replace("<dash>","__________")
 
 

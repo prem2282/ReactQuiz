@@ -6,6 +6,36 @@
   /*grid-template-columns: 100%;*/
 }
 
+
+.soundIconClass{
+    font-size: 60px;
+    margin-bottom: 0px;
+    color: Gray;
+}
+.sountText1Class{
+  margin-bottom: 0px;
+  color: Khaki;
+  font-size: 24px;
+}
+.sountText2Class{
+  margin-bottom: 0px;
+  color: Gray;
+}
+
+.fill-input {
+  width: 70%;
+  text-align: center;
+  height: 60px;
+  font-size: 40px;
+  color: Gold;
+  font-variant-caps: all-small-caps;
+  font-family: monospace;
+  background-color: DarkSlateGray;
+  font-stretch: semi-condensed;
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+
 .matchTypeContainer{
   display: grid;
   grid-template-columns: 60% 40%;
