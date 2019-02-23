@@ -483,7 +483,36 @@ class quizDetails2 extends React.Component {
                             )
 
                         } else if (questionSet.QuestionType === '4') {
-                          let listQuestion = questionSet.Question.split(',');
+                          // let listQuestion = questionSet.Question.split(',');
+                          let subject = questionSet.subject;
+                          let listQuestion = [];
+                          if ( questionSet.subject === 'Tamil') {
+                            let wordList = questionSet.Question.split(',');
+
+                            for (var i = 0; i < wordList.length; i++) {
+
+                              let wordArray = wordList[i].split(";");
+                              let newWordArray = [];
+
+                              for (var j = 0; j < wordArray.length; j++) {
+                                let letter = wordArray[j];
+                                if (_.startsWith(wordArray[j],'$')) {
+                                  letter = _.trim(wordArray[j],'$')
+                                }
+                                newWordArray.push(letter)
+                              }
+
+                              let newWord = newWordArray.join("");
+                              listQuestion.push(newWord);
+                            }
+
+
+                          } else {
+                            listQuestion = questionSet.Question.split(',');
+                          }
+
+
+
                           return(
                             <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
                               <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>

@@ -7,6 +7,48 @@
 }
 
 
+.lettersDiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  grid-gap: 5px;
+  background-color: transparent;;
+  padding: 10px;
+  align-items: center;
+  align-content: center;
+}
+
+.letterBoxNormal {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 2px 0;
+  margin-bottom: 0;
+  font-size: 25px;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+
+.letterBoxHidden {
+  background-color: Gray;
+  color: Gold;
+  text-align: center;
+  padding: 2px 0;
+  margin-bottom: 0;
+  font-size: 25px;
+  border-radius: 10px;
+}
+
+.letterBoxChoice {
+  background-color: DimGray;
+  color: Gold;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+
+
 .soundIconClass{
     font-size: 60px;
     margin-bottom: 0px;

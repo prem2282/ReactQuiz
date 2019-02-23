@@ -11,6 +11,7 @@ import ListType from '..//src/components/questions/listType2';
 import MatchType from '..//src/components/questions/matchType';
 import QuestType5 from '..//src/components/questions/questType5';
 import DictationType from '..//src/components/questions/dictation';
+import TamilDictType from '..//src/components/questions/tamilDict';
 import Header from '..//src/components/header/header';
 import PMPHeader from '..//src/components/header/headerPMP';
 import ResultPage from '..//src/components/menu/resultPage';
@@ -626,7 +627,11 @@ class mainPage extends Component {
         return (<div>{this.listTyperender()}</div>);
         break;
       case 4:
-        return (<div>{this.dictationTyperender()}</div>);
+        if (this.state.quizSet[questionNum].subject === 'Tamil') {
+          return (<div>{this.tamilDictationTyperender()}</div>);
+        } else {
+          return (<div>{this.dictationTyperender()}</div>);
+        }
         break;
       case 5:
         return (<div>{this.questType5render()}</div>);
@@ -650,6 +655,25 @@ class mainPage extends Component {
     this.nextQuestion();
 
   }
+
+
+  tamilDictationCompleted = (dictationResponse) => {
+    let selectedAnsIndex = [...this.state.selectedAnsIndex];
+    let correctAnsIndex = [...this.state.correctAnsIndex];
+    selectedAnsIndex[this.state.currentQuestionNum] = dictationResponse.selectedAns;
+    correctAnsIndex[this.state.currentQuestionNum] = dictationResponse.correctAns;
+    let variableValues = [...this.state.variableValues];
+    variableValues[this.state.currentQuestionNum] =  null;
+    this.setState({
+      selectedAnsIndex: selectedAnsIndex,
+      correctAnsIndex: correctAnsIndex,
+      variableValues: variableValues,
+    })
+    this.nextQuestion();
+
+
+  }
+
 
   dictationCompleted = (dictationResponse) => {
     let selectedAnsIndex = [...this.state.selectedAnsIndex];
@@ -1113,6 +1137,26 @@ class mainPage extends Component {
         />
     )
   }
+
+  tamilDictationTyperender = () => {
+
+  const questionNum = this.state.currentQuestionNum + 1;
+  const currentQuestionNum = this.state.currentQuestionNum;
+
+    return (
+        <TamilDictType
+          quiz = {this.state.quizSet[currentQuestionNum]}
+          questionNum = {questionNum}
+          completed = {this.tamilDictationCompleted}
+          saveQuiz = {this.saveIncompleteQuiz}
+        />
+    )
+
+
+  }
+
+
+
 
   dictationTyperender = () => {
     const questionNum = this.state.currentQuestionNum + 1;
