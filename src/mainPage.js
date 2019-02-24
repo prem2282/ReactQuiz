@@ -22,7 +22,7 @@ import './App.css';
 import _ from 'lodash';
 import axios from 'axios';
 import {Progress, Affix, message} from 'antd';
-import Request from 'superagent';
+import Request from 'superagent'; 
 const url = require('url');
 
 const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
@@ -493,8 +493,11 @@ class mainPage extends Component {
       this.checkUserForQuiz(groupId,'Completed');
       this.checkUserForQuiz(groupId,'Running');
     }
+
+    let newQuizSet = _.shuffle(quizSet);
+
     this.setState({
-      quizSet: quizSet,
+      quizSet: newQuizSet,
       groupSetFetched: true,
       quizIdRunning: groupId,
       pageId: "refresh",
