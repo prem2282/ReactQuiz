@@ -227,7 +227,7 @@ class quizDetails2 extends React.Component {
                             let split = answerCheck.split("-");
                             if (Number(split[0]) === 0) {
                                 checkText = "(" + split[1] + wrongText + ")";
-                            } else if (Number(split[1]) === 1) {
+                            } else if (Number(split[1]) === 0) {
                                 checkText = "(" + split[0] + correctText + ")";
                             } else {
                                 checkText = "(" + split[0] + correctText + " , " + split[1] + wrongText + ")";

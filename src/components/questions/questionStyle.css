@@ -226,7 +226,7 @@
 
 .countContainer {
   position: absolute;
-  top: 0%;
+  top: 10%;
   bottom: 0%;
   display: grid;
   grid-template-columns: 100%;

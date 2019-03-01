@@ -22,7 +22,7 @@ import './App.css';
 import _ from 'lodash';
 import axios from 'axios';
 import {Progress, Affix, message} from 'antd';
-import Request from 'superagent'; 
+import Request from 'superagent';
 const url = require('url');
 
 const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
@@ -453,6 +453,7 @@ class mainPage extends Component {
   }
 
   pmpStartQuiz = (quizSet,groupId) => {
+
 
     if (this.state.userLoggedIn) {
       this.checkUserForQuiz(groupId,'Completed');

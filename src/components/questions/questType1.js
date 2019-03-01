@@ -27,13 +27,26 @@ class questType1 extends Component {
           selectedAns: false,
           selectedAnsIndex: null,
           muteVoice: false,
+          speakQuestion: true,
           ansBoxClass : ['answerBoxType1','answerBoxType1','answerBoxType1','answerBoxType1']
         }
     }
 
     choiceSelected = (event) => {
-      const choiceClicked = event.target.textContent;
+      const textContent = event.target.textContent;
       let clickedIndex = event.target.id;
+
+      if (this.props.quiz.subject === 'Tamil') {
+
+      } else {
+        var speechMessage = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+        speechMessage.voice = voices[0];
+        speechMessage.text = textContent;
+
+        speechSynthesis.speak(speechMessage);
+      }
+
 
       const ansBoxClass = ['answerBoxType1','answerBoxType1','answerBoxType1','answerBoxType1'];
       let selectedAnsIndex = this.state.selectedAnsIndex;
@@ -67,6 +80,40 @@ class questType1 extends Component {
     speechEnded = () => {
 
     }
+    speakQuestion = (text) => {
+
+
+
+      // for (var i = 0; i < voices.length; i++) {
+      //   console.log("voice #:", i);
+      //   console.log(voices[i]);
+      // }
+
+      if (this.props.quiz.subject === 'Tamil') {
+        var speechMessage = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+
+
+          // console.log(window.speechSynthesis.getLocale().toString());
+
+      } else {
+        var speechMessage = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+
+        // for (var i = 0; i < voices.length; i++) {
+        //   console.log(voice[i].getLocale().toString());
+        // }
+
+
+        speechMessage.voice = voices[4];
+        speechMessage.text = text;
+        speechSynthesis.speak(speechMessage);
+      }
+
+      this.setState({
+        speakQuestion: false,
+      })
+    }
     submitSelected = () => {
 
       this.setState({
@@ -88,27 +135,32 @@ class questType1 extends Component {
           questionVoice = questionVoice.replace("<dash>","dash")
       let displayQuestion = this.props.quiz.Question.replace("<dash>","__________")
 
+      if (this.state.speakQuestion) {
+        this.speakQuestion(questionVoice)
+      }
 
       let picSize = 200;
       let screenWidth = window.innerWidth;
 
       picSize = screenWidth/4;
+
+      let backgroundImage = null;
+
       let imageUrl = "url('" + this.props.quiz.Q_image + "')"
-      let backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) )," + imageUrl
+
+      if (this.props.quiz.Q_image) {
+              backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) )," + imageUrl
+      }
+
 
       return (
         <div>
         <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
           <div className = "questionContainer" style={{  backgroundImage:backgroundImage, backgroundColor:'transparent' }}>
-            {!this.state.muteVoice?
-              <Delayed waitBeforeShow={500}>
-                <VoicePlayer play onEnd={this.speechEnded} text={questionVoice}/>
-              </Delayed>
-              :null
-            }
+
             <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
               <div>
-                <p className="questionBox">{displayQuestion}</p>
+                <p className="questionBox" onClick={() => this.speakQuestion(questionVoice)}>{displayQuestion}</p>
               </div>
             </Animated>
             <div className="answerContainer">
@@ -159,4 +211,10 @@ export default questType1
 //   <div>
 //     <p className="questionBox">{displayQuestion}</p>
 //   </div>
+// }
+// {!this.state.muteVoice?
+//   <Delayed waitBeforeShow={500}>
+//     <VoicePlayer play onEnd={this.speechEnded} text={questionVoice}/>
+//   </Delayed>
+//   :null
 // }

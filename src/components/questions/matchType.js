@@ -78,11 +78,23 @@ class matchType extends Component {
 
     console.log("dropDownClicked");
     console.log("dropdown id:",id);
+    this.speakText(this.state.matchQuestion[id])
     this.setState({
       questionSelected: id,
     })
   }
 
+  speakText = (text) => {
+    if (this.props.quiz.subject === 'Tamil') {
+
+    } else {
+      var speechMessage = new SpeechSynthesisUtterance();
+      var voices = window.speechSynthesis.getVoices();
+      speechMessage.voice = voices[4];
+      speechMessage.text = text;
+      speechSynthesis.speak(speechMessage);
+    }
+  }
   resetChoice = () => {
     let choiceVisibility = [...this.state.choiceVisibility];
     choiceVisibility[this.state.questionSelected] = true;
@@ -107,7 +119,9 @@ class matchType extends Component {
     let choiceVisibility = [...this.state.choiceVisibility];
 
     if (!choiceVisibility[index]) {
-      message.warn("Choice Already Selected !")
+      let warnText = this.state.shuffledAnswers[index] + " is Already Selected !"
+      message.warn(warnText)
+      this.speakText(warnText)
     } else {
       choiceVisibility[index] = false;
 
@@ -118,6 +132,7 @@ class matchType extends Component {
         choiceVisibility[indexToClear] = true;
       }
       selectedAnswers[this.state.questionSelected] = this.state.shuffledAnswers[index]
+      this.speakText(this.state.shuffledAnswers[index])
       let submitVisibility = true;
 
       for (var i = 0; i < selectedAnswers.length; i++) {

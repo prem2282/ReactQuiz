@@ -329,7 +329,7 @@ class tamilDict extends Component {
         <div className="countContainer">
             <div onClick={this.clicked}>
               <Animated animationIn="rubberBand" animationOut="fadeOut" isVisible={this.state.visibility}>
-                <p>{letters.length}</p>
+                <h3 style={{color:"DarkGray"}}>{currentWord} of {this.state.words.length}</h3>
                 <div className="lettersDiv">
                   {letters.map((item,i) => {
                     return(
