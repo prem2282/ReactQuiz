@@ -170,7 +170,7 @@ class quizDetails2 extends React.Component {
 
   render() {
 
-
+    console.log('this.props.quizDetails.questionSet', this.props.quizDetails.questionSet);
     let questionNum = this.props.quizDetails.questionSet.split(',');
 
     let questionArray = null;

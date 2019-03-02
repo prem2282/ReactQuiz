@@ -1085,15 +1085,17 @@ class mainPage extends Component {
       quizStatus: "Completed"
     }
 
-    if (this.state.userProfile) {
-      if (this.state.userSavedQuizData) {
-        this.removeQuizHistory(this.state.userSavedQuizData.id)
-      }
+    if (!this.state.customQuiz) {
+      if (this.state.userProfile) {
+        if (this.state.userSavedQuizData) {
+          this.removeQuizHistory(this.state.userSavedQuizData.id)
+        }
 
-      if(quizDetails.userQuizId) {
-        this.updateUserQuiz(quizDetails);
-      } else {
-        this.addUserQuiz(quizDetails);
+        if(quizDetails.userQuizId) {
+          this.updateUserQuiz(quizDetails);
+        } else {
+          this.addUserQuiz(quizDetails);
+        }
       }
     }
 
@@ -1109,9 +1111,9 @@ class mainPage extends Component {
     const ansInd = this.checkAnswers();
     const score = this.findMarks();
 
-    if (!this.state.customQuiz) {
+
           this.saveQuizDetails(ansInd, score);
-    }
+
 
     this.setState(
       {
