@@ -139,7 +139,7 @@ class listType2 extends Component {
   }
 
   dropDownClicked = (id) => {
-    this.speakText(this.state.superList[id])
+    this.speakText(this.state.activeList[id].question)
     this.setState({
       questionSelected: id,
     })

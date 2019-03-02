@@ -39,6 +39,8 @@ class tamilDict extends Component {
       dictate: true,
       words: this.props.quiz.Question.split(','),
       enteredWords: this.props.quiz.Question.split(','),
+      helpText1: this.props.quiz.answer_1,
+      helpText2: this.props.quiz.answer_2,
       // words: Question.split(','),
       // enteredWords: Question.split(','),
       currentWord: 0,
@@ -126,7 +128,7 @@ class tamilDict extends Component {
       submittedWords: submittedWords,
       currentWord: currentWord,
       updatedCurrentWord: null,
-      correctCurrentWord: null,
+      // correctCurrentWord: null,
       currentWordVis: [],
       allDone: allDone,
       questionSelected: null,
@@ -322,14 +324,20 @@ class tamilDict extends Component {
             <div></div>
           )
       } else {
-
+        console.log("correctCurrentWord ", this.state.correctCurrentWord);
+        let correctWord = this.state.correctCurrentWord.join("");
+        let helpText1 = this.state.helpText1;
+        let helpText2 = this.state.helpText2;
+        helpText1 = this.state.helpText1.replace(correctWord,"__________")
+        helpText2 = this.state.helpText2.replace(correctWord,"__________")
 
     return (
 
-        <div className="countContainer">
+        <div className="dictContainter">
             <div onClick={this.clicked}>
               <Animated animationIn="rubberBand" animationOut="fadeOut" isVisible={this.state.visibility}>
-                <h3 style={{color:"DarkGray"}}>{currentWord} of {this.state.words.length}</h3>
+                <h3 style={{color:'Aqua'}}>{helpText1}</h3>
+                <h3 style={{color:'Aqua'}}>{helpText2}</h3>
                 <div className="lettersDiv">
                   {letters.map((item,i) => {
                     return(
