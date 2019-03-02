@@ -1,17 +1,26 @@
 
 import React, { Component } from 'react';
-import { Button, Icon, Affix, Tag, Avatar } from 'antd';
+import { Button, Icon, Affix, Tag, Avatar,Collapse, Slider } from 'antd';
 import {Animated} from 'react-animated-css';
 import './landing.css';
 import _ from 'lodash';
 import Delayed from '../..//components/header/delayed';
 import Slide from 'react-reveal/Slide';
 
+const Panel = Collapse.Panel;
  let categoryList = [];
  let boardList = [];
  let standardList = [];
  let subjectList = [];
  let lessonList = [];
+ let countList = [10,15,20,25];
+
+ const panel1Text1 = " Select Lessons  "
+ let panel1Text2 = "  All  "
+ const panel2Text1 = " Number of Questions  "
+ let panel2Text2 = "  All  "
+ const panel3Text1 = " Select Types  "
+ let panel3Text2 = "  All  "
 
 class categories extends Component {
 
@@ -60,6 +69,9 @@ class categories extends Component {
       backChoice: null,
       pageId: 'normal',
       refreshTo: 'normal',
+      customQuizSelected: false,
+      lessonList: [],
+      customQuestionNum: 20,
     }
   }
 
@@ -122,6 +134,7 @@ class categories extends Component {
       subGroupSet: subGroupSet,
       pageId: 'refresh',
       refreshTo: 'normal',
+      customQuizSelected: false,
 
     })
 
@@ -142,6 +155,40 @@ class categories extends Component {
     this.props.selectedGroup(subGroupSet[0]);
 
 
+  }
+
+  returnCustomizedList = () => {
+
+      let lessonSelector = this.state.lessonList;
+
+      let lessonListArray = [];
+
+      for (var i = 0; i < lessonSelector.length; i++) {
+        if (lessonSelector[i]) {
+          lessonListArray.push(this.state.subGroupSet[i].lessonNum);
+        }
+      }
+
+      if (lessonListArray.length === 0) {
+        for (var i = 0; i < lessonSelector.length; i++) {
+            lessonListArray.push(this.state.subGroupSet[i].lessonNum);
+        }
+      }
+
+      let groupSet = this.state.subGroupSet[0];
+      let lessonList = lessonListArray.join('-')
+      console.log(lessonList);
+      let response = {
+        category:  this.state.categorySelected,
+        board: this.state.boardSelected,
+        standard: this.state.standardSelected,
+        subject: this.state.subjectSelected,
+        lessonList: lessonList,
+        questionCount: this.state.customQuestionNum,
+        groupSet:groupSet,
+      }
+
+    this.props.customizedList(response)
   }
 
   otherProcess = (choice) => {
@@ -169,6 +216,10 @@ class categories extends Component {
       levelSelected = 'subject'
     } else if (this.state.levelSelected === 'subject') {
       this.returnGroupId(choice)
+    } else if (this.state.levelSelected === 'lesson') {
+
+
+
     }
 
 
@@ -181,7 +232,13 @@ class categories extends Component {
       refreshTo : 'normal'
     })
   }
+
+  startCustomQuiz = () => {
+
+          this.returnCustomizedList();
+  }
   menuSelected = (choice) => {
+
 
     if (choice === 'PMP') {
       this.props.catSelected(choice)
@@ -342,12 +399,17 @@ class categories extends Component {
     let groupSet = this.state.subGroupSet
     //console.log("groupSet:",groupSet);
     let subjectArray = _.filter(groupSet, function(group) { return group.subject === subject})
-
+    let lessonList = [];
     //console.log('subjectArray:',subjectArray);
+    for (var i = 0; i < subjectArray.length; i++) {
+      lessonList.push(false)
+    }
+
 
     this.setState({
       subGroupSet : subjectArray,
       subjectSelected: subject,
+      lessonList: lessonList,
     });
 
 
@@ -366,11 +428,32 @@ class categories extends Component {
       lessonSelected: lesson,
     });
 
-
-
-
   }
 
+  customQuizSelected =  () => {
+
+    this.setState({
+      customQuizSelected: true,
+      levelSelected: "lesson"
+    })
+  }
+
+  customLessonSelected = (lesson) => {
+
+    let lessonList = [...this.state.lessonList];
+    let lessonSelection = lessonList[lesson];
+
+    lessonList[lesson] = !lessonSelection;
+    this.setState({
+      lessonList: lessonList
+    })
+  }
+
+  customSlideChange = (value) => {
+    this.setState({
+      customQuestionNum: value
+    })
+  }
 
   renderMenu = (menuList,scoreList,topText) => {
 
@@ -389,28 +472,109 @@ class categories extends Component {
     if (this.state.levelSelected === 'board') {
       itemText = 'Class: '
     }
+
+    let lessonCount = 0;
+    for (var i = 0; i < this.state.lessonList.length; i++) {
+      if (this.state.lessonList[i]) {
+        lessonCount = lessonCount + 1
+      }
+    }
+
+    panel2Text2 = this.state.customQuestionNum;
+    console.log("lessonCount", lessonCount);
+    if (lessonCount) {
+      panel1Text2 = String(lessonCount)
+    } else {
+      panel1Text2 = " All "
+    }
+
+    let panelHeader1 = <p className="customQuizHeaderPara">{panel1Text1}
+                          <Tag color="DarkSlateBlue">
+                            {panel1Text2}
+                          </Tag>
+                        </p>
+
+    let panelHeader2 = <p className="customQuizHeaderPara">{panel2Text1}
+                          <Tag color="DarkSlateBlue">
+                            {panel2Text2}
+                          </Tag>
+                        </p>
+
+    let panelHeader3 = <p className="customQuizHeaderPara">{panel3Text1}
+                          <Tag color="DarkSlateBlue">
+                            {panel3Text2}
+                          </Tag>
+                        </p>
+
     return(
       <div>
           <div className='outerCatGrid'>
-              <div className="wecomeNote">
                 <Animated animationIn="slideInDown" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                <h2 className="welcomeText">{topText.topText1}</h2>
-                <h3 className="welcomeText2"> {topText.topText2}</h3>
+                <div className="wecomeNote">
+                  <h2 className="welcomeText">{topText.topText1}</h2>
+                </div>
                 </Animated>
-              </div>
-              {menuList.map((item,i) => {
+              {this.state.customQuizSelected?
+                <div className='outerCatBox'>
 
-                let score = scoreList[i];
-                let tagColor = "MediumSeaGreen";
-                if (Number(score) < 60) {
-                  tagColor = "IndianRed"
+                  <Collapse accordion >
+                    <Panel header={panelHeader1} key="1">
+                    <div  className='lessonChoiceOuter'>
+                      {menuList.map((item,i) => {
+
+                      let lessonButton = "lessonChoiceButton"
+                      let checkMark = null;
+                        if (this.state.lessonList[i]) {
+                          lessonButton = "lessonSelectedButton"
+                          checkMark = <Icon type="check-circle"/>
+                        }
+
+
+                        return(
+                          <Slide key={i} id={i} bottom>
+                            <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                                <Button id={item} className={lessonButton}  onClick={() => this.customLessonSelected(i)}>
+                                    <div>
+                                      {checkMark}  {item}
+                                    </div>
+                                </Button>
+                              </Animated>
+                          </Slide>
+                        )
+                        }
+                        )
+                      }
+                    </div>
+                    </Panel>
+                    <Panel header={panelHeader2} key="2">
+                        <Slider min={10} max={50} step={1} defaultValue={20} onChange={this.customSlideChange} value={this.state.customQuestionNum} />
+                    </Panel>
+                  </Collapse>
+                </div>
+              :
+              <div className="innerListContainer">
+                {this.state.levelSelected==='subject'?
+                  <div className='outerCatBox'>
+                    <Button className="customizeButton"  onClick={this.customQuizSelected}>
+                    Customize Quiz
+                    </Button>
+                  </div>
+                : null
                 }
-                return(
+
+                {menuList.map((item,i) => {
+
+                  let score = scoreList[i];
+                  let tagColor = "MediumSeaGreen";
+                  if (Number(score) < 60) {
+                    tagColor = "IndianRed"
+                  }
+                  return(
                     <Slide key={i} id={i} bottom>
                       <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
                         <div key={i} id={item}  className='outerCatBox'>
 
-                          <Button id={item} className="guestButton"  onClick={() => this.menuSelected(item)}>
+                          <Button id={item} className="itemButton"  onClick={() => this.menuSelected(item)}>
                               <div>
                                 {itemText}{item}
                               </div>
@@ -427,24 +591,41 @@ class categories extends Component {
                           </div>
                         </Animated>
                     </Slide>
-                )
-              })}
-
-
-              <div className="dummyDiv">
+                  )
+                  }
+                  )
+                }
               </div>
-              {showBackButton?
-                <Affix offsetBottom={20}>
-                  <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                    <div className="buttonContainer">
-                      <Avatar  className = 'backButton'  onClick={this.backButton}
-                       icon="double-left" />
+            }
 
-                    </div>
-                  </Animated>
-                </Affix>
 
-              :null}
+            {this.state.customQuizSelected?
+              <div>
+                <div style={{margin:'1rem'}}>
+                  <Button  type="primary" onClick={this.startCustomQuiz} >Start Quiz<Icon type="double-right" /></Button>
+                </div>
+                <div style={{margin:'1rem'}}>
+                  <Button  type="danger" ghost onClick={this.backButton} ghost><Icon type="double-left" /> Go Back </Button>
+                </div>
+              </div>
+            :
+            <div>
+              <div>
+                <div className="dummyDiv">
+                </div>
+                {showBackButton?
+                  <Affix offsetBottom={20}>
+                    <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                      <div className="buttonContainer">
+                        <Avatar  className = 'backButton'  onClick={this.backButton}
+                         icon="double-left" />
+
+                      </div>
+                    </Animated>
+                  </Affix>
+
+                :null}
+              </div>
               <Affix offsetBottom={20}>
                 <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
                   <div className="buttonContainer">
@@ -453,6 +634,8 @@ class categories extends Component {
                   </div>
                 </Animated>
               </Affix>
+            </div>
+            }
 
 
           </div>
@@ -463,8 +646,11 @@ class categories extends Component {
   }
 
   topFunction = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    if (!this.state.customQuizSelected) {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
   }
 
   scrollFunction = () => {
@@ -507,6 +693,11 @@ class categories extends Component {
           topText1 = this.state.boardSelected + " / " + this.state.standardSelected
           topText2 = "Select your Choice"
     } else if (this.state.levelSelected === 'subject') {
+          menuList = this.getLesson(choiceSelected)
+          scoreList = this.getScores(choiceSelected)
+          topText1 = this.state.boardSelected + " / " + this.state.standardSelected + " / " + this.state.subjectSelected
+          topText2 = "Select your Choice"
+    }  else if (this.state.levelSelected === 'lesson') {
           menuList = this.getLesson(choiceSelected)
           scoreList = this.getScores(choiceSelected)
           topText1 = this.state.boardSelected + " / " + this.state.standardSelected + " / " + this.state.subjectSelected

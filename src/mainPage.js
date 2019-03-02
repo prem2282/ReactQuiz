@@ -91,6 +91,7 @@ class mainPage extends Component {
       selectedGroupSet : null,
       muteVoice : false,
       gotPMPQuestions : false,
+      customQuiz: false,
     }
   }
 
@@ -326,10 +327,13 @@ class mainPage extends Component {
     if (localStorage.userId) {
       this.getUserSavedLocally(localStorage.userId)
     }
-    if (!this.state.gotPMPQuestions) {
-      this.getPMPQuestionsApi();
-      this.getGroupSet();
-    }
+    // if (!this.state.gotPMPQuestions) {
+    //   this.getPMPQuestionsApi();
+    //
+    // }
+
+    this.getGroupSet();
+
 
   }
 
@@ -371,6 +375,7 @@ class mainPage extends Component {
       boardSelected : null,
       pageId : "landingPage",
       userQuizData: null,
+      customQuiz: false,
     })
   }
 
@@ -384,7 +389,14 @@ class mainPage extends Component {
     this.resetQuizDetails();
   }
 
-  clearSelectedGroup = () => {
+  clearSelectedGroup = (category) => {
+
+    if (category === 'PMP') {
+      if (!this.state.gotPMPQuestions) {
+        this.getPMPQuestionsApi();
+      }
+    }
+
     this.setState({
       selectedGroup: null,
       selectedGroupSet:null,
@@ -495,10 +507,8 @@ class mainPage extends Component {
       this.checkUserForQuiz(groupId,'Running');
     }
 
-    let newQuizSet = _.shuffle(quizSet);
-
     this.setState({
-      quizSet: newQuizSet,
+      quizSet: quizSet,
       groupSetFetched: true,
       quizIdRunning: groupId,
       pageId: "refresh",
@@ -507,10 +517,50 @@ class mainPage extends Component {
 
   }
 
+
+  customizedList = (response) => {
+
+      console.log("custom responseData:", response);
+        let groupId = response.board + response.standard + response.subject
+    this.setState({
+      pageId: "loading",
+      selectedGroupSet: response.groupSet,
+      customQuiz: true,
+    })
+
+
+
+    let targetUrl = QuestionListUrl;
+    // let groupId = group.id
+    axios.get(targetUrl, {params:{
+      category:response.category,
+      board: response.board,
+      standard: response.standard,
+      subject: response.subject,
+      lessonNum: response.lessonList,
+    }})
+    .then(res => {
+      //console.log("quizset is here");
+      if (res.data.length > 0) {
+              let newQuizSetA = _.shuffle(res.data);
+              console.log("newQuizSetA",newQuizSetA);
+              console.log("length", response.questionCount);
+              let newQuizSetB = _.slice(newQuizSetA,0,response.questionCount)
+              console.log("newQuizSetB",newQuizSetB);
+              this.startQuiz(newQuizSetB,groupId)
+      } else {
+        message.warning('This is not yet ready. Please check back later');
+        this.goBackToLanding();
+      }
+
+    })
+
+  }
   selectedGroup = (group) => {
     this.setState({
       pageId: "loading",
-      selectedGroupSet: group
+      selectedGroupSet: group,
+      customQuiz: false,
     })
     //console.log("selectedGroup",group);
       // let targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
@@ -526,7 +576,8 @@ class mainPage extends Component {
       .then(res => {
         //console.log("quizset is here");
         if (res.data.length > 0) {
-                this.startQuiz(res.data,groupId)
+                let newQuizSet = _.shuffle(res.data);
+                this.startQuiz(newQuizSet,groupId)
         } else {
           message.warning('This is not yet ready. Please check back later');
           this.goBackToLanding();
@@ -1058,8 +1109,10 @@ class mainPage extends Component {
     const ansInd = this.checkAnswers();
     const score = this.findMarks();
 
+    if (!this.state.customQuiz) {
+          this.saveQuizDetails(ansInd, score);
+    }
 
-    this.saveQuizDetails(ansInd, score);
     this.setState(
       {
         ansInd : ansInd,
@@ -1292,6 +1345,7 @@ class mainPage extends Component {
             selectedGroupSet = {this.state.selectedGroupSet}
             userQuizHistory = {this.state.userQuizHistory}
             clearSelectedGroup = {this.clearSelectedGroup}
+            customizedList = {this.customizedList}
           />
 
         </div>

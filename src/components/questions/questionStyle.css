@@ -1,51 +1,10 @@
+
 .buttonContainer {
   display: flex;
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
   /*grid-template-columns: 100%;*/
-}
-
-
-.lettersDiv {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  grid-gap: 5px;
-  background-color: transparent;;
-  padding: 10px;
-  align-items: center;
-  align-content: center;
-}
-
-.letterBoxNormal {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 2px 0;
-  margin-bottom: 0;
-  font-size: 25px;
-  border-radius: 10px;
-  font-weight: bolder;
-}
-
-.letterBoxHidden {
-  background-color: Gray;
-  color: Gold;
-  text-align: center;
-  padding: 2px 0;
-  margin-bottom: 0;
-  font-size: 25px;
-  border-radius: 10px;
-}
-
-.letterBoxChoice {
-  background-color: DimGray;
-  color: Gold;
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 5px;
-  font-size: 20px;
-  border-radius: 8px;
-  font-weight: bolder;
 }
 
 
@@ -139,6 +98,17 @@
   background-color: #222;
       border-radius: 10px;
 }
+
+.dualSubmitButton {
+  width: 200px;
+  height: 40px;
+  margin: 10px;
+  font-family: monospace;
+  font-size: 20px;
+  color: Aqua;
+  justify-content: space-between;
+  align-self: center;
+}
 .submitButton{
   width: 200px;
   height: 50px;
@@ -176,6 +146,35 @@
   grid-template-columns: 60% 40%;
 }
 
+.dualTypeQuest {
+
+  margin: 5px ;
+  padding: 5px;
+  color: Aqua;
+  background-color: transparent;;
+  border-style:  solid;
+  border-radius: 1px;
+  border-color: DarkGray;
+  align-content: space-around;
+  justify-content: space-around;
+
+
+}
+
+.dualTypeList {
+
+  margin: 5px ;
+  padding: 5px;
+  color: Aqua;
+  background-color: transparent;;
+  border-style:  solid;
+  border-radius: 1px;
+  border-color: DarkSlateGray;
+  align-content: space-around;
+  justify-content: space-around;
+
+
+}
 .listTypeQuest1 {
 
   margin: 5px ;
@@ -226,7 +225,7 @@
 
 .countContainer {
   position: absolute;
-  top: 10%;
+  top: 0%;
   bottom: 0%;
   display: grid;
   grid-template-columns: 100%;
@@ -241,6 +240,46 @@
   align-items: center;
   background-size: contain;
 }
+.dualButtonContainer {
+  position: absolute;
+  bottom: .5%;
+  width: 100%;
+  align-self:  center;
+  align-content: center;;
+  justify-content: center;;
+}
+.dualBoxContainer {
+
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 80%;
+  width: 100%;
+  padding: 1%;
+  border-color: white;
+  background-position: center;
+  border-radius: 10px;
+  align-content: center;
+
+
+}
+
+.dualBox {
+  display: grid;
+  align-items: stretch;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 300px;
+  margin: .1em;
+  padding: 1em;
+  align-self: center;
+  justify-self: center;
+  border-radius: 10px;
+}
+
 
 .questionContainer{
 
@@ -300,15 +339,19 @@
   user-select: none;
 }
 
+.dualQuestionText {
+    font-size: 30px;
+    color: Khaki;
+}
 .questionBox {
   display: grid;
   grid-template-columns: 100%;
   height: auto;
   font-size: 24px;
-  font-weight: lighter;
+  font-weight:  normal;
   width: auto;
-  font-style: normal;
-  margin: 1%;
+  font-style: normal;;
+  margin: 2rem;
   padding: 5px;
   border-color: Aqua;
   border-radius: 5px;
@@ -393,6 +436,14 @@
 
 @media screen and (max-width: 550px) {
 
+
+  .dualBoxContainer {
+
+    grid-template-columns: 100%;
+
+  }
+
+
   .ant-dropdown-menu {
       display: grid;
 
@@ -427,14 +478,7 @@
     background-size: cover;
   }
   .questionBox {
-    height: auto;
     font-size: 18px;
-    font-weight: lighter;
-    width: auto;
-    font-style: normal;
-    margin: 2px;
-    padding: 2px;
-    border-color: Aqua;
   }
 
   .answerBoxType1 {
@@ -470,14 +514,7 @@
 
 
   .questionBox {
-    height: auto;
     font-size: 20px;
-    font-weight: lighter;
-    width: auto;
-    font-style: normal;
-    margin: 2px;
-    padding: 2px;
-    border-color: Aqua;
   }
   .answerBoxType1 {
     font-size: 18px;
@@ -506,14 +543,7 @@
 @media screen and (min-width: 700px) and (max-width: 1200) {
 
   .questionBox {
-    height: auto;
     font-size: 24px;
-    font-weight: lighter;
-    width: auto;
-    font-style: normal;
-    margin: 2px;
-    padding: 2px;
-    border-color: Aqua;
   }
 
   .answerBoxType1 {

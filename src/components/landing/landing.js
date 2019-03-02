@@ -38,9 +38,7 @@ class landingPage  extends Component {
       getStartedClicked : true,
     })
   }
-  pmpSelected = () => {
 
-  }
   selectedGroup = (selectedGroup) => {
     this.props.selectedGroup(selectedGroup)
   }
@@ -85,7 +83,7 @@ class landingPage  extends Component {
       displayFeatures: true,
       category: category
     })
-    this.props.clearSelectedGroup();
+    this.props.clearSelectedGroup(category);
   }
 
   homeButton = () => {
@@ -159,6 +157,7 @@ class landingPage  extends Component {
           catSelected={this.pmpSelected}
           groupSet = {this.props.groupSet}
           selectedGroup = {this.selectedGroup}
+          customizedList = {this.props.customizedList}
           pmpSelected = {this.pmpSelected}
           backButton = {this.backButton}
           userProfile = {this.props.userProfile}

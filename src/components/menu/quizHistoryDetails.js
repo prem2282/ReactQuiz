@@ -121,13 +121,14 @@ class historyDetailsModel extends React.Component {
 
         } else {
            targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
-          //  targetUrl = 'http://127.0.0.1:8000/api/QuestionList/';
+           // targetUrl = 'http://127.0.0.1:8000/api/QuestionList/';
         }
 
-        let questionSet = this.props.quizList.questionSet
+        let text = this.props.quizList.questionSet.split(',')
+        let questionSet = text.join('-')
         console.log("questionSet:",questionSet);
         //
-        // questionSet = [1,2,3,4,5];
+        // let questionSet = [1,2,3,4,5];
 
         let  questionArray = [];
 

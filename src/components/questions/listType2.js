@@ -35,6 +35,17 @@ class listType2 extends Component {
     }
   }
 
+  speakText = (text) => {
+    if (this.props.quiz.subject === 'Tamil') {
+
+    } else {
+      var speechMessage = new SpeechSynthesisUtterance();
+      var voices = window.speechSynthesis.getVoices();
+      speechMessage.voice = voices[4];
+      speechMessage.text = text;
+      speechSynthesis.speak(speechMessage);
+    }
+  }
 
   componentWillMount () {
 
@@ -53,7 +64,7 @@ class listType2 extends Component {
 
     console.log("choice Clicked:", choice);
     let qNo = this.state.questionSelected;
-
+    this.speakText(this.state.superListNames[choice])
     let selectedChoice = [...this.state.selectedChoice];
     selectedChoice[qNo] =  choice+1;
 
@@ -128,6 +139,7 @@ class listType2 extends Component {
   }
 
   dropDownClicked = (id) => {
+    this.speakText(this.state.superList[id])
     this.setState({
       questionSelected: id,
     })
