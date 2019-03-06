@@ -17,6 +17,7 @@ console.log(responseData);
 
 const BaseRouter = () => (
   <div>
+    <h2>this is a sample text</h2>
     <Route exact path="/" component={MainPage} />
     <Route exact path="/pmp" component={MainPage} />
     <Route exact path="/dataload" component={Dataload} />
