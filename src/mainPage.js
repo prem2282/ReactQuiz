@@ -28,7 +28,7 @@ const url = require('url');
 const groupingUrl = 'https://prem2282.pythonanywhere.com/api/Grouping/'
 const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/'
 const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
-
+console.log(process.env.NODE_ENV)
 // const groupingUrl = 'http://127.0.0.1:8000/api/Grouping/'
 // const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/'
 // const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
