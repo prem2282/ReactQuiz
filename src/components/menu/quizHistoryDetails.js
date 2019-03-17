@@ -16,7 +16,13 @@ import Slide from 'react-reveal/Slide';
 
 const confirm = Modal.confirm;
 const Panel = Collapse.Panel;
+const QuestionListUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
+const PMPQuestionListUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
+const UserQuizUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/'
 
+// const QuestionListUrl = 'http://127.0.0.1:8000/api/QuestionList/'
+// const PMPQuestionListUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/';
+// const UserQuizUrl = 'http://127.0.0.1:8000/api/UserQuiz/';
 
 message.config({
   top: 100,
@@ -75,9 +81,10 @@ class historyDetailsModel extends React.Component {
 
     } else {
 
-      let questionSet = this.props.quizList.questionSet
+      let questionSet = this.props.quizList.questionSet.split(',').join('-')
+
       console.log("questionSet:",questionSet);
-     let targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/'
+     let targetUrl = QuestionListUrl;
 
      axios.get(targetUrl, {params:{
        questionSet:questionSet,
@@ -116,12 +123,10 @@ class historyDetailsModel extends React.Component {
 
         let targetUrl = null;
         if (groupIdArray[0]=='PMP') {
-          targetUrl = 'https://prem2282.pythonanywhere.com/api/PMPQuestionList/';
-          // targetUrl = 'http://127.0.0.1:8000/api/PMPQuestionList/';
+          targetUrl = PMPQuestionListUrl
 
         } else {
-           targetUrl = 'https://prem2282.pythonanywhere.com/api/QuestionList/';
-           // targetUrl = 'http://127.0.0.1:8000/api/QuestionList/';
+           targetUrl =  QuestionListUrl;
         }
 
         let text = this.props.quizList.questionSet.split(',')
@@ -218,8 +223,7 @@ class historyDetailsModel extends React.Component {
       let quizId = this.props.quizTopic.quizId;
       let quizNumber = this.props.quizNumber;
 
-      // let targetUrl = 'http://127.0.0.1:8000/api/UserQuiz/delete/' + quizId + '/' ;
-      let targetUrl = 'https://prem2282.pythonanywhere.com/api/UserQuiz/delete/' + quizId;
+      let targetUrl = UserQuizUrl + 'delete/' + quizId;
       this.props.remove(quizId);
       // let updated = false;
       //
