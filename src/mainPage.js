@@ -328,7 +328,7 @@ class mainPage extends Component {
 
   componentWillMount = () => {
 
-    this.getUserLocation();
+    // this.getUserLocation();
 
     if (localStorage.userId) {
       this.getUserSavedLocally(localStorage.userId)
@@ -960,7 +960,8 @@ class mainPage extends Component {
   }
 
   addUserQuiz = (userQuizDetails) => {
-    //console.log("adding quiz details");
+    console.log("adding quiz details");
+    console.log({userQuizDetails});
     let moment = require('moment')
     let updatedTime = moment().format();
     let targetUrl =  UserQuizUrl + 'create';
@@ -1056,6 +1057,9 @@ class mainPage extends Component {
 
   }
   saveQuizDetails = (answerSet, score) => {
+    console.log({answerSet})
+    console.log({score})
+
     let questionSet = [];
     for (var i = 0; i < this.state.quizSet.length; i++) {
       questionSet.push(this.state.quizSet[i].id)
@@ -1091,12 +1095,15 @@ class mainPage extends Component {
       quizStatus: "Completed"
     }
 
+    console.log({quizDetails});
+
     if (!this.state.customQuiz) {
       if (this.state.userProfile) {
         if (this.state.userSavedQuizData) {
           this.removeQuizHistory(this.state.userSavedQuizData.id)
         }
 
+        console.log({quizDetails:userQuizId})
         if(quizDetails.userQuizId) {
           this.updateUserQuiz(quizDetails);
         } else {
