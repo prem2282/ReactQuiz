@@ -1,3 +1,17 @@
+.tagClass {
+  font-size: 3vh;
+  background-color: rgb(39, 19, 19);
+  padding: 1vh 1vw 1vh 1vw;
+  display: inline-block;
+  border-radius: 3vh;
+  opacity: 0.9;
+  color: white;
+}
+
+.lessonChoiceOuter {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
 
 .ant-collapse {
   padding: 5px;
@@ -24,12 +38,10 @@
 .landingContainer {
 
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  /*margin: 1em;*/
+  grid-template-columns: 100%;
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
-  background-color: #E1DDD8;
 }
 
 .dummyDiv {
@@ -40,17 +52,15 @@
 }
 
 .categoryCover {
-  height: 100vh;
-  background-color: #C3BBB2;
+  height: 90vh;
+  background-color: #D34836;
 }
 .buttonContainer {
-  /*position:fixed !important;
+  /* position:fixed !important;
   position:absolute;
   top:0;
-  right:0;
-  bottom:0;
-  left:0;*/
-  display: flex;
+  right:0; */
+
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
@@ -76,14 +86,15 @@
   position:fixed !important;
   position:absolute;
   /*top:0;*/
-  /*right:0;*/
-  bottom:0;
   left:0;
+  bottom:0;
+  /* bottom:0;
+  left:0; */
+  margin-left: 2vh;
   /*width: 25%;*/
   /*height: 50px;*/
-  margin: 20px;
-  justify-content: space-between;
-  align-self: center;
+  /* justify-content: space-between; */
+  /* align-self: center; */
   background-color: DarkSlateBlue;
   cursor: pointer;
 }
@@ -133,30 +144,31 @@
 
 
 .googleButton {
-  margin: 10px;
-  width: 300px;
-  height: 50px;
+  margin: 3vh;
+  width: 40vw;
+  height: 10vh;
   background-color:  #D34836;
   color: Gainsboro;
-  font-size: 20px;
+  font-size: 5vh;
 }
 
 .faceBookButton {
-  margin: 10px;
-  width: 300px;
-  height: 50px;
+  margin: 3vh;
+  width: 40vw;
+  height: 10vh;
   background-color:  SteelBlue;
   color: Aqua;
-  font-size: 20px;
+  font-size: 5vh;
 }
 
 .itemButton {
-  margin: 5px;
-  width: 300px;
-  height: 50px;
-  background-color:  DarkSlateGray;
+  margin: 2vh;
+  width: 40vw;
+  height: 10vh;
+  background-color: black;
   color: Gainsboro;
-  font-size: 20px;
+  font-size: 4vh;
+  opacity: .7;
 }
 
 
@@ -195,21 +207,25 @@
 }
 
 .customizeButton {
-  margin: 5px;
-  width: 300px;
-  height: 50px;
-  background-color:  RoyalBlue;
-  color: LightCyan;
-  font-size: 20px;
+  margin: 2vh;
+  width: 40vw;
+  height: 10vh;
+  background-color:#222;
+  color: gold;
+  font-size: 4vh;
+  border-radius: 10vh;
+  border-color: transparent;
+  opacity: 0.9;
 }
 
+
 .guestButton {
-  margin: 10px;
-  width: 300px;
-  height: 50px;
+  margin: 3vh;
+  width: 40vw;
+  height: 10vh;
   background-color:  DarkSlateGray;
   color: Gainsboro;
-  font-size: 20px;
+  font-size: 5vh;
 }
 
 .guestButton:hover{
@@ -229,19 +245,30 @@
   background-color: Red;
 }
 
-.wecomeNote {
-    display: grid;
-    grid-template-columns: 90%;
+.iconClass {
+  color: aliceblue;
+  font-size: 4vh;
+}
+
+.welcomeNote {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+    z-index: -1;
     justify-content:  space-around;
-    background-color: #D7D1CB;
-    padding-top: 20px;
+    align-content: center;
+    padding-top: 2vh 2vw 2vh 2vw;
+    opacity: 0.9;
+
 }
 
 .welcomeText {
-  color: DarkSlateGray
+  color: seashell;
+  font-size: 7vh;
+  margin-bottom: 0;
 }
 .welcomeText2 {
-  color: #7B726C
+  color: #7B726C;
+  font-size: 4vh;
 }
 .outerGrid {
   display: grid;
@@ -256,12 +283,13 @@
 
   display: grid;
   grid-template-columns: 100%;
-  height:  auto;
+  height:  90vh;
   justify-content:  space-around;
   align-items: center;
   /*background-color: #D7D1CB;*/
-  background-color: #C3BBB2;
+  /* background-color: #C3BBB2; */
   padding: 2px;
+  overflow: scroll;
 }
 
 .outerBox {
@@ -288,13 +316,11 @@
 }
 
 .outerCatBox {
-  /*background: #307B93;*/
-  /*display: flex;*/
-  /*grid-template-columns: 80% 20%;*/
   background: transparent;
   padding: 2px;
   margin: 2px;
   border-radius: 10px;
+  width:auto;
 
 }
 
@@ -340,21 +366,7 @@
 }
 
 @media screen and (max-width: 800px) and (orientation: landscape) {
-  .googleButton {
-    width: 200px;
-    font-size: 14px;
-    margin: 2px;
-  }
-  .faceBookButton {
-    width: 200px;
-    font-size: 14px;
-    margin: 2px;
-  }
-  .guestButton {
-    width: 200px;
-    font-size: 14px;
-    margin: 2px;
-  }
+
   .premiumButton {
     width: 200px;
     font-size: 14px;
@@ -363,10 +375,65 @@
 
 }
 @media screen and (orientation: portrait) {
+    
+  .itemButton {
+    margin: 2vh;
+    width: 80vw;
+    height: 10vh;
+    font-size: 5vw;
+  }
+  .googleButton {
+    margin: 3vh;
+    width: 80vw;
+    height: 10vh;
+    font-size: 5vw;
+  }
 
+  .faceBookButton {
+    margin: 3vh;
+    width: 80vw;
+    height: 10vh;
+    font-size: 5vw;
+  }
+
+  .guestButton {
+    margin: 3vh;
+    width: 80vw;
+    height: 10vh;
+    font-size: 5vw;
+  }
+
+  .customizeButton{
+    margin: 2vh;
+    width: 80vw;
+    height: 10vh;
+    font-size: 5vw;
+  }
+
+  .welcomeText {
+    font-size: 7vw;
+  }
+  .welcomeText2 {
+    font-size: 4vw;
+  }
+
+  .tagClass {
+    font-size: 3vw;
+    padding: 1vh 1vw 1vh 1vw;
+    font-size: 3vh;
+    background: brown;
+    margin-top: 2vh;
+  }
+  
   .landingContainer {
     grid-template-columns: 100%;
   }
+
+  .lessonChoiceOuter {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
   .outerGrid {
     grid-template-columns: 100%;
   }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Tag, Avatar, Popover,Popconfirm, message} from 'antd';
+import {Button, Tag, Avatar, Popover,Popconfirm, message,Icon} from 'antd';
 import './header.css'
 import Countdown from 'react-countdown-now';
 import Typing from 'react-typing-animation';
@@ -53,7 +53,7 @@ class headerQuiz extends Component {
       } else {
         return(
           <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
-            <h3 style={{color:'Gold'}}>{minutes}:{seconds}</h3>
+            <div className="typeTextClass">{minutes}:{seconds}</div>
           </Animated>
         )
       }
@@ -123,23 +123,27 @@ class headerQuiz extends Component {
         <div className="quiz-grid-container">
           <div>
             {this.props.quizOn?
-              <Avatar  style = {{color: 'DarkSlateGray'}} icon="home" />
+              <div className='iconClass'>
+              </div>
 
               :
-              <Avatar className="avatarBox" onClick={this.props.homeButton}
-              style = {{color: 'LightSlateGray'}} icon="home" />
+              <div className='iconClass' onClick={this.props.homeButton}>
+              <Icon 
+                  type="home" />
+              </div>
             }
           </div>
 
           <div>
             <Typing Delay={1000} speed={100}>
-              <h3 style = {{color: 'DarkGray'}}>{this.props.progLabel}</h3>
+              <div className="typeTextClass">{this.props.progLabel}</div>
             </Typing>
           </div>
 
           <div>
             {this.props.quizOn?
-              <Countdown date={Date.now() + 30000} renderer={this.countRenderer} />
+            
+              <Countdown  date={Date.now() + 30000} renderer={this.countRenderer} />
               :
               null
             }
@@ -148,11 +152,10 @@ class headerQuiz extends Component {
           <div>
             {this.props.quizOn?
               <Popconfirm title="Do you really want to Quit?" onConfirm={this.props.homeButton} okText={quitButtonText}>
-                {(screenWidth<600)?
-                  <Avatar className="avatarBox" style = {{backgroundColor:'LightSlateGray'}} icon="close"/>
-                  :
-                  <Button style = {{border: 'transparent'}} type="primary">Quit</Button>
-                }
+                  <div className='iconClass' onClick={this.props.homeButton}>
+                  <Icon 
+                      type="close" />
+                  </div>                     
               </Popconfirm>
               :null
             }
@@ -165,7 +168,10 @@ class headerQuiz extends Component {
               </Popover>
               :
               <Popover placement="rightBottom" title={userName} content={guestContent} trigger="click">
-                <Avatar className="avatarBox" style = {{color: 'LightSlateGray'}} icon="user"/>
+                <div className='iconClass' onClick={this.props.homeButton}>
+                  <Icon 
+                      type="user" />
+                  </div>     
               </Popover>
             }
           </div>

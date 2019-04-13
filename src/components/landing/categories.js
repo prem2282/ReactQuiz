@@ -507,13 +507,27 @@ class categories extends Component {
                         </p>
 
     return(
-      <div>
+      <div className="">
           <div className='outerCatGrid'>
+
                 <Animated animationIn="slideInDown" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                <div className="wecomeNote">
-                  <h2 className="welcomeText">{topText.topText1}</h2>
+            
+                <div className="welcomeNote">
+                {showBackButton?
+                    <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
+                      <div className="buttonContainer">
+                        <Avatar  className = 'backButton'  onClick={this.backButton}
+                         icon="double-left" />
+
+                      </div>
+                    </Animated>
+
+                :<div></div>
+                }
+                   <h2 className="welcomeText">{topText.topText1}</h2>
                 </div>
                 </Animated>
+
               {this.state.customQuizSelected?
                 <div className='outerCatBox'>
 
@@ -552,7 +566,7 @@ class categories extends Component {
                   </Collapse>
                 </div>
               :
-              <div className="innerListContainer">
+              <div>
                 {this.state.levelSelected==='subject'?
                   <div className='outerCatBox'>
                     <Button className="customizeButton"  onClick={this.customQuizSelected}>
@@ -561,6 +575,7 @@ class categories extends Component {
                   </div>
                 : null
                 }
+                <div className="lessonChoiceOuter">
 
                 {menuList.map((item,i) => {
 
@@ -572,7 +587,7 @@ class categories extends Component {
                   return(
                     <Slide key={i} id={i} bottom>
                       <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                        <div key={i} id={item}  className='outerCatBox'>
+                        <div key={i} id={item}  className='s'>
 
                           <Button id={item} className="itemButton"  onClick={() => this.menuSelected(item)}>
                               <div>
@@ -580,9 +595,14 @@ class categories extends Component {
                               </div>
                               <div>
                                 {score?
-                                  <Tag color={tagColor}>
+                                <div className="tagClass">
+
+                                  {/* <Tag  color={tagColor}>
                                     Scored {score} %
-                                  </Tag>
+                                  </Tag> */}
+                                  Scored {score} %              
+                                </div>
+
                                 :null
                                 }
                                 </div>
@@ -595,6 +615,7 @@ class categories extends Component {
                   }
                   )
                 }
+                </div>
               </div>
             }
 
@@ -611,20 +632,9 @@ class categories extends Component {
             :
             <div>
               <div>
-                <div className="dummyDiv">
+                <div>
                 </div>
-                {showBackButton?
-                  <Affix offsetBottom={20}>
-                    <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                      <div className="buttonContainer">
-                        <Avatar  className = 'backButton'  onClick={this.backButton}
-                         icon="double-left" />
 
-                      </div>
-                    </Animated>
-                  </Affix>
-
-                :null}
               </div>
               <Affix offsetBottom={20}>
                 <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.submitVisibility}>

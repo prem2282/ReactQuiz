@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Animated} from 'react-animated-css';
 import { Icon } from 'antd';
+import './loading.css'
 
 
 class loadingPage extends Component {
@@ -15,14 +16,15 @@ class loadingPage extends Component {
 
   render() {
 
-    let loadingBody1 = "Prepare for your PMP with more than a thousand questions categorized and presented in way that will suit your perfectly. Practice at your own pace and feel the confidence of getting yourself ready for the big one!"
-    let loadingBody2 = "What are you waiting for? Login with your Google or Facebook account and explore!"
     return (
-      <div className = "menuContainer">
+      <div className = "loadingContainer">
         <Animated animationIn="zoomIn" animationOut="zoomOut" isVisible={true}>
-          <h2 style={{color:"Aqua"}}>Welcome To QuizMeBuddy</h2>
-          <h3 style={{color:"Aqua"}}>Loading...</h3>
-          <Icon type="sync" style={{fontSize:'40px'}} spin />
+          <h2 className="loadingText1">Welcome To QuizMeBuddy</h2>
+          <h3 className="loadingText2">Loading...</h3>
+          <div className="loadingText3">
+            <Icon type="sync" spin />
+          </div>
+
         </Animated>
       </div>
     )

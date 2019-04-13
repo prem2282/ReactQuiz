@@ -1,77 +1,118 @@
-.googleButton {
-  margin: 10px;
-  width: 300px;
-  height: 50px;
-  background-color:  #D34836;
-  color: Gainsboro;
-  font-size: 20px;
+
+.iconClass {
+    color: aliceblue;
+    font-size: 6vh;
 }
 
-.faceBookButton {
-  margin: 10px;
-  width: 300px;
-  height: 50px;
-  background-color:  SteelBlue;
-  color: Aqua;
-  font-size: 20px;
+.typeTextClass {
+  color: aliceblue;
+  font-size: 6vh;
 }
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 9% 10% 60% 10% 9%;
-  padding: 5px;
-  background-color: #444;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.quiz-grid-container {
-  display: grid;
-  grid-template-columns: 9% 25% 40% 15% 9%;
-  padding: 5px;
-  background-color: #444;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.faCrownClass {
-  font-size: 24px;
-  color: Gray;
-  -webkit-transition-duration: 0.3s;
-  -webkit-transition-property : transform;
-  transition-property: transform;
-}
-.faCrownClass:hover {
-    color: Gold;
+.headergoogleButton {
+    margin: 2vh;
+    width: 35vh;
+    height: 6vh;
+    background-color:  #D34836;
+    color: aliceblue;
+    font-size: 3vh;
+  }
+  
+  .headerfaceBookButton {
+    margin: 2vh;
+    width: 35vh;
+    height: 6vh;
+    background-color: steelblue;
+    color: aliceblue;
+    font-size: 3vh;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 9% 10% 60% 10% 9%;
+    padding: 1vh 1vw 1vh 1vw;
+    height: 10vh;
+    background-color: #444;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    opacity: .8;
+  }
+  
+  .quiz-grid-container {
+    display: grid;
+    grid-template-columns: 9% 25% 40% 15% 9%;
+    padding: 1vh 1vw 1vh 1vw;
+    height: 10vh;
+    background-color: #444;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    opacity: .8;
+  }
+  
+  /* .faCrownClass {
+    font-size: 24px;
+    color: Gray;
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-property : transform;
+    transition-property: transform;
+  }
+  .faCrownClass:hover {
+      color: Gold;
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+  } */
+  .avatarBox {
+    background-color: dimgray;
+    height: 6vh;
+    width: 6vh;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0,0,0,0);
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-property : transform;
+    transition-property: transform;
+  
+  }
+  
+  .avatarBox:hover {
+    background-color: #00CED1;
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
-}
-.avatarBox {
-  background-color: DarkGray;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0,0,0,0);
-  -webkit-transition-duration: 0.3s;
-  -webkit-transition-property : transform;
-  transition-property: transform;
+  }
+  
+  .headerBoxText {
+    font-size: 4.5vh;
+    color: snow;
+    font-size-adjust: auto;
+    /* font-family: monospace; */
+    text-align: center;
+    align-self: center;
+    margin-bottom: 0em;
+    padding: 0px;
+  }
+  
+  @media screen and (orientation: portrait) {
 
-}
 
-.avatarBox:hover {
-  background-color: #00CED1;
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
-}
 
-.headerBoxText {
-  font-size: 16px;
-  color: LightSlateGray;
-  font-size-adjust: auto;
-  /* font-family: monospace; */
-  text-align: center;
-  align-self: center;
-  margin-bottom: 0em;
-  padding: 0px;
-}
+    .iconClass {
+        font-size: 5vw;
+    }
+
+    .typeTextClass {
+      font-size: 5vw;
+    }
+
+    .headerBoxText{
+        font-size: 4.5vw;
+    }
+
+    .avatarBox{
+      height: 6vw;
+      width: 6vw;
+    }
+  
+  }
+
+  

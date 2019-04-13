@@ -1,4 +1,8 @@
-
+.counterText {
+  font-size : 30vh;
+  color : #222;
+  opacity: .8;
+}
 
 .lettersDiv {
   display: grid;
@@ -112,13 +116,13 @@
 }
 
 .matchTypeHeadText {
-  font-size: 20px;
+  font-size: 4vh;
     color: Aqua;
-    padding: 10px;
+    padding: 1vh 1vw 1vh 1vw;
 }
 
 .matchTypeChoiceText {
-  font-size: 18px;
+  font-size: 3vh;
   color: Aqua;
   padding: 3%;
   margin-bottom: 0em;
@@ -126,7 +130,7 @@
 }
 
 .matchTypeChoiceTextDisable {
-  font-size: 18px;
+  font-size: 3vh;
   color: Aqua;
   padding: 3%;
   margin-bottom: 0em;
@@ -134,7 +138,7 @@
 }
 
 .matchTypeQText {
-  font-size: 18px;
+  font-size: 3vh;
   color: Aqua;
   padding: 4%;
   margin-bottom: 0em;
@@ -142,14 +146,14 @@
 
 
 .matchTypeQTextA {
-  font-size: 18px;
+  font-size: 3vh;
   color: Gray;
   padding: 4%;
   margin-bottom: 0em;
 }
 
 .matchTypeQTextB {
-  font-size: 18px;
+  font-size: 3vh;
   color: Orange;
   padding: 4%;
   margin-bottom: 0em;
@@ -171,11 +175,12 @@
   align-self: center;
 }
 .submitButton{
-  width: 200px;
-  height: 50px;
-  margin: 10px;
+  width: 30vw;
+  height: 6vh;
+  margin: 2vh;
+  padding: 0vh 1vw 0vh 1vw;
   font-family: monospace;
-  font-size: 25px;
+  font-size: 4vh;
   color: Aqua;
   justify-content: space-between;
   align-self: center;
@@ -359,50 +364,41 @@
   border-radius: 10px;
 }
 
-
-.questionContainer{
-
-  position: absolute;
-  top: 10%;
-  bottom: 0%;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  height: 90%;
-  width: 100%;
-  padding: 5px;
-  border-color: white;
-  /* background-color: DarkSlateGray; */
-  background-color: transparent;
-  background-position: center;
-  border-radius: 10px;
-  align-self: center;
-  justify-content: space-between;
-  align-items: center;
-  background-size: contain;
+.screenBackground {
+  height: 90vh;
+  background-image: url('./../media/back4p.jpg');
+  background-size: cover;
+  overflow: scroll;
   background-repeat: no-repeat,
 }
 
-/*.questionContainer{
+.questionContainer{
 
-  display: inline-block;
-  height: 80%;
-  width: 95%;
-  padding: 5px;
-  border-color: white;
-  background-color: #333;
-  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 90vh;
+  width: 100%;
+  /* padding: 1vh 1vw 1vh 1vw; */
+  background-color: #222;
+  opacity: 0.85;
+
+
+  background-position: center;
   align-self: center;
-  justify-content: center;
-
-}*/
+  justify-content: space-between;
+  align-items: center;
+  background-size: cover;
+  overflow: scroll;
+  background-repeat: no-repeat,
+}
 
 .questionWithPic {
   display: grid;
   grid-template-columns: 100%;
   align-items: center;
   justify-content: space-around;
-  background-size: cover;
-  background-repeat: no-repeat,
+
+  
 }
 
 .questionPic {
@@ -428,14 +424,12 @@
   display: grid;
   grid-template-columns: 100%;
   height: auto;
-  font-size: 24px;
+  font-size: 5vh;
   font-weight:  normal;
   width: auto;
   font-style: normal;;
-  margin: .5rem;
-  padding: 5px;
+  padding: 1vh 1vw 1vh 1vw;
   border-color: Aqua;
-  border-radius: 5px;
   align-content: center;
   justify-content: space-around;
   align-self: center;
@@ -446,6 +440,7 @@
   -khtml-user-select: none;
   -ms-user-select:none;
   -moz-user-select:none;
+
 }
 
 .answerContainer {
@@ -455,14 +450,15 @@
   grid-template-rows: auto;
   align-items: stretch;
   justify-content: space-around;
-  margin: 5px;
+
+
 }
 
 .answerBoxType1 {
   height: 90%;
   width: auto;
-  font-size: 20px;
-  margin: .3em .3em .3em .3em ;
+  font-size: 4vh;
+  margin: 1vh 1vw 1vh 1vw;
   padding: 3%;
   color: Khaki;
   background-color: transparent;
@@ -495,8 +491,8 @@
 .answerBoxSel {
   height: 90%;
   width: auto;
-  font-size: 20px;
-  margin: .3em .3em .3em .3em ;
+  font-size: 4vh;
+  margin: 1vh 1vw 1vh 1vw;
   padding: 3%;
   color: #111;
   background-color: #aaa;
@@ -515,164 +511,34 @@
 
 
 
-@media screen and (max-width: 550px) {
-
-
-  .dualBoxContainer {
-
-    grid-template-columns: 100%;
-
-  }
-
-
-  .ant-dropdown-menu {
-      display: grid;
-
-  }
-
-  .matchTypeHeadText {
-    font-size: 16px;
-  }
-
-  .matchTypeChoiceText {
-    font-size: 14px;
-  }
-  .matchTypeChoiceTextDisable {
-    font-size: 14px;
-  }
-  .matchTypeQText {
-    font-size: 14px;
-  }
-  .matchTypeQTextA {
-    font-size: 14px;
-  }
-  .matchTypeQTextB {
-    font-size: 14px;
-  }
-
-  .matchTypeContainer{
-    grid-template-columns: 60% 40%;
-  }
+@media screen and (orientation: portrait)  {
 
   .questionContainer{
+    display: grid;
     grid-template-columns: 100%;
-    background-size: cover;
+
   }
+
   .questionBox {
-    font-size: 18px;
+    font-size: 6vw;
   }
 
   .answerBoxType1 {
-    font-size: 16px;
-    margin: .4em .4em .4em .4em ;
-    padding: 4%;
-
+    font-size: 5vw;
   }
-
-  .answerBoxSel {
-    font-size: 16px;
-    margin: .4em .4em .4em .4em ;
-    padding: 4%;
-  }
-
-  .answerContainer{
-    grid-template-columns: 90%;
-    padding: 2px;
-    grid-template-rows: auto;
-    align-items: center;
-    justify-content: space-around;
-    margin: 2px;
-  }
-
-  .listTopContainer{
-    grid-template-columns: 100%;
-  }
-}
-
-
-@media screen and (min-width: 550px) and (max-width:850px) {
-
-
-
-  .questionBox {
-    font-size: 20px;
-  }
-  .answerBoxType1 {
-    font-size: 18px;
-    margin: .3em .3em .3em .3em ;
-    padding: 2%;
-
-  }
-  .answerBoxSel {
-    font-size: 18px;
-    margin: .3em .3em .3em .3em ;
-    padding: 2%;
-  }
-  .answerContainer{
-    grid-template-columns: 90%;
-    padding: 1px;
-    grid-template-rows: auto;
-    align-items: center;
-    justify-content: space-around;
-    margin: 1px;
-  }
-  .listTopContainer{
-    grid-template-columns: 100%;
+  .answerBoxSel{
+    font-size: 5vw;
   }
 
   .submitButton{
-    height: 40px;
-    margin: 5px;
-    font-size: 24px;
-
-  }
-
-}
-@media screen and (min-width: 700px) and (max-width: 1200) {
-
-  .questionBox {
-    font-size: 24px;
-  }
-
-  .answerBoxType1 {
-    font-size: 20px;
-  }
-  .answerBoxSel {
-    font-size: 20px;
-  }
-  .answerContainer{
-    grid-template-columns: 90%;
-    padding: 4px;
-    grid-template-rows: auto;
-    align-items: center;
-    justify-content: space-around;
-    margin: 4px;
-  }
-}
-
-@media screen and (min-height: 1400px) and (max-width: 1000px) {
-
-
-  .answerContainer{
-    grid-template-columns: 95%;
-    padding: 2px;
-    grid-template-rows: auto;
-    align-items: center;
-    justify-content: space-around;
-    margin: 2px;
+    width: 30vw;
+    height: 6vh;
+    margin: 2vh;
+    padding: 0vh 1vw 0vh 1vw;
+    font-size: 6vw;
   }
 
 
 
-
-
-}
-
-@media screen and (orientation: landscape) {
-
-  .lettersDiv {
-    margin-left: 15%;
-    margin-right: 15%;
-  }
 
 }

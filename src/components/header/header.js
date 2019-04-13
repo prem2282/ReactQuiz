@@ -98,7 +98,7 @@ class header extends Component {
             <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
             <GoogleLogin
               render={renderProps => (
-                <Button className="googleButton"  onClick={renderProps.onClick}><Icon type="google" />Sign with Google</Button>
+                <Button className="headergoogleButton"  onClick={renderProps.onClick}><Icon type="google" />Sign with Google</Button>
               )}
                onSuccess={this.props.success} onFailure={this.props.error} clientId={clientId}/>
            </Animated>
@@ -111,7 +111,7 @@ class header extends Component {
               fields="name,email,picture"
               callback={this.props.facebookResp}
               render={renderProps => (
-                <Button  className="faceBookButton"  onClick={renderProps.onClick}><Icon type="facebook" />Sign with Facebook</Button>
+                <Button  className="headerfaceBookButton"  onClick={renderProps.onClick}><Icon type="facebook" />Sign with Facebook</Button>
               )}
             />
           </Animated>
@@ -141,10 +141,12 @@ class header extends Component {
       return (
         <Affix offsetTop={0}>
           <div className="grid-container">
-          <div>
-            <Avatar className="avatarBox" onClick={this.props.homeButton}
-             icon="home" />
+          <div className='iconClass'>
+            <Icon onClick={this.props.homeButton}
+                type="home" />
           </div>
+
+
 
           <div>
 
@@ -152,13 +154,16 @@ class header extends Component {
 
           <div>
             <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={true}>
-              <h3 style = {{color: 'LightSlateGray'}}>{headerText}</h3>
+              <h3 className="headerBoxText">{headerText}</h3>
             </Animated>
           </div>
 
           <div>
             {this.props.profile?
-                <Avatar className="avatarBox" icon="solution" onClick={this.props.goToHistoryPage}/>
+              <div className='iconClass'>
+                <Icon onClick={this.props.goToHistoryPage}
+                type="solution" />
+              </div>
               :
               null
             }
@@ -171,7 +176,10 @@ class header extends Component {
               </Popover>
               :
               <Popover placement="rightBottom" title={userName} content={guestContent} trigger="hover">
-                <Avatar className="avatarBox" style = {{color: 'LightSlateGray'}} icon="user"/>
+                <div className='iconClass'>
+                  <Icon 
+                      type="user" />
+                </div>
               </Popover>
             }
           </div>
@@ -194,11 +202,4 @@ class header extends Component {
 }
 
 export default header
-// <Button className="googleButton"  onClick={renderProps.onClick}><Icon type="google" />Sign with Google</Button>
-          //
-          //
-          // <Tag color="DimGray">Login with Google</Tag>
-          // <Tag color="DodgerBlue">Login with Facebook</Tag>
 
-          // <FontAwesomeIcon icon={faCrown}  onClick={this.clickedGoPremium} className='faCrownClass'/>
-            // <p>{alertText}</p>

@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url('./components/media/back3p.jpg');
+  background-size: cover;
+  overflow: scroll;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: 'Muli', sans-serif;
 }
 
 .App-logo {

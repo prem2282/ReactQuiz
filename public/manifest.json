@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "QuizMeBuddy.com",
+  "name": "QuizMeBuddy.com",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,7 +10,8 @@
   ],
   "start_url": "./index.html",
   "csp": "script-src 'self' 'unsafe-inline'; object-src 'self'",
-  "display": "standalone",
   "theme_color": "#000000",
+  "display": "fullscreen",
+  "orientation": "portrait",
   "background_color": "#ffffff"
 }

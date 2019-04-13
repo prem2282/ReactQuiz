@@ -154,9 +154,9 @@ class questType1 extends Component {
 
 
       return (
-        <div>
-        <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-          <div className = "questionContainer" style={{  backgroundImage:backgroundImage, backgroundColor:'transparent' }}>
+        <div className ="screenBackground">
+        <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+          <div className = "questionContainer" style={{  backgroundImage:backgroundImage }}>
 
             <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={this.state.visibility}>
               <div>

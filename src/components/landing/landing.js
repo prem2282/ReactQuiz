@@ -131,6 +131,9 @@ class landingPage  extends Component {
 
       <div className='App'>
         <Affix offsetTop={0}>
+        {pageId === "categories"?
+        null:
+
           <Header
             success = {this.props.success}
             error = {this.props.error}
@@ -142,6 +145,7 @@ class landingPage  extends Component {
             userPackage = {this.props.userPackage}
             goToHistoryPage = {this.props.historyPage}
           />
+        }
         </Affix>
         {pageId === "login"?
         <Welcome
@@ -152,7 +156,6 @@ class landingPage  extends Component {
         }
         {pageId === "categories"?
         <Delayed waitBeforeShow={500}>
-        <div className="categoryCover">
         <Categories
           catSelected={this.pmpSelected}
           groupSet = {this.props.groupSet}
@@ -166,7 +169,6 @@ class landingPage  extends Component {
           goToHistoryPage = {this.props.historyPage}
 
           />
-        </div>
         </Delayed>
         :null
         }

@@ -1,0 +1,25 @@
+.loadingContainer {
+    height: 100vh;
+    display: grid;
+    align-self: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.loadingText1 {
+    font-size : 4vh;
+    color : #222;
+    opacity: .8;
+  }
+
+.loadingText2 {
+font-size : 5vh;
+color : #222;
+opacity: .8;
+}
+
+.loadingText3 {
+    font-size : 15vh;
+    color :#222;
+    opacity: .8;
+    }

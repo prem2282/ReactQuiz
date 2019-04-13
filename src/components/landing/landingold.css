@@ -1,0 +1,379 @@
+
+.ant-collapse {
+    padding: 5px;
+    background-color: transparent;
+  }
+  
+  
+  .ant-collapse-content {
+      background-color: DarkSlateBlue;
+  }
+  
+  .ant-collapse-item {
+    /*border-radius: 10px;*/
+    border: 2px solid;
+    border-color: Gray;
+    margin: 10px;
+    background-color: DarkSlateGray;
+  }
+  
+  .customQuizHeaderPara {
+    margin-bottom: 0px;
+  }
+  
+  .landingContainer {
+  
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    /*margin: 1em;*/
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    background-color: #E1DDD8;
+  }
+  
+  .dummyDiv {
+  
+      height: 100px;
+      background-color: #C3BBB2;
+      /*background-color: yellow;*/
+  }
+  
+  .categoryCover {
+    height: 100vh;
+    background-color: #C3BBB2;
+  }
+  .buttonContainer {
+    /*position:fixed !important;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;*/
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    /*grid-template-columns: 100%;*/
+  }
+  
+  .scrollButton {
+    position:fixed !important;
+    position:absolute;
+    /*top:0;*/
+    right:0;
+    bottom:0;
+    /*left:0;*/
+    /*width: 25%;*/
+    /*height: 50px;*/
+    margin: 20px;
+    justify-content: space-between;
+    align-self: center;
+    background-color: DarkSlateBlue;
+    cursor: pointer;
+  }
+  .backButton{
+    position:fixed !important;
+    position:absolute;
+    /*top:0;*/
+    /*right:0;*/
+    bottom:0;
+    left:0;
+    /*width: 25%;*/
+    /*height: 50px;*/
+    margin: 20px;
+    justify-content: space-between;
+    align-self: center;
+    background-color: DarkSlateBlue;
+    cursor: pointer;
+  }
+  
+  .backButton:hover{
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+    background-color: SteelBlue;
+  }
+  
+  .shareBar {
+  
+    display: grid;
+    grid-template-columns: 5% 5% 5% 5% 5% 5% ;
+    /*margin: 1em;*/
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    background-color: #E1DDD8;
+  }
+  
+  
+  
+  .getStartedContainer {
+    display: flex;
+    grid-template-columns: 100%;
+    /*margin: 1em;*/
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    background-color: #E1DDD8;
+  }
+  
+  .featuresHeader {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content:  space-around;
+    background-color: #D7D1CB;
+    /*background-color: #858968;*/
+    padding-left: 50px;
+    padding-top: 10px;
+  }
+  
+  .featuresHeaderText {
+    text-align: left;
+  }
+  
+  
+  .googleButton {
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    background-color:  #D34836;
+    color: Gainsboro;
+    font-size: 20px;
+  }
+  
+  .faceBookButton {
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    background-color:  SteelBlue;
+    color: Aqua;
+    font-size: 20px;
+  }
+  
+  .itemButton {
+    margin: 5px;
+    width: 300px;
+    height: 50px;
+    background-color:  DarkSlateGray;
+    color: Gainsboro;
+    font-size: 20px;
+  }
+  
+  
+  .lessonChoiceButton {
+    margin: 5px;
+    /*width: 300px;*/
+    /*height: 50px;*/
+    background-color:  transparent;
+    color: Gainsboro;
+    font-size: 14px;
+  }
+  
+  .lessonChoiceButton:hover {
+    background-color:  DarkSlateGray;
+  }
+  
+  .lessonChoiceButton:active {
+    background-color:  DarkSlateGray;
+  }
+  
+  .lessonSelectedButton {
+    margin: 5px;
+    /*width: 300px;*/
+    /*height: 50px;*/
+    background-color:  DarkSlateGray;
+    color: Gainsboro;
+    font-size: 16px;
+  }
+  
+  .lessonSelectedButton:hover {
+    background-color:  DarkSlateGray;
+  }
+  
+  .lessonSelectedButton:active {
+    background-color:  DarkSlateGray;
+  }
+  
+  .customizeButton {
+    margin: 5px;
+    width: 300px;
+    height: 50px;
+    background-color:  RoyalBlue;
+    color: LightCyan;
+    font-size: 20px;
+  }
+  
+  .guestButton {
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    background-color:  DarkSlateGray;
+    color: Gainsboro;
+    font-size: 20px;
+  }
+  
+  .guestButton:hover{
+    color:  DarkSlateGray;
+    background-color:  Gainsboro;
+  }
+  
+  .premiumButton {
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    background-color:  DarkSlateBlue;
+    color: #ffff66;
+    font-size: 20px;
+  }
+  .googleLogin {
+    background-color: Red;
+  }
+  
+  .wecomeNote {
+      display: grid;
+      grid-template-columns: 90%;
+      justify-content:  space-around;
+      background-color: #D7D1CB;
+      padding-top: 20px;
+  }
+  
+  .welcomeText {
+    color: DarkSlateGray
+  }
+  .welcomeText2 {
+    color: #7B726C
+  }
+  .outerGrid {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content:  space-around;
+    background-color: #C3BBB2;
+    padding-top: 20px;
+  
+  }
+  
+  .outerCatGrid {
+  
+    display: grid;
+    grid-template-columns: 100%;
+    height:  auto;
+    justify-content:  space-around;
+    align-items: center;
+    /*background-color: #D7D1CB;*/
+    background-color: #C3BBB2;
+    padding: 2px;
+  }
+  
+  .outerBox {
+    display: grid;
+    grid-template-columns: 100%;
+    border-radius: 10px;
+    border-color: #E1DDD8;
+    border-width: thin;
+    justify-content: space-around;;
+    align-self: stretch;
+    background: #D7D1CB;
+    margin: 10px;
+  }
+  
+  .oneBoxGrid {
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center ;
+  }
+  
+  .twoBoxGrid {
+    display: grid;
+    grid-template-columns: 80% 20%;
+  }
+  
+  .outerCatBox {
+    /*background: #307B93;*/
+    /*display: flex;*/
+    /*grid-template-columns: 80% 20%;*/
+    background: transparent;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 10px;
+  
+  }
+  
+  .innerBox1 {
+      background: #5D5C5D;
+      padding: 2px;
+  
+  }
+  
+  .innerCatText1 {
+    margin-bottom: 0em;
+    padding: 2px;
+    font-size: 22px;
+    color: DarkSlateGray;
+  }
+  
+  .innerCatText2 {
+    margin-bottom: 0em;
+    padding: 2px;
+    font-size: 14px;
+    color: DimGray;
+    text-align: center;
+  }
+  
+  .innerText1 {
+      margin-bottom: 0em;
+      padding: 2px;
+      font-size: 22px;
+      color: PeachPuff;
+  }
+  
+  .innerBox2 {
+        background: #D7D1CB;
+        padding: 10px;
+        align-self: stretch;
+  
+  }
+  .innerText2 {
+      margin-bottom: 0em;
+      padding: 2px;
+      color: DarkSlateGray;
+  
+  }
+  
+  @media screen and (max-width: 800px) and (orientation: landscape) {
+    .googleButton {
+      width: 200px;
+      font-size: 14px;
+      margin: 2px;
+    }
+    .faceBookButton {
+      width: 200px;
+      font-size: 14px;
+      margin: 2px;
+    }
+    .guestButton {
+      width: 200px;
+      font-size: 14px;
+      margin: 2px;
+    }
+    .premiumButton {
+      width: 200px;
+      font-size: 14px;
+      margin: 2px;
+    }
+  
+  }
+  @media screen and (orientation: portrait) {
+  
+    .landingContainer {
+      grid-template-columns: 100%;
+    }
+    .outerGrid {
+      grid-template-columns: 100%;
+    }
+  
+    .outerCatGrid {
+      grid-template-columns: 100%;
+    }
+  
+  }
+  
