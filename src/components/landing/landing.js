@@ -129,10 +129,9 @@ class landingPage  extends Component {
       console.log("pageId", pageId);
     return (
 
-      <div className='App'>
+      <div>
         <Affix offsetTop={0}>
-        {pageId === "categories"?
-        null:
+
 
           <Header
             success = {this.props.success}
@@ -145,7 +144,7 @@ class landingPage  extends Component {
             userPackage = {this.props.userPackage}
             goToHistoryPage = {this.props.historyPage}
           />
-        }
+
         </Affix>
         {pageId === "login"?
         <Welcome
@@ -167,6 +166,8 @@ class landingPage  extends Component {
           selectedGroupSet = {this.props.selectedGroupSet}
           userQuizHistory = {this.props.userQuizHistory}
           goToHistoryPage = {this.props.historyPage}
+          homeButtonClicked = {this.props.homeButtonClicked}
+          resetHomeButton = {this.props.resetHomeButton}
 
           />
         </Delayed>

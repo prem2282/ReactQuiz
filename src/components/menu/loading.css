@@ -1,20 +1,20 @@
 .loadingContainer {
     height: 100vh;
-    display: grid;
-    align-self: center;
-    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .loadingText1 {
     font-size : 4vh;
-    color : #222;
+    color :white;
     opacity: .8;
   }
 
 .loadingText2 {
 font-size : 5vh;
-color : #222;
+color : whitesmoke;
 opacity: .8;
 }
 

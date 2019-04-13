@@ -8,31 +8,41 @@
   color: white;
 }
 
+.customLessonContainer {
+  display: grid;
+  grid-template-columns: 100%;
+}
 .lessonChoiceOuter {
   display: grid;
   grid-template-columns: 50% 50%;
 }
 
 .ant-collapse {
-  padding: 5px;
+  padding: 1vh;
   background-color: transparent;
+  width: 50%;
+  margin-left: 25%;
 }
 
 
 .ant-collapse-content {
-    background-color: DarkSlateBlue;
+    background-color: #1a102e;
+    opacity: .8;
 }
 
 .ant-collapse-item {
   /*border-radius: 10px;*/
   border: 2px solid;
   border-color: Gray;
-  margin: 10px;
-  background-color: DarkSlateGray;
+  padding: 2vh;
+  margin: 2vh;
+  background-color: rgb(54, 21, 21);
+  opacity: .8;
 }
 
 .customQuizHeaderPara {
   margin-bottom: 0px;
+  font-size: 5vh;
 }
 
 .landingContainer {
@@ -56,15 +66,18 @@
   background-color: #D34836;
 }
 .buttonContainer {
-  /* position:fixed !important;
-  position:absolute;
-  top:0;
-  right:0; */
 
+  display: block;
   align-items: center;
-  align-content: space-around;
-  justify-content: space-around;
-  /*grid-template-columns: 100%;*/
+  justify-items: center;
+  font-size: 6vh;
+  color: whitesmoke;
+  padding: 1vh 1vw 1vh 1vw;
+  /* border-radius: 4vh;
+  background-color : darkslategray; */
+  opacity: 0.8;
+  cursor: pointer;
+ 
 }
 
 .scrollButton {
@@ -173,12 +186,13 @@
 
 
 .lessonChoiceButton {
-  margin: 5px;
+  margin: .5vh;
   /*width: 300px;*/
   /*height: 50px;*/
   background-color:  transparent;
-  color: Gainsboro;
-  font-size: 14px;
+  color: white;
+  font-size: 4vh;
+  height: 7vh;
 }
 
 .lessonChoiceButton:hover {
@@ -190,12 +204,13 @@
 }
 
 .lessonSelectedButton {
-  margin: 5px;
+  margin: .5vh;
   /*width: 300px;*/
   /*height: 50px;*/
   background-color:  DarkSlateGray;
   color: Gainsboro;
-  font-size: 16px;
+  font-size: 4vh;
+  height: 7vh;
 }
 
 .lessonSelectedButton:hover {
@@ -267,7 +282,7 @@
   margin-bottom: 0;
 }
 .welcomeText2 {
-  color: #7B726C;
+  color:wheat;
   font-size: 4vh;
 }
 .outerGrid {
@@ -425,6 +440,27 @@
     margin-top: 2vh;
   }
   
+  .buttonContainer{
+    font-size: 6vw;
+    border-radius: 4vh;
+    background-color : darkslategray;
+  }
+
+  .ant-collapse {
+
+    width: 100%;
+    margin-left: 0%;
+  }
+  
+  .lessonChoiceButton {
+    font-size: 4vw;
+    height: 7vw;
+  }
+
+  .lessonSelectedButton{
+    font-size: 4vw;
+    height: 7vw;
+  }
   .landingContainer {
     grid-template-columns: 100%;
   }
@@ -432,6 +468,10 @@
   .lessonChoiceOuter {
     display: grid;
     grid-template-columns: 100%;
+  }
+
+  .customQuizHeaderPara {
+    font-size: 5vw;
   }
 
   .outerGrid {

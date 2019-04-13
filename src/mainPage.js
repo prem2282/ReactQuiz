@@ -98,6 +98,7 @@ class mainPage extends Component {
       muteVoice : false,
       gotPMPQuestions : false,
       customQuiz: false,
+      homeButtonClicked: false,
     }
   }
 
@@ -390,9 +391,16 @@ class mainPage extends Component {
     this.setState({
       pageId: "refresh",
       refreshTo: "landingPage",
+      homeButtonClicked: true,
       // selectedGroupSet:null,
     })
     this.resetQuizDetails();
+  }
+
+  resetHomeButton = () => {
+    this.setState({
+      homeButtonClicked : false,
+    })
   }
 
   clearSelectedGroup = (category) => {
@@ -1270,7 +1278,6 @@ class mainPage extends Component {
     const currentQuestionNum = this.state.currentQuestionNum;
 
     return (
-      <div className = "App">
         <QuestType5
           quiz = {this.state.quizSet[currentQuestionNum]}
           questionNum = {questionNum}
@@ -1278,7 +1285,6 @@ class mainPage extends Component {
           nextButton = {this.Q5answered}
           muteVoice = {this.state.muteVoice}
         />
-      </div>
     )
   }
 
@@ -1354,6 +1360,8 @@ class mainPage extends Component {
             userQuizHistory = {this.state.userQuizHistory}
             clearSelectedGroup = {this.clearSelectedGroup}
             customizedList = {this.customizedList}
+            homeButtonClicked = {this.state.homeButtonClicked}
+            resetHomeButton = {this.resetHomeButton}
           />
 
         </div>

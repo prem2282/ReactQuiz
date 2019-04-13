@@ -22,6 +22,7 @@ const Panel = Collapse.Panel;
  const panel3Text1 = " Select Types  "
  let panel3Text2 = "  All  "
 
+console.log('entering')
 class categories extends Component {
 
   constructor(props) {
@@ -72,6 +73,7 @@ class categories extends Component {
       customQuizSelected: false,
       lessonList: [],
       customQuestionNum: 20,
+      selectedGroupSet: this.props.selectedGroupSet,
     }
   }
 
@@ -515,10 +517,13 @@ class categories extends Component {
                 <div className="welcomeNote">
                 {showBackButton?
                     <Animated animationIn="slideInLeft" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                      <div className="buttonContainer">
+                      {/* <div className="buttonContainer">
                         <Avatar  className = 'backButton'  onClick={this.backButton}
                          icon="double-left" />
 
+                      </div> */}
+                      <div className="buttonContainer" onClick={this.backButton} >
+                        <Icon type="double-left"/>
                       </div>
                     </Animated>
 
@@ -533,7 +538,7 @@ class categories extends Component {
 
                   <Collapse accordion >
                     <Panel header={panelHeader1} key="1">
-                    <div  className='lessonChoiceOuter'>
+                    <div  className='customLessonContainer'>
                       {menuList.map((item,i) => {
 
                       let lessonButton = "lessonChoiceButton"
@@ -622,11 +627,8 @@ class categories extends Component {
 
             {this.state.customQuizSelected?
               <div>
-                <div style={{margin:'1rem'}}>
-                  <Button  type="primary" onClick={this.startCustomQuiz} >Start Quiz<Icon type="double-right" /></Button>
-                </div>
-                <div style={{margin:'1rem'}}>
-                  <Button  type="danger" ghost onClick={this.backButton} ghost><Icon type="double-left" /> Go Back </Button>
+                <div>
+                  <Button  className="lessonChoiceButton"  type="primary" onClick={this.startCustomQuiz} >Start Quiz<Icon type="double-right" /></Button>
                 </div>
               </div>
             :
@@ -636,14 +638,14 @@ class categories extends Component {
                 </div>
 
               </div>
-              <Affix offsetBottom={20}>
+              {/* <Affix offsetBottom={20}>
                 <Animated animationIn="slideInRight" animationOut="fadeOut" isVisible={this.state.submitVisibility}>
-                  <div className="buttonContainer">
+                  <div>
                     <Avatar  className = 'scrollButton'  id="scrollTop" onClick={this.topFunction}
                      icon="arrow-up" />
                   </div>
                 </Animated>
-              </Affix>
+              </Affix> */}
             </div>
             }
 
@@ -655,13 +657,7 @@ class categories extends Component {
     )
   }
 
-  topFunction = () => {
-    if (!this.state.customQuizSelected) {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }
 
-  }
 
   scrollFunction = () => {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -671,12 +667,38 @@ class categories extends Component {
     }
   }
 
+  homeButtonClicked = () => {
+    this.setState({
+      levelSelected : null,
+      choiceSelected: null,
+      categorySelected: null,
+      boardSelected: null,
+      standardSelected: null,
+      subjectSelected: null,
+      subGroupSet: null,
+      lessonSelected: null,
+      backLevel: null,
+      backChoice: null,
+    })
+
+    this.props.resetHomeButton()
+  }
+
+
   render () {
 
-    this.topFunction();
-    // window.onscroll =  this.scrollFunction();
+
+
 
     console.log("selectedGroupSet:", this.props.selectedGroupSet);
+
+    if (this.props.homeButtonClicked) {
+      this.homeButtonClicked();
+    }
+
+    // if (this.state.resetDone) {
+    //   this.clearReset();
+    // }
 
     let menuList = [];
     let scoreList = [];
