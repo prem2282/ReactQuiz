@@ -1,3 +1,70 @@
+.courseWelcome {
+
+    display: grid;
+    grid-template-columns: 100%;
+    z-index: -1;
+    justify-content:  space-around;
+    align-content: center;
+    padding-top: 2vh 2vw 2vh 2vw;
+    opacity: 0.9;
+  
+}
+
+.courseWelcomeText1 {
+  font-size: 5vh;
+  color: whitesmoke;
+}
+
+.courseWelcomeText2 {
+  font-size: 4vh;
+  color: wheat;
+}
+
+
+
+.courseButton {
+  margin: 3vh;
+  width: 80vw;
+  height: 10vh;
+  background-color:  rgb(48, 18, 85);
+  color: Gainsboro;
+  font-size: 4vh;
+  opacity: .8;
+}
+
+.processIcon{
+  font-size: 15vh;
+  padding:1vh 1vw 1vh 1vw;
+}
+
+.topTag {
+  font-size: 3vh;
+  border-radius: 3vh;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  align-self: center;
+  color: bisque;
+  font-family: Pompiere;
+
+}
+
+.setNumber {
+  font-size:8vh;
+  font-weight: bold;
+  font-family: Pompiere;
+}
+
+.bottomTag {
+  font-size: 3vh;
+  border-radius: 3vh;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  align-self: center;
+  color: bisque;
+  font-family: Pompiere;
+
+}
+
 .pmpCenter {
   position: relative;
   top: 1%;
@@ -19,7 +86,7 @@
 .pmpContainer{
   display: grid;
   gird-template-columns: 100%;
-  background-color: #E1DDD8;
+  /* background-color: #E1DDD8; */
   margin-top: .1em;
   height: auto;
   width: auto;
@@ -33,7 +100,7 @@
 .coursePageContainer{
   display: grid;
   gird-template-columns: 100%;
-  background-color: #E1DDD8;
+  /* background-color: #E1DDD8; */
   margin-top: .1em;
   height: auto;
   width: auto;
@@ -187,17 +254,25 @@
 .setTopContainer {
   display: grid;
   grid-template-columns: 100%;
-  padding: 1em;
+  /* padding: 1em; */
   align-items: center;
   align-content: center;
   justify-content: space-between;
   align-self: center;
 }
 
+.processBoxTop{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 1vh 1vw 1vh 1vw;
+}
 
 .setContainer {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 25% 25% 25%;
+  justify-content: center;
+  align-content: center;
 }
 
 .subProcessTextHead {
@@ -260,8 +335,9 @@
   padding: 5px;
   border-width: 1px;
   border-style: solid;
-  height: auto;
-  width: auto;
+  height: 30vh;
+  width: 30vh;
+  align-items: center;
   box-shadow: 3px 3px 3px black;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
@@ -269,6 +345,7 @@
   transition-duration: 0.3s;
   -webkit-transition-property: transform;
   transition-property: transform;
+  opacity: .8;
 }
 
 .processOuterBox:hover {
@@ -282,10 +359,11 @@
   font: calibri;
   font-family: sans-serif;
   color: Aqua;
+  font-size: 4vh;
 }
 
 .subProcessText {
-  font-size: 18px;
+  font-size: 5vh;
   font-family: sans-serif;
   color: Aqua;
   align-self: center;
@@ -296,7 +374,7 @@
 }
 
 .subProcessIcon {
-  font-size: 42px;
+  font-size: 15vh;
 }
 
 .headerClass {
@@ -308,141 +386,77 @@
   color: transparent;
 }
 
-@media screen and (min-width: 600px) and (max-width: 1100px) {
-  .headerText {
-    font-size: 18px;
+@media screen and (orientation: portrait) {
+
+  .courseWelcomeText1 {
+    font-size: 4vh;
+    color: whitesmoke;
   }
-  .buttonIcon {
-    font-size: 32px;
-  }
-  .pmpContainer {
-    grid-template-columns: 50%;
-  }
-  .coursePageContainer {
-        grid-template-columns: 40%;
-  }
-  .processContainter {
-    grid-template-columns: 33% 33% 33%;
+  
+  .courseWelcomeText2 {
+    font-size: 3vh;
+    color: wheat;
   }
 
-  .setContainer {
-    grid-template-columns: 33% 33% 33%;
-  }
+  .courseButton {
+    margin: 2vh;
 
-  .inputOutputContainer {
-    grid-template-columns: 75%;
+    font-size: 3vh;
   }
+  
+  
+.processOuterBox {
 
-  .inputOutputSubContainer {
-    grid-template-columns: 50% 50%;
-  }
-
-}
-
-@media screen and (min-width: 360px) and (max-width: 600px) {
-  .headerText {
-    font-size: 14px;
-  }
-  .buttonIcon {
-    font-size: 32px;
-  }
-  .pmpContainer {
-    grid-template-columns: 100%;
-  }
-  .coursePageContainer {
-        grid-template-columns: 90%;
-  }
-  .processContainter {
-    grid-template-columns: 33% 33% 33%;
-  }
-
-  .setContainer {
-    grid-template-columns: 33% 33% 33%;
-  }
-
-  .inputOutputContainer {
-    grid-template-columns: 100%;
-  }
-
-  .inputOutputSubContainer {
-    grid-template-columns: 100%;
-  }
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  border-width: 1px;
+  height: 30vw;
+  width: 30vw;
 
 }
 
-@media screen and  (max-width: 360px) {
-  .headerText {
-    font-size: 18px;
-  }
-  .buttonIcon {
-    font-size: 32px;
-  }
-  .pmpContainer {
-    grid-template-columns: 100%;
-  }
-  .coursePageContainer {
-        grid-template-columns: 90%;
-  }
-  .processContainter {
-    grid-template-columns: 50% 50%;
-  }
 
-  .setContainer {
-    grid-template-columns: 50% 50%;
-  }
-
-  .inputOutputContainer {
-    grid-template-columns: 100%;
-  }
-
-  .inputOutputSubContainer {
-    grid-template-columns: 100%;
-  }
+.topTag {
+  font-size: 4vw;
+  border-radius: 4vw;
+  margin: 0vh 1vw 0vh 1vw;
 }
 
-
-/* godaddy frame */
-@media screen and (min-height: 1400px) and (max-width: 1000px) {
-
-  .pmpContainer {
-    grid-template-columns: 80%;
-  }
-  .coursePageContainer {
-        grid-template-columns: 80%;
-  }
-  .processContainter {
-    grid-template-columns: 33% 33% 33%;
-  }
-  .setContainer {
-    grid-template-columns: 33% 33% 33%;
-  }
-
-  .inputOutputContainer {
-    grid-template-columns: 100%;
-  }
-
-  .inputOutputSubContainer {
-    grid-template-columns: 100%;
-  }
+.setNumber {
+  font-size:8vw;
 
 }
 
-@media screen and (orientation: landscape) {
-
-  .pmpContainer {
-    grid-template-columns: 50%;
-  }
-  .coursePageContainer {
-        grid-template-columns: 50%;
-  }
-  .processContainter {
-    grid-template-columns: 33% 33% 33%;
-  }
+.bottomTag {
+  font-size: 4vw;
+  border-radius: 4vw;
 
 
-  .setContainer {
-    grid-template-columns: 20%  20%  20%  20%  20% ;
-  }
+}
 
+
+.setContainer {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  justify-content: center;
+  align-content: center;
+}
+
+.processIcon{
+  font-size: 15vw;
+  padding:1vh 1vw 1vh 1vw;
+}
+
+.subProcessIcon {
+  font-size: 15vw;
+}
+
+.subProcessText {
+  font-size: 5vw;
+}
+.processText{
+  font-size: 4vw;
+}
 
 }

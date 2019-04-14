@@ -1,0 +1,318 @@
+.pmpCenter {
+    position: relative;
+    top: 1%;
+    align-self: center;
+  }
+  
+  .courseSubmitDiv {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+  
+  }
+  .courseSubmit{
+    width: 100px;
+    margin: 0px;
+    justify-content: space-around;
+  }
+  
+  .pmpContainer{
+    display: grid;
+    gird-template-columns: 100%;
+    /* background-color: #E1DDD8; */
+    margin-top: .1em;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+  
+  }
+  
+  .coursePageContainer{
+    display: grid;
+    gird-template-columns: 100%;
+    /* background-color: #E1DDD8; */
+    margin-top: .1em;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+  
+  }
+  
+  .pmpHeader {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+  }
+  
+  .pmpItem {
+    margin: 10px 20px 10px 20px;
+    padding: 10px 10px 10px 10px;
+    width: -webkit-fill-available;
+    box-shadow: 5px 5px 2px black;
+  }
+  
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    background-color: transparent;
+    color: rgb(277,204,232);
+  
+  }
+  
+  .custom .ant-collapse-content {
+    background-color: #20211F;
+    color: Aqua;
+    border-color: Gray;
+  }
+  
+  .custom .ant-collapse-item {
+    background-color: transparent;
+    color : Aqua;
+  }
+  
+  .custom headerClass {
+    color: Aqua;
+  }
+  
+  .inputOutputContainer {
+    display: grid;
+    grid-template-columns: 50%;
+    margin-top: .1em;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+  }
+  
+  .inputOutputSubContainer {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    margin-top: 1em;
+    height: auto;
+    width: auto;
+    align-items: flex-start;
+    align-content: space-around;
+    justify-content: space-around;
+  }
+  
+  .inputOutputBox {
+    display: block;
+    justify-content: flex-start;
+    align-content: center;
+  }
+  
+  .descBox {
+    display: block;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 1px;
+    font-family: monospace;
+    font: Arial;
+    font-weight: lighter;
+  }
+  
+  .subProcessIOText {
+    margin-bottom: 0px;
+      padding: 2px;
+      color: LightSalmon;
+  }
+  .subProcessContainerIO {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin: 2px;
+    padding: 1px;
+    border-width: .5px;
+    border-color: Gray;
+    border-radius: 5px;
+    background-color: transparent;
+    height: auto;
+    width: auto;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+  }
+  
+  
+  
+  .subProcessButton {
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    background-color:  DarkSlateGray;
+    color: Gainsboro;
+    font-size: 20px;
+  }
+  
+  .subProcessContainer {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    align-content: space-around;
+    background-color: DarkSlateGray;
+    margin: 5px;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    height: auto;
+    box-shadow: 3px 3px 3px black;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+  
+  }
+  
+  .subProcessContainer:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    background-color: #272826;
+    color: Gold;
+  }
+  
+  
+  .processContainter {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+  
+  .setTopContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    padding: 1em;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    align-self: center;
+  }
+  
+  
+  .setContainer {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+  
+  .subProcessTextHead {
+    font-size: 18px;
+    font-variant: small-caps;
+    font-family: monospace;
+    border-radius: 2px;
+    background: DimGray;
+    align-self: center;
+    padding-top: 2px;
+    margin-bottom: 0px;
+    color: PeachPuff;
+  }
+  .inputOutputHeader {
+    display: grid;
+    margin: 10px;
+    padding: 2px;
+    border-width: 1px;
+    border-style: solid;
+    height: auto;
+    width: auto;
+    box-shadow: 3px 3px 3px black;
+    font-family: sans-serif;
+    font-size: 20px;
+    background-color: #20211F;
+    font-weight: lighter;
+    color: PeachPuff;
+  
+  }
+  
+  .buttonIcon {
+      font-size: 20px;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-property: transform;
+      transition-property: transform;
+  }
+  
+  .headerText {
+    font-size: 24px;
+    align-self: center;
+    padding-top: 2%;
+  }
+  
+  .buttonIcon:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    color: white;
+  
+  }
+  
+  .processOuterBox {
+    display: grid;
+    border-color: NavajoWhite;
+    background-color: DarkSlateGray;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    height: 30vh;
+    width: 30vh;
+    box-shadow: 3px 3px 3px black;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    opacity: .8;
+  }
+  
+  .processOuterBox:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    background-color: #272826;
+    color: Gold;
+  }
+  
+  .processText {
+    font: calibri;
+    font-family: sans-serif;
+    color: Aqua;
+  }
+  
+  .subProcessText {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: Aqua;
+    align-self: center;
+    padding: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    justify-content: flex-start;
+  }
+  
+  .subProcessIcon {
+    font-size: 42px;
+  }
+  
+  .headerClass {
+    background-color: transparent;
+    color: LemonChiffon;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-style: oblique;
+    color: transparent;
+  }
+  
+  @media screen and (orientation: portrait) {
+  
+  
+  
+  
+  }
+  

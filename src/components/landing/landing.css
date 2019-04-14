@@ -289,7 +289,7 @@
   display: grid;
   grid-template-columns: 30% 30% 30%;
   justify-content:  space-around;
-  background-color: #C3BBB2;
+  /* background-color: #C3BBB2; */
   padding-top: 20px;
 
 }
@@ -310,13 +310,13 @@
 .outerBox {
   display: grid;
   grid-template-columns: 100%;
-  border-radius: 10px;
-  border-color: #E1DDD8;
-  border-width: thin;
+  /* border-radius: 10px; */
+  /* border-color: #E1DDD8; */
+  /* border-width: thin; */
   justify-content: space-around;;
   align-self: stretch;
-  background: #D7D1CB;
-  margin: 10px;
+  margin: 2vh;
+  opacity: .9;
 }
 
 .oneBoxGrid {
@@ -340,8 +340,9 @@
 }
 
 .innerBox1 {
-    background: #5D5C5D;
-    padding: 2px;
+    background: rgb(54, 3, 54);
+    padding: .2vh;
+    opacity: 0.8;
 
 }
 
@@ -363,21 +364,26 @@
 .innerText1 {
     margin-bottom: 0em;
     padding: 2px;
-    font-size: 22px;
+    font-size: 4vh;
     color: PeachPuff;
+    font-family: Pompiere, cursive;
+    font-weight: bold;
 }
 
 .innerBox2 {
       background: #D7D1CB;
       padding: 10px;
       align-self: stretch;
+      opacity: .8;
 
 }
 .innerText2 {
     margin-bottom: 0em;
+    font-size: 4vh;
     padding: 2px;
-    color: DarkSlateGray;
-
+    color: rgb(54, 3, 54);
+    font-family: Pompiere, cursive;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 800px) and (orientation: landscape) {
@@ -416,6 +422,7 @@
     width: 80vw;
     height: 10vh;
     font-size: 5vw;
+    opacity: .8;
   }
 
   .customizeButton{
@@ -474,6 +481,25 @@
     font-size: 5vw;
   }
 
+    
+  .innerBox1 {
+    padding: .2vh;
+
+  }
+  .innerText1 {
+    margin-bottom: 0em;
+    font-size: 3.5vh;
+  }
+
+  .innerBox2 {
+      padding: 10px;
+
+  }
+  .innerText2 {
+    margin-bottom: 0em;
+    font-size: 2.5vh;
+
+  }
   .outerGrid {
     grid-template-columns: 100%;
   }

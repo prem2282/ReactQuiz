@@ -27,24 +27,25 @@ class coursePageNew extends Component {
   render() {
 
     return(
-      <div>
+      <div className="coursePageContainer">
         <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-          <div className="wecomeNote">
-            <h2 className="welcomeText">Welcome to PMP</h2>
-            <h3 className="welcomeText2">Select your Choice</h3>
+          <div className="courseWelcome">
+            <div className="courseWelcomeText1">Welcome to PMP</div>
+            <div className="courseWelcomeText2">Select your Choice</div>
           </div>
+
         </Animated>
         <div className="landingContainer">
 
             <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
-              <Button className="guestButton"  onClick={this.props.pmpQuiz}><Icon type="question-circle" />Take Quiz</Button>
+              <Button className="courseButton"  onClick={this.props.pmpQuiz}><Icon type="question-circle" />Take Quiz</Button>
             </Animated>
             <Animated  animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
-              <Button className="guestButton"  onClick={this.props.pmpLearn}><Icon type="book" />Learn Inputs and Outputs</Button>
+              <Button className="courseButton"  onClick={this.props.pmpLearn}><Icon type="book" />Learn Inputs and Outputs</Button>
             </Animated>
 
             <Animated  animationIn="slideInRight" animationOut="fadeOut" isVisible={true}>
-              <Button className="guestButton"  onClick={this.reportCard}><Icon type="solution" />Report Card</Button>
+              <Button className="courseButton"  onClick={this.reportCard}><Icon type="solution" />Report Card</Button>
             </Animated>
         </div>
       </div>

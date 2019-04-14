@@ -139,7 +139,7 @@ class header extends Component {
       )
 
       return (
-        <Affix offsetTop={0}>
+        <div>
           <div className="grid-container">
           <div className='iconClass'>
             <Icon onClick={this.props.homeButton}
@@ -192,7 +192,7 @@ class header extends Component {
               handleCancel={this.proHandleCancel}
             />
           </Animated>
-        </Affix>
+        </div>
 
 
       )

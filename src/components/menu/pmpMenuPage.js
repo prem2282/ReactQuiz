@@ -102,6 +102,7 @@ class pmpMenuPage extends Component {
     let userPackage = this.props.userPackage;
     let takenColor = '#383749';
     let savedColor = '#384537';
+    let tryItColour = '#222'
     let setHeaderText = [];
     let setHeaderColor = [];
     let setNumberColor = [];
@@ -129,7 +130,7 @@ class pmpMenuPage extends Component {
       setHeaderText.push('Try It');
       setHeaderColor.push("ForestGreen");
       setNumberColor.push("Aqua");
-      setBoxColor.push('transparent');
+      setBoxColor.push(tryItColour);
     }
 
     if (userPackage === "PMP") {
@@ -156,7 +157,7 @@ class pmpMenuPage extends Component {
           setHeaderText.push('Try It');
           setHeaderColor.push("ForestGreen");
           setNumberColor.push("Aqua");
-          setBoxColor.push('transparent');
+          setBoxColor.push(tryItColour);
         }
       }
 
@@ -166,7 +167,7 @@ class pmpMenuPage extends Component {
           setHeaderText.push('Go Premium');
           setHeaderColor.push('DimGray');
           setNumberColor.push('DimGray');
-          setBoxColor.push('transparent');
+          setBoxColor.push(tryItColour);
         }
 
     }
@@ -586,36 +587,36 @@ class pmpMenuPage extends Component {
           headerText = {headerText}
         />
       </Affix>
-        <div className="menuCenter">
+        <div>
 
         {(this.state.menuName==='front')?
               <div className="coursePageContainer">
                 <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
-                  <div className="wecomeNote">
-                    <h2 className="welcomeText">Choose a category</h2>
-                    <h3 className="welcomeText2">Quizzes are organized by these categories</h3>
+                  <div className="courseWelcome">
+                    <h2 className="courseWelcomeText1">Choose a category</h2>
+                    <h3 className="courseWelcomeText2">Quizzes are organized by these categories</h3>
                   </div>
                 </Animated>
                   <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
-                    <Button className="subProcessButton"  onClick={this.type1Selected} >
+                    <Button className="courseButton"  onClick={this.type1Selected} >
                         <Icon type="project" style={{color:'LightSteelBlue'}}/>
                         By Project Phases
                     </Button>
                   </Animated>
                   <Animated  animationIn="slideInRight" animationOut="fadeOut" isVisible={true}>
-                    <Button className="subProcessButton"  onClick={this.type2Selected} >
+                    <Button className="courseButton"  onClick={this.type2Selected} >
                         <Icon type="experiment" style={{color:'LightSteelBlue'}}/>
                         By Process Groups
                     </Button>
                   </Animated>
                   <Animated  animationIn="slideInLeft" animationOut="fadeOut" isVisible={true}>
-                    <Button className="subProcessButton"  onClick={this.generalClicked} >
+                    <Button className="courseButton"  onClick={this.generalClicked} >
                         <Icon type="bulb" style={{color:'LightSteelBlue'}}/>
                         By Soft Skills
                     </Button>
                   </Animated>
                   <Animated  animationIn="slideInRight" animationOut="fadeOut" isVisible={true}>
-                    <Button className="subProcessButton"  onClick={this.mathClicked} >
+                    <Button className="courseButton"  onClick={this.mathClicked} >
                         <Icon type="calculator" style={{color:'LightSteelBlue'}}/>
                         Formula based challenges
                     </Button>
@@ -628,16 +629,16 @@ class pmpMenuPage extends Component {
         {(this.state.menuName==='type1')?
           <div className = "pmpContainer">
             <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
-              <div className="wecomeNote">
-                <h2 className="welcomeText">By Project Phase</h2>
-                <h3 className="welcomeText2">Now choose one of the phases</h3>
+              <div className="courseWelcome">
+                <h2 className="courseWelcomeText1">By Project Phase</h2>
+                <h3 className="courseWelcomeText2">Now choose one of the phases</h3>
               </div>
             </Animated>
             {phaseList.map((item,i) => {
               return(
                 <Delayed key={item} id={item} waitBeforeShow={0*100}>
                   <Animated key={item} animationIn="slideInUp" animationOut="fadeOut" isVisible={true}>
-                    <Button className="subProcessButton" onClick={() => this.phaseClicked(i)}>
+                    <Button className="courseButton" onClick={() => this.phaseClicked(i)}>
                       <div style={{color:phaseColorList[i]}}>
                         {phaseFontList[i]} {pmpPhaseMapping(item)}
                       </div>
@@ -654,9 +655,9 @@ class pmpMenuPage extends Component {
           {(this.state.menuName==='type2')?
             <div className = "pmpContainer">
               <Animated  animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
-                <div className="wecomeNote">
-                  <h2 className="welcomeText">By Process Groups</h2>
-                  <h3 className="welcomeText2">Now choose one of the groups</h3>
+                <div className="courseWelcome">
+                  <h2 className="courseWelcomeText1">By Process Groups</h2>
+                  <h3 className="courseWelcomeText2">Now choose one of the groups</h3>
                 </div>
               </Animated>
               <div className = "processContainter">
@@ -666,10 +667,10 @@ class pmpMenuPage extends Component {
                   <Delayed key={item} id={item} waitBeforeShow={0*100}>
                     <Animated key={item} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                       <div className="processOuterBox" onClick={() => this.typeClicked(i)}>
-                        <i className="material-icons" style={{fontSize:48, color:typeColorList[i]}}>
+                        <i className=" material-icons processIcon " style={{color:typeColorList[i]}}>
                           {typeIconList[i]}
                         </i>
-                          <p className="processText">{pmpTypeMapping(item)}</p>
+                          <div className="processText">{pmpTypeMapping(item)}</div>
                       </div>
                     </Animated>
                   </Delayed>
@@ -682,21 +683,28 @@ class pmpMenuPage extends Component {
             }
 
         {(this.state.menuName==='set')?
-            <div className="setTopContainer">
+            <div>
 
               <div className="setContainer">
+              
               {this.state.setList.map((item,i) => {
                 return(
-                  <Delayed key={item} id={item} waitBeforeShow={i*100}>
-                    <Animated key={i} id={i} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                      <div className="processOuterBox" style={{backgroundColor:setBoxColor[i]}}
-                        onClick={() => this.setClicked(i,setProps)}>
-                        <Tag color={setHeaderColor[i]}>{setHeaderText[i]}</Tag>
-                        <p style={{fontSize:48, marginBottom:0, color:setNumberColor[i]}}>{item}</p>
-                        <Tag color={"transparent"}>{this.state.setCountList[i]}</Tag>
-                      </div>
-                    </Animated>
-                  </Delayed>
+                  <div className="processBoxTop">
+                    <Delayed key={item} id={item} waitBeforeShow={i*100}>
+                      <Animated key={i} id={i} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+                        <div className="processOuterBox" style={{backgroundColor:setBoxColor[i]}}
+                          onClick={() => this.setClicked(i,setProps)}>
+                          <div className="topTag" style={{backgroundColor:setHeaderColor[i]}}>{setHeaderText[i]}</div>
+                          <div className="setNumber" style={{color:setNumberColor[i]}}>{item}</div>
+                          <div className="bottomTag">{this.state.setCountList[i]}</div>
+                          {/* <Tag color={setHeaderColor[i]}>{setHeaderText[i]}</Tag>
+                          <p style={{fontSize:48, marginBottom:0, color:setNumberColor[i]}}>{item}</p>
+                          <Tag color={"transparent"}>{this.state.setCountList[i]}</Tag> */}
+                        </div>
+                      </Animated>
+                    </Delayed>
+                  </div>
+
                   )
                 })}
                 </div>

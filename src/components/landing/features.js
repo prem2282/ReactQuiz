@@ -54,11 +54,11 @@ class features extends Component {
   pmpFeaturesRender = () => {
     return(
       <Delayed waitBeforeShow={1500}>
-        <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        {/* <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
           <div className='featuresHeader'>
             <h2 className="featuresHeaderText">Features</h2>
           </div>
-        </Animated>
+        </Animated> */}
         <Animated  animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
           <div className='outerGrid'>
 
