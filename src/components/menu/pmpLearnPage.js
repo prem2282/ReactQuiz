@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Affix, Collapse, Avatar, Icon, Button, Tag} from 'antd';
-import './menuPage.css'
+// import './menuPage.css'
 import './pmpStyles.css'
 import {Animated} from 'react-animated-css';
 import _ from 'lodash';
@@ -22,7 +22,7 @@ const phaseList = ['I','P','E','M','C']
 const typeList = ['I','S','T','C','Q','H','CM','R','P'];
 const typeIconList = ['dashboard','filter_tilt_shift','schedule','attach_money','verified_user','people','chat','priority_high','shopping_cart'];
 const typeColorList = ['Wheat','RosyBrown','GreenYellow','Gold','LightSteelBlue','Orange','PaleVioletRed','Red','Khaki'];
-const fontSize = 42;
+
 const Panel = Collapse.Panel;
 
 const ProcessArray = PMPConstants('ProcessArray');
@@ -299,11 +299,11 @@ class pmpLearnPage extends Component {
               <div className="pmpContainer">
                 <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                   <div className='processOuterBox' onClick={this.type1Selected}>
-                    <i className="material-icons" style={{fontSize:48}}>compare_arrows</i>
+                    <i className="material-icons processIcon" >compare_arrows</i>
                     <p className="processText">Inputs & Outputs</p>
                   </div>
                   <div className='processOuterBox' onClick={this.type2Selected}>
-                    <i className="material-icons" style={{fontSize:48}}>compare_arrows</i>
+                    <i className="material-icons processIcon" >compare_arrows</i>
                     <p className="processText">Tools & Techniques</p>
                   </div>
                 </Animated>
@@ -316,14 +316,16 @@ class pmpLearnPage extends Component {
             <div className="processContainter">
               {typeList.map((item,i) => {
                 return(
+                  <div className="processBoxTop">
                   <Delayed key={item} id={item} waitBeforeShow={i*10}>
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                       <div className='processOuterBox' onClick={() => this.typeClicked(i)}>
-                        <i className="material-icons" style={{fontSize:48, color:typeColorList[i]}}>{typeIconList[i]}</i>
+                        <i className="material-icons processIcon" style={{ color:typeColorList[i]}}>{typeIconList[i]}</i>
                         <p className="processText">{pmpTypeMapping(item)}</p>
                       </div>
                     </Animated>
                   </Delayed>
+                  </div>
                 )
               }
               )}
@@ -336,14 +338,16 @@ class pmpLearnPage extends Component {
             <div className="processContainter">
               {typeList.map((item,i) => {
                 return(
+                  <div className="processBoxTop">
                   <Delayed key={item} id={item} waitBeforeShow={i*10}>
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                       <div className='processOuterBox' onClick={() => this.typeClicked(i)}>
-                        <i className="material-icons" style={{fontSize:48, color:typeColorList[i]}}>{typeIconList[i]}</i>
+                        <i className="material-icons processIcon" style={{ color:typeColorList[i]}}>{typeIconList[i]}</i>
                         <p className="processText">{pmpTypeMapping(item)}</p>
                       </div>
                     </Animated>
                   </Delayed>
+                  </div>
                 )
               }
               )}
@@ -386,7 +390,7 @@ class pmpLearnPage extends Component {
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
 
                       <p className="inputOutputHeader">Inputs</p>
-                      <Collapse accordion className="custom" style={{backgroundColor:'transparent'}} onChange={this.callback}>
+                      <Collapse accordion className="custom" onChange={this.callback}>
                         {this.state.inputList.map((item,i) => {
                           let inputName = <i style={{color:'Khaki'}}>{IONameList[item]}</i>
                           let InputByProcess = PMPConstants('InputByProcess')[item]

@@ -85,7 +85,7 @@
 
 .pmpContainer{
   display: grid;
-  gird-template-columns: 100%;
+  grid-template-columns: 100%;
   /* background-color: #E1DDD8; */
   margin-top: .1em;
   height: auto;
@@ -99,7 +99,7 @@
 
 .coursePageContainer{
   display: grid;
-  gird-template-columns: 100%;
+  grid-template-columns: 100%;
   /* background-color: #E1DDD8; */
   margin-top: .1em;
   height: auto;
@@ -123,12 +123,15 @@
   box-shadow: 5px 5px 2px black;
 }
 
+
 .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   background-color: transparent;
   color: rgb(277,204,232);
 
 }
-
+.custom .ant-collapse {
+  width: 100%;
+}
 .custom .ant-collapse-content {
   background-color: #20211F;
   color: Aqua;
@@ -136,8 +139,9 @@
 }
 
 .custom .ant-collapse-item {
-  background-color: transparent;
+  background-color: #20211F;
   color : Aqua;
+  font-size: 3vh;
 }
 
 .custom headerClass {
@@ -146,7 +150,7 @@
 
 .inputOutputContainer {
   display: grid;
-  grid-template-columns: 50%;
+  grid-template-columns: 100%;
   margin-top: .1em;
   height: auto;
   width: auto;
@@ -223,11 +227,13 @@
   justify-content: space-between;
   align-content: space-around;
   background-color: DarkSlateGray;
-  margin: 5px;
-  padding: 5px;
-  border-width: 1px;
-  border-style: solid;
+  margin: 1vh 1vw 1vh 1vw;
+  padding: 1vh 1vw 1vh 1vw;
+  /* border-width: 1px; */
+  /* border-style: solid; */
+  border-radius: 2vh;
   height: auto;
+  opacity: 0.9;
   box-shadow: 3px 3px 3px black;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
@@ -276,7 +282,7 @@
 }
 
 .subProcessTextHead {
-  font-size: 18px;
+  font-size: 4vh;
   font-variant: small-caps;
   font-family: monospace;
   border-radius: 2px;
@@ -296,7 +302,7 @@
   width: auto;
   box-shadow: 3px 3px 3px black;
   font-family: sans-serif;
-  font-size: 20px;
+  font-size: 4vh;
   background-color: #20211F;
   font-weight: lighter;
   color: PeachPuff;
@@ -363,12 +369,11 @@
 }
 
 .subProcessText {
-  font-size: 5vh;
+  font-size: 4vh;
   font-family: sans-serif;
   color: Aqua;
   align-self: center;
-  padding: 5px;
-  padding-bottom: 5px;
+  padding: 1vh;
   margin-bottom: 0px;
   justify-content: flex-start;
 }
@@ -443,6 +448,14 @@
   align-content: center;
 }
 
+.inputOutputContainer {
+  grid-template-columns: 100%;
+}
+
+.inputOutputSubContainer {
+  grid-template-columns: 100%;
+}
+
 .processIcon{
   font-size: 15vw;
   padding:1vh 1vw 1vh 1vw;
@@ -459,4 +472,15 @@
   font-size: 4vw;
 }
 
+.subProcessTextHead {
+  font-size: 4vw;
+}
+
+.inputOutputHeader {
+  font-size: 4vw;
+}
+
+.pmpContainer{
+  grid-template-columns: 100%;
+}
 }

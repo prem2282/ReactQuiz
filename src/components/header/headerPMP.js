@@ -51,12 +51,21 @@ class headerPMP extends Component {
 
     return(
       <div className="grid-container">
-        <div>
+        {/* <div>
           <Avatar className="avatarBox" onClick={this.props.homeButton} style={{backgroundColor:'LightSlateGray'}} icon="home"/>
+        </div> */}
+        <div className='iconClass' onClick={this.props.homeButton}>
+              <Icon 
+                  type="home" />
         </div>
-        <div>
+
+        {/* <div>
           <Avatar className="avatarBox" onClick={this.props.backButton} style={{backgroundColor:'LightSlateGray'}} icon="left"/>
-        </div>
+        </div> */}
+        <div className='iconClass' onClick={this.props.homeButton}>
+              <Icon 
+                  type="left" />
+        </div>      
         <div>
           <Animated animationIn="flipInY" animationOut="fadeOut" isVisible={true}>
             <p className="headerBoxText">{this.props.headerText}</p>

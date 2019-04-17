@@ -664,6 +664,7 @@ class pmpMenuPage extends Component {
 
               {typeList.map((item,i) => {
                 return(
+                  <div className="processBoxTop">
                   <Delayed key={item} id={item} waitBeforeShow={0*100}>
                     <Animated key={item} animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
                       <div className="processOuterBox" onClick={() => this.typeClicked(i)}>
@@ -674,6 +675,7 @@ class pmpMenuPage extends Component {
                       </div>
                     </Animated>
                   </Delayed>
+                  </div>
 
                 )
               })}
