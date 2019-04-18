@@ -365,17 +365,21 @@
   font: calibri;
   font-family: sans-serif;
   color: Aqua;
-  font-size: 4vh;
+  font-size: 5vh;
+  font-family: Pompiere;
+  font-weight: bold;
 }
 
 .subProcessText {
-  font-size: 4vh;
+  font-size: 5vh;
   font-family: sans-serif;
   color: Aqua;
   align-self: center;
   padding: 1vh;
   margin-bottom: 0px;
   justify-content: flex-start;
+  font-family: Pompiere;
+  font-weight: bold;
 }
 
 .subProcessIcon {
@@ -469,16 +473,11 @@
   font-size: 5vw;
 }
 .processText{
-  font-size: 4vw;
+  font-size: 5vw;
 }
 
-.subProcessTextHead {
-  font-size: 4vw;
-}
 
-.inputOutputHeader {
-  font-size: 4vw;
-}
+
 
 .pmpContainer{
   grid-template-columns: 100%;

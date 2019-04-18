@@ -389,7 +389,7 @@ class pmpLearnPage extends Component {
                   <Delayed waitBeforeShow={200}>
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
 
-                      <p className="inputOutputHeader">Inputs</p>
+                      <div className="inputOutputHeader">Inputs</div>
                       <Collapse accordion className="custom" onChange={this.callback}>
                         {this.state.inputList.map((item,i) => {
                           let inputName = <i style={{color:'Khaki'}}>{IONameList[item]}</i>
@@ -457,7 +457,7 @@ class pmpLearnPage extends Component {
                 <div>
                   <Delayed waitBeforeShow={400}>
                     <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                      <p className="inputOutputHeader">Outputs</p>
+                      <div className="inputOutputHeader">Outputs</div>
                       <div>
                         <Collapse accordion className="custom" style={{backgroundColor:'transparent'}} onChange={this.callback}>
                           {this.state.outputList.map((item,i) => {
@@ -531,7 +531,7 @@ class pmpLearnPage extends Component {
               <div>
                 <Delayed waitBeforeShow={200}>
                   <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-                    <p className="inputOutputHeader">Tools and Techniques</p>
+                    <div className="inputOutputHeader">Tools and Techniques</div>
                     <Collapse accordion className="custom" style={{backgroundColor:'transparent'}} onChange={this.callback}>
                       {this.state.toolList.map((item,i) => {
                         let toolName = <i style={{color:'Khaki'}}>{ToolsNameList[item]}</i>

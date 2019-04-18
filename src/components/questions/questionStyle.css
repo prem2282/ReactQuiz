@@ -69,6 +69,7 @@
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
+  background-color: transparent;  
   /*grid-template-columns: 100%;*/
 }
 
@@ -175,10 +176,10 @@
   align-self: center;
 }
 .submitButton{
-  width: 30vw;
-  height: 6vh;
+  width: 30vh;
+  height: 10vh;
   margin: 2vh;
-  padding: 0vh 1vw 0vh 1vw;
+  padding: 1vh 1vw 1vh 1vw;
   font-family: monospace;
   font-size: 4vh;
   color: Aqua;
