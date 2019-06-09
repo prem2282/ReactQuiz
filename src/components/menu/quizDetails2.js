@@ -385,6 +385,14 @@ class quizDetails2 extends React.Component {
                             let matchAnswer = data.matchAnswer;
                             // let yourAnswer = this.props.quizDetails.selectedAnsIndex.split(",")
 
+                            let rightAnsCount = 0;
+                            for (let i = 0; i < matchQuestion.length; i++) {
+                              if (yourAnswerArray[i] === matchAnswer[i]) {
+                                rightAnsCount = rightAnsCount+1;
+                              }
+                            }
+                            
+                            collapseText = collapseText + "(" + rightAnsCount + "/" + matchQuestion.length + ")"
                             return(
                               <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
                                 <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
@@ -433,12 +441,24 @@ class quizDetails2 extends React.Component {
                             let unshuffledList = data.unshuffledList;
                             let listQuestion = [];
                             let listAnswer = [];
+
+                            
                             let superListNames = data.superListNames;
                             for (let i = 0; i < unshuffledList.length; i++) {
                               listQuestion.push(unshuffledList[i].question)
                               let answerIndex = unshuffledList[i].answer;
-                              listAnswer.push(superListNames[answerIndex]) ;
+                              listAnswer.push(superListNames[answerIndex]) 
                             }
+
+                            let rightAnsCount = 0;
+                            for (let i = 0; i < unshuffledList.length; i++) {
+                              if (yourAnswerArray[i] === listAnswer[i]) {
+                                rightAnsCount = rightAnsCount+1;
+                              }
+                            }
+                            
+                            collapseText = collapseText + "(" + rightAnsCount + "/" + unshuffledList.length + ")"
+
                             return(
                               <Animated key={i} animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
                                 <Collapse accordion className="custom" style={{backgroundColor:'transparent', margin:'2px'}} onChange={this.callback}>
@@ -447,7 +467,8 @@ class quizDetails2 extends React.Component {
                                     <div >
                                       <div  className="historyQuestBox">
                                         <p>
-                                          "Select the rigth answer"
+                                          Select the rigth answer - 
+                                    
                                         </p>
 
                                         {listQuestion.map((item, i) => {
