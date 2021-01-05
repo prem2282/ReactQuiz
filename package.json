@@ -9,7 +9,7 @@
     "@material-ui/core": "^3.7.1",
     "@material-ui/icons": "^3.0.1",
     "antd": "^3.11.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "disable-react-devtools": "^1.0.0",
     "instamojo-nodejs": "0.0.5",
     "ip": "^1.1.5",
