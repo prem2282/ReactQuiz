@@ -15,7 +15,7 @@
     "ip": "^1.1.5",
     "iplocation": "^6.1.0",
     "lodash": "^4.17.11",
-    "moment": "^2.23.0",
+    "moment": "^2.29.4",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-adsense": "0.0.6",
